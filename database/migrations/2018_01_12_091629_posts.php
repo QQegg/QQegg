@@ -17,7 +17,6 @@ class Posts extends Migration
             $table->increments('id');
             $table->string('post_title');
             $table->string('post_content');
-            $table->string('post_timstamp');
             $table->rememberToken();
             $table->timestamps();
         });

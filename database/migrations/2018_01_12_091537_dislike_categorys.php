@@ -15,8 +15,8 @@ class DislikeCategorys extends Migration
     {
         Schema::create('dislike categorys', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('M_id');
-            $table->string('Cate_id');
+            $table->integer('M_id');
+            $table->integer('Cate_id');
             $table->rememberToken();
             $table->timestamps();
         });

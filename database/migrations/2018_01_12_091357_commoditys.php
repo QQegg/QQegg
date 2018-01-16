@@ -15,12 +15,12 @@ class Commoditys extends Migration
     {
         Schema::create('commoditys', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Cate_id');
+            $table->integer('Cate_id');
             $table->string('Comm_name');
             $table->string('Comm_spec');
-            $table->string('Comm_price');
+            $table->integer('Comm_price');
             $table->string('Comm_unit');
-            $table->string('Comm_inv');
+            $table->integer('Comm_inv');
             $table->rememberToken();
             $table->timestamps();
         });
