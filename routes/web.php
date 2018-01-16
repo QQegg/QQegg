@@ -10,7 +10,60 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('push');
 });
+Route::group(['prefix' => 'store'], function() {
+    Route::get('/create',['as'=>'storecreate','uses'=>'StoresController@create']);
+    Route::post('/store',['as' => 'XS' ,'uses'=>'StoresController@store']);
+    Route::get('/edit/{id}',['as'=>'storeedit','uses'=>'StoresController@edit']);
+    Route::put('/update/{id}',['as'=>'storeupdate','uses'=>'StoresContreller@update']);
+    Route::delete('/destroy/{id}',['as'=>'storedestroy','uses'=>'StoresContreller@destroy']);
+});
+Route::group(['prefix' => 'costomer'], function() {
+    Route::get('/create',['as'=>'coscreate','uses'=>'CostomersController@create']);
+    Route::post('/store',['as' => 'cosstore' ,'uses'=>'CostomersController@store']);
+    Route::get('/edit/{id}',['as'=>'cosedit','uses'=>'CostomersController@edit']);
+    Route::put('/update/{id}',['as'=>'cosupdate','uses'=>'CostomersController@update']);
+    Route::delete('/destroy/{id}',['as'=>'cosdestroy','uses'=>'CostomerController@destroy']);
+});
+Route::group(['prefix' => 'product'], function() {
+    Route::get('/create',['as'=>'procreate','uses'=>'ProductsController@create']);
+    Route::post('/store',['as' => 'prostore' ,'uses'=>'ProductsController@store']);
+    Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
+    Route::put('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
+    Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
+});
+Route::group(['prefix' => 'notification'], function() {
+    Route::get('/create',['as'=>'noticreate','uses'=>'NotificationsController@create']);
+    Route::post('/store',['as' => 'notistore' ,'uses'=>'NotificationsController@store']);
+    Route::get('/edit/{id}',['as'=>'notiedit','uses'=>'NotificationsController@edit']);
+    Route::put('/update/{id}',['as'=>'notiupdate','uses'=>'NotificationsController@update']);
+    Route::delete('/destroy/{id}',['as'=>'notidestroy','uses'=>'NotificationsController@destroy']);
+});
+Route::group(['prefix' => 'coupon'], function() {
+    Route::get('/create',['as'=>'coucreate','uses'=>'CouponsController@create']);
+    Route::post('/store',['as' => 'coustore' ,'uses'=>'CouponsController@store']);
+    Route::get('/edit/{id}',['as'=>'couedit','uses'=>'CouponsController@edit']);
+    Route::put('/update/{id}',['as'=>'couupdate','uses'=>'CouponsController@update']);
+    Route::delete('/destroy/{id}',['as'=>'coudestroy','uses'=>'CouponsController@destroy']);
+});
+Route::group(['prefix' => 'evaluation'], function() {
+    Route::get('/create',['as'=>'evacreate','uses'=>'EvaluationsController@create']);
+    Route::post('/store',['as' => 'evastore' ,'uses'=>'EvaluationsController@store']);
+    Route::get('/edit/{id}',['as'=>'evaedit','uses'=>'EvaluationsController@edit']);
+    Route::put('/update/{id}',['as'=>'evaupdate','uses'=>'EvaluationsController@update']);
+    Route::delete('/destroy/{id}',['as'=>'evadestroy','uses'=>'EvaluationsController@destroy']);
+});
+Route::group(['prefix' => 'bulletin'], function() {
+    Route::get('/create',['as'=>'bulcreate','uses'=>'BulletinsController@create']);
+    Route::post('/store',['as' => 'bulstore' ,'uses'=>'BulletinsController@store']);
+    Route::get('/edit/{id}',['as'=>'buledit','uses'=>'BulletinsController@edit']);
+    Route::put('/update/{id}',['as'=>'bulupdate','uses'=>'BulletinsController@update']);
+    Route::delete('/destroy/{id}',['as'=>'buldestroy','uses'=>'BulletinsController@destroy']);
+});
+
+
+
