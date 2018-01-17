@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Notification;
 use Illuminate\Http\Request;
-
 class NotificationsController extends Controller
 {
     public function index()
     {
         $push=Notification::all();
-        $data=['books'=>$push];
+        $data=['pushs'=>$push];
         return view('notification.index',$data);
     }
     public function create()
