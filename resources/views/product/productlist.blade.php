@@ -36,31 +36,36 @@
                     </div>
                 </div>
             </div>
-        <form action="#" method="POST" role="form">
+        <form action="{{route('prostore')}}" method="POST" role="form">
             {{ csrf_field() }}
             <div class="form-group">
                 <label>產品名稱</label>
-                <input name="book_name" class="form-control" placeholder="請輸入書籍標題">
+                <input name="Comm_name" class="form-control" placeholder="請輸入書籍標題">
+            </div>
+            <div class="form-group">
+                <label>類別編號</label>
+                <select name="Cate_id">
+                    　<option value="1">服飾</option>
+                    　<option value="2">食品</option>
+                    　<option value="3">鞋子</option>
+                    　<option value="4">電子產品</option>
+                </select>
             </div>
             <div class="form-group">
                 <label>產品規格</label>
-                <textarea name="text" class="form-control" rows="5"></textarea>
+                <textarea name="Comm_spec" class="form-control" rows="5"></textarea>
             </div>
             <div class="form-group">
                 <label>單價</label>
-                <textarea name="ISBN" class="form-control" rows="1"></textarea>
+                <textarea name="Comm_price" class="form-control" rows="1"></textarea>
             </div>
             <div class="form-group">
                 <label>單位</label>
-                <textarea name="category_id" class="form-control" rows="1"></textarea>
+                <textarea name="Comm_unit" class="form-control" rows="1"></textarea>
             </div>
             <div class="form-group">
                 <label>庫存量</label>
-                <textarea name="price" class="form-control" rows="1"></textarea>
-            </div>
-            <div class="form-group">
-                <label>圖片檔名</label>
-                <textarea name="path" class="form-control" rows="1"></textarea>
+                <textarea name="Comm_inv" class="form-control" rows="1"></textarea>
             </div>
             <div class="text-right">
                 <button type="submit" class="btn btn-success">新增</button>
