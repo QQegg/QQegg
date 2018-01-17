@@ -13,7 +13,7 @@
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
-    return view('no use/404');
+    return view('welcome');
 });
 Route::group(['prefix' => 'store'], function() {
     Route::get('/',['as'=>'list','uses'=>'StoresController@index']);
