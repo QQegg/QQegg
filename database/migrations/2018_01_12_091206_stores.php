@@ -21,10 +21,10 @@ class Stores extends Migration
             $table->string('S_pwd');
             $table->string('S_phone');
             $table->string('S_addr');
-            $table->string('S_join');
-            $table->string('S_expire');
-            $table->rememberToken();
             $table->timestamps();
+            $table->dateTime('S_expire');
+            $table->rememberToken();
+
         });
     }
 
