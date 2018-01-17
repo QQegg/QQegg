@@ -26,16 +26,11 @@
     ======================================================= -->
 
 </head>
-
 <body>
-
-
 
 <!-- start header -->
 {{----}}
 <!-- end header -->
-
-
 <section id="content">
     <div class="container">
         <div class="row">
