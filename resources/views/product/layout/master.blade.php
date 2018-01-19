@@ -26,7 +26,10 @@
                     <a href="#">訂單觀看</a>
                 </li>
                 <li>
-                    <a href="{{route('procreate')}}">商品管理</a>
+                    <a href="{{route('prolist')}}">商品管理</a>
+                </li>
+                <li>
+                    <a href="{{route('procreate')}}">新增商品</a>
                 </li>
                 <li>
                     <a href="#">會員管理</a>
