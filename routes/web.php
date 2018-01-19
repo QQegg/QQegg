@@ -36,7 +36,7 @@ Route::group(['prefix' => 'product'], function() {
     Route::get('/create',['as'=>'procreate','uses'=>'ProductsController@create']);
     Route::post('/store',['as' => 'prostore' ,'uses'=>'ProductsController@store']);
     Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
-    Route::put('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
+    Route::patch('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
     Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
 });
 
