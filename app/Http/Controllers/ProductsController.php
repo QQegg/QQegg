@@ -9,11 +9,12 @@ class ProductsController extends Controller
 {
     public function index()
     {
+        $product=Product::all();
+        return view('product.productlist',compact('product'));
     }
     public function create()
     {
-        $product=Product::all();
-        return view('product.productlist',compact('product'));
+        return view('product.productcreate');
     }
     public function store(Request $request)
     {
@@ -23,8 +24,9 @@ class ProductsController extends Controller
     public function edit()
     {
     }
-    public function update()
+    public function update(Request $request,$id)
     {
+
     }
     public function destroy()
     {
