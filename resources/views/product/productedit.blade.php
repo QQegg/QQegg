@@ -3,11 +3,12 @@
 @section('content')
     <div class='container'>
         @foreach($product as $product)
-        <form action="{{route('prostore', ['id'=>$book->id])}}" method="POST" role="form">
+        <form action="{{route('proupdate', ['id'=>$product->id])}}" method="POST" role="form">
             {{ csrf_field() }}
+            {{ method_field('PATCH') }}
             <div class="form-group">
                 <label>產品名稱</label>
-                <input name="Comm_name" class="form-control" placeholder="{{$product->Comm_name}}">
+                <input name="Comm_name" class="form-control" placeholder=""value="{{$product->Comm_name}}">
             </div>
             <div class="form-group">
                 <label>選擇產品類別</label>
@@ -35,7 +36,7 @@
                 <textarea name="Comm_inv" class="form-control" rows="1">{{$product->Comm_inv}}</textarea>
             </div>
             <div class="text-right">
-                <button type="submit" class="btn btn-success">新增</button>
+                <button type="submit" class="btn btn-success">修改</button>
             </div>
         </form>
             @endforeach
