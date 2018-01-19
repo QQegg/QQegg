@@ -32,7 +32,7 @@ Route::group(['prefix' => 'costomer'], function() {
     Route::delete('/destroy/{id}',['as'=>'cosdestroy','uses'=>'CostomerController@destroy']);
 });
 Route::group(['prefix' => 'product'], function() {
-    Route::get('/',['as'=>'list','uses'=>'ProductsController@index']);
+    Route::get('/',['as'=>'prolist','uses'=>'ProductsController@index']);
     Route::get('/create',['as'=>'procreate','uses'=>'ProductsController@create']);
     Route::post('/store',['as' => 'prostore' ,'uses'=>'ProductsController@store']);
     Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
