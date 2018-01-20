@@ -23,9 +23,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">訂單觀看</a>
-                </li>
-                <li>
                     <a href="{{route('prolist')}}">商品管理</a>
                 </li>
                 <li>
