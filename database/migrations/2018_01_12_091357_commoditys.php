@@ -21,6 +21,7 @@ class Commoditys extends Migration
             $table->integer('Comm_price');
             $table->string('Comm_unit');
             $table->integer('Comm_inv');
+            $table->string('Comm_img');
             $table->rememberToken();
             $table->timestamps();
         });
