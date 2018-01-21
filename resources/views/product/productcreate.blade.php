@@ -10,7 +10,7 @@
             </div>
             <div class="form-group">
                 <label>選擇產品類別</label>
-                <select name="Cate_id">
+                <select name="Cate_id" class="form-control">
                     　<option value="1">服飾</option>
                     　<option value="2">食品</option>
                     　<option value="3">鞋子</option>
@@ -32,6 +32,10 @@
             <div class="form-group">
                 <label>庫存量</label>
                 <textarea name="Comm_inv" class="form-control" rows="1"></textarea>
+            </div>
+            <div class="form-group">
+                <label>上傳產品照片</label>
+                    <input type="file" class="form-control" id="user_icon_file" name="Comm_img" placeholder="上傳圖片" value="">
             </div>
             <div class="text-right">
                 <button type="submit" class="btn btn-success">新增</button>
