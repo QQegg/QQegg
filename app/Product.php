@@ -14,6 +14,7 @@ class Product extends Model
         'Comm_price',
         'Comm_unit',
         'Comm_inv',
+        'Comm_img',
     ];
 
     protected $table="commoditys";
