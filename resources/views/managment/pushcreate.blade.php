@@ -20,6 +20,11 @@
     <form action="{{route('pushstore')}}" method="POST" role="form">
         {{ csrf_field() }}
         <h2  class="text-center & text-success" ><strong>新增推播訊息</strong></h2>
+
+        <div class="form-group">
+            <label>店家編號</label>
+            <input name="S_id" class="form-control"  value="99">
+        </div>
         <div class="form-group">
             <label>類別</label>
             <select name="Cate_id" class="form-control">
@@ -41,15 +46,19 @@
         </div>
         <div class="form-group">
             <label>標題</label>
-            <textarea name="Comm_spec" class="form-control" rows="1"></textarea>
+            <textarea name="P_title" class="form-control" rows="1"></textarea>
         </div>
         <div class="form-group">
             <label>內容</label>
-            <textarea name="Comm_price" class="form-control" rows="5"></textarea>
-
+            <textarea name="P_content" class="form-control" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+            <label>日期及時間</label>
+            <input type="datetime-local" name="P_timestamp" class="form-control" >
+        </div>
         <div class="form-group">
             <label>上傳圖片</label>
-            <input type="file" class="form-control" id="user_icon_file" name="Comm_img" placeholder="上傳圖片" value="">
+            <input type="file" class="form-control" id="user_icon_file" name="P_picture" placeholder="上傳圖片" value="">
         </div>
         <div class="text-right">
             <button type="submit" class="btn btn-success">新增</button>

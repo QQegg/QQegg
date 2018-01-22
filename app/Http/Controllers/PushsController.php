@@ -14,12 +14,13 @@ class PushsController extends Controller
     }
     public function create()
     {
-        $push=Push::all();
-        $data=['pushs'=>$push];
-        return view('managment.pushcreate',$data);
+
+        return view('managment.pushcreate');
     }
-    public function store()
+    public function store(Request $request)
     {
+        Push::create($request->all());
+        return redirect()->route('procreate');
     }
     public function edit()
     {
