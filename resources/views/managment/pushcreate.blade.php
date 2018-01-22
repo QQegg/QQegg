@@ -61,7 +61,7 @@
             <input type="file" class="form-control" id="user_icon_file" name="P_picture" placeholder="上傳圖片" value="">
         </div>
         <div class="text-right">
-            <button type="submit" class="btn btn-success">新增</button>
+            <button type="submit" class="btn btn-primary ">新增</button>
         </div>
     </form>
 </div>

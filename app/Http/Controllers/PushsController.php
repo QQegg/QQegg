@@ -20,7 +20,7 @@ class PushsController extends Controller
     public function store(Request $request)
     {
         Push::create($request->all());
-        return redirect()->route('procreate');
+        return redirect()->route('pushlist');
     }
     public function edit()
     {
