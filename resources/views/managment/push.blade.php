@@ -10,21 +10,21 @@
 </head>
 <body>
 
-{{--<div class="navbar-collapse collapse ">--}}
-    {{--<ul class="nav navbar-nav">--}}
-        {{--<li><a href='{{ route('pushcreate') }}' >新增推播訊息</a></li>--}}
-    {{--</ul>--}}
-{{--</div>--}}
+<div class="navbar-collapse collapse ">
+    <ul class="nav navbar-nav">
+        <li><a href='{{ route('pushcreate') }}' >新增推播訊息</a></li>
+    </ul>
+</div>
 
 <div class="container">
-    <h2>推播訊息管理</h2>
-    <p> </p>
+    <h2  class="text-center & text-success" ><strong>推播訊息管理</strong></h2>
+    <hr class="colorgraph">
     <table class="table">
         <thead>
         <tr>
             <th>id</th>
             <th>類別</th>
-            <th>優惠券名稱</th>
+            <th>推播訊息名稱</th>
             <th>功能</th>
         </tr>
         </thead>
