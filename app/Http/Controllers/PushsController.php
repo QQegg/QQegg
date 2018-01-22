@@ -14,7 +14,9 @@ class PushsController extends Controller
     }
     public function create()
     {
-
+        $push=Push::all();
+        $data=['pushs'=>$push];
+        return view('managment.pushcreate',$data);
     }
     public function store()
     {
