@@ -33,7 +33,7 @@
         <tbody>
         @foreach($pushs as $push)
             <tr>
-                <td>{{$push->id}}</td>
+                <td><input type="checkbox" name="option" ></td>
                 <td>{{$push->P_timestamp}}</td>
                 <td>@if($push->Cate_id == 1)
                         女生服飾
