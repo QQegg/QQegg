@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notification;
 use Illuminate\Http\Request;
-class NotificationsController extends Controller
+class NotificationsController extends Controller//這個是推播的基本架構 直接拿過去改
 {
     public function index()
     {
