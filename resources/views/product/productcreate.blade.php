@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label>上傳產品照片</label>
-                    <input type="file" class="form-control" id="picture" name="Comm_img" placeholder="上傳圖片" value="">
+                    <input type="file" class="form-control" id="picture" name="Comm_img" placeholder="上傳圖片">
             </div>
             <div class="text-right">
                 <button type="submit" class="btn btn-success">新增</button>
