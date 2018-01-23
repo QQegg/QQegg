@@ -15,6 +15,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/admin',function (){
+    return view('admin.postlist');
+})->middleware('admin');
 Route::group(['prefix' => 'store'], function() {
     Route::get('/',['as'=>'list','uses'=>'StoresController@index']);
     Route::get('/create',['as'=>'storecreate','uses'=>'StoresController@create']);
@@ -57,7 +60,6 @@ Route::group(['prefix' => 'push'], function() {
     Route::put('/update/{id}',['as'=>'pushupdate','uses'=>'PushsController@update']);
     Route::delete('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
 });
-
 Route::group(['prefix' => 'coupon'], function() {
     Route::get('/',['as'=>'list','uses'=>'CouponsController@index']);
     Route::get('/create',['as'=>'coucreate','uses'=>'CouponsController@create']);
@@ -82,6 +84,14 @@ Route::group(['prefix' => 'bulletin'], function() {
     Route::put('/update/{id}',['as'=>'bulupdate','uses'=>'BulletinsController@update']);
     Route::delete('/destroy/{id}',['as'=>'buldestroy','uses'=>'BulletinsController@destroy']);
 });
+Route::group(['prefix' => 'post'], function() {
+    Route::get('/',['as'=>'list','uses'=>'PostsController@index']);
+    Route::post('/store',['as' => 'poststore' ,'uses'=>'PostsController@store']);
+    Route::get('/edit/{id}',['as'=>'postedit','uses'=>'PostsController@edit']);
+    Route::put('/update/{id}',['as'=>'postupdate','uses'=>'PostsController@update']);
+    Route::delete('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
+});
+
 
 
 
