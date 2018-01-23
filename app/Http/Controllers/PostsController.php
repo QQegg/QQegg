@@ -3,26 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class PostsContorller extends Controller
+use App\Post;
+class PostsController extends Controller
 {
     public function index()
     {
         $post=Post::all();
-        $data=['pushs'=>$post];
+        $data=['posts'=>$post];
         return view('admin.postlist',$data);
     }
     public function store(Request $request)
     {
         Post::create($request->all());
         $post=Post::all();
-        $data=['pushs'=>$post];
+        $data=['posts'=>$post];
         return view('admin.postlist',$data);
     }
     public function edit($id)
     {
         $post = Post::all()->where('id','=',$id);
-        $data=['books'=>$post];
+        $data=['posts'=>$post];
         return view('admin.postedit')->with('push',$data);;
     }
     public function update(Request $request,$id)
@@ -35,7 +35,8 @@ class PostsContorller extends Controller
     {
         Post::destroy($id);
         $post=Post::all();
-        $data=['pushs'=>$post];
+        $data=['posts'=>$post];
         return view('admin.postlist',$data);
     }
+
 }
