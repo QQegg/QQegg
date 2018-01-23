@@ -15,11 +15,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/admin',function (){
-    return view('admin.postlist');
-})->middleware('admin');
+Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
 Route::group(['prefix' => 'store'], function() {
-    Route::get('/',['as'=>'list','uses'=>'StoresController@index']);
+    Route::get('/',['as'=>'storelist','uses'=>'StoresController@index']);
     Route::get('/create',['as'=>'storecreate','uses'=>'StoresController@create']);
     Route::post('/store',['as' => 'XS' ,'uses'=>'StoresController@store']);
     Route::get('/edit/{id}',['as'=>'storeedit','uses'=>'StoresController@edit']);
@@ -27,7 +25,7 @@ Route::group(['prefix' => 'store'], function() {
     Route::delete('/destroy/{id}',['as'=>'storedestroy','uses'=>'StoresContreller@destroy']);
 });
 Route::group(['prefix' => 'costomer'], function() {
-    Route::get('/',['as'=>'list','uses'=>'CostomersController@index']);
+    Route::get('/',['as'=>'coslist','uses'=>'CostomersController@index']);
     Route::get('/create',['as'=>'coscreate','uses'=>'CostomersController@create']);
     Route::post('/store',['as' => 'cosstore' ,'uses'=>'CostomersController@store']);
     Route::get('/edit/{id}',['as'=>'cosedit','uses'=>'CostomersController@edit']);
@@ -44,7 +42,7 @@ Route::group(['prefix' => 'product'], function() {
 });
 
 Route::group(['prefix' => 'notification'], function() {
-    Route::get('/',['as'=>'list','uses'=>'NotificationsController@index']);
+    Route::get('/',['as'=>'notilist','uses'=>'NotificationsController@index']);
     Route::get('/create',['as'=>'noticreate','uses'=>'NotificationsController@create']);
     Route::post('/store',['as' => 'notistore' ,'uses'=>'NotificationsController@store']);
     Route::get('/edit/{id}',['as'=>'notiedit','uses'=>'NotificationsController@edit']);
@@ -61,7 +59,7 @@ Route::group(['prefix' => 'push'], function() {
     Route::delete('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
 });
 Route::group(['prefix' => 'coupon'], function() {
-    Route::get('/',['as'=>'list','uses'=>'CouponsController@index']);
+    Route::get('/',['as'=>'coulist','uses'=>'CouponsController@index']);
     Route::get('/create',['as'=>'coucreate','uses'=>'CouponsController@create']);
     Route::post('/store',['as' => 'coustore' ,'uses'=>'CouponsController@store']);
     Route::get('/edit/{id}',['as'=>'couedit','uses'=>'CouponsController@edit']);
@@ -69,7 +67,7 @@ Route::group(['prefix' => 'coupon'], function() {
     Route::delete('/destroy/{id}',['as'=>'coudestroy','uses'=>'CouponsController@destroy']);
 });
 Route::group(['prefix' => 'evaluation'], function() {
-    Route::get('/',['as'=>'list','uses'=>'EvaluationsController@index']);
+    Route::get('/',['as'=>'evalist','uses'=>'EvaluationsController@index']);
     Route::get('/create',['as'=>'evacreate','uses'=>'EvaluationsController@create']);
     Route::post('/store',['as' => 'evastore' ,'uses'=>'EvaluationsController@store']);
     Route::get('/edit/{id}',['as'=>'evaedit','uses'=>'EvaluationsController@edit']);
@@ -77,7 +75,7 @@ Route::group(['prefix' => 'evaluation'], function() {
     Route::delete('/destroy/{id}',['as'=>'evadestroy','uses'=>'EvaluationsController@destroy']);
 });
 Route::group(['prefix' => 'bulletin'], function() {
-    Route::get('/',['as'=>'list','uses'=>'BulletinsController@index']);
+    Route::get('/',['as'=>'bullist','uses'=>'BulletinsController@index']);
     Route::get('/create',['as'=>'bulcreate','uses'=>'BulletinsController@create']);
     Route::post('/store',['as' => 'bulstore' ,'uses'=>'BulletinsController@store']);
     Route::get('/edit/{id}',['as'=>'buledit','uses'=>'BulletinsController@edit']);
@@ -85,7 +83,7 @@ Route::group(['prefix' => 'bulletin'], function() {
     Route::delete('/destroy/{id}',['as'=>'buldestroy','uses'=>'BulletinsController@destroy']);
 });
 Route::group(['prefix' => 'post'], function() {
-    Route::get('/',['as'=>'list','uses'=>'PostsController@index']);
+    Route::get('/',['as'=>'postlist','uses'=>'PostsController@index']);
     Route::post('/store',['as' => 'poststore' ,'uses'=>'PostsController@store']);
     Route::get('/edit/{id}',['as'=>'postedit','uses'=>'PostsController@edit']);
     Route::put('/update/{id}',['as'=>'postupdate','uses'=>'PostsController@update']);
