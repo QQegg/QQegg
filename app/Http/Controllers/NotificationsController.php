@@ -26,7 +26,7 @@ class NotificationsController extends Controller//這個是推播的基本架構
     public function edit($id)
     {
         $push = Notification::all()->where('id','=',$id);
-        $data=['books'=>$push];
+        $data=['pushs'=>$push];
         return view('notification.edit')->with('push',$data);;
     }
     public function update(Request $request,$id)
