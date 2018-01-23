@@ -20,7 +20,7 @@ class ProductsController extends Controller
     {
         $product = Product::create($request->all());
         if ($request->hasFile('Comm_img')) {
-            $request->file('Comm_img')->store('public/images');
+            $request->file('Comm_img')->store('\storage\app\public');
 
             // ensure every image has a different name
             $file_name = $request->file('Comm_img')->hashName();
