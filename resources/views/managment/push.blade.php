@@ -22,43 +22,36 @@
     <table class="table">
         <thead>
         <tr>
+            {{--<th>選項</th>--}}
             <th>id</th>
+            <th>日期及時間</th>
             <th>類別</th>
             <th>推播訊息名稱</th>
             <th>功能</th>
         </tr>
         </thead>
         <tbody>
-        {{--<tr>--}}
-            {{--<td>Default</td>--}}
-            {{--<td>Defaultson</td>--}}
-            {{--<td>def@somemail.com</td>--}}
-        {{--</tr>--}}
-        {{--<tr class="success">--}}
-            {{--<td>Success</td>--}}
-            {{--<td>Doe</td>--}}
-            {{--<td>john@example.com</td>--}}
-        {{--</tr>--}}
-        {{--<tr class="danger">--}}
-            {{--<td>Danger</td>--}}
-            {{--<td>Moe</td>--}}
-            {{--<td>mary@example.com</td>--}}
-        {{--</tr>--}}
-        {{--<tr class="info">--}}
-            {{--<td>Info</td>--}}
-            {{--<td>Dooley</td>--}}
-            {{--<td>july@example.com</td>--}}
-        {{--</tr>--}}
-        {{--<tr class="warning">--}}
-            {{--<td>Warning</td>--}}
-            {{--<td>Refs</td>--}}
-            {{--<td>bo@example.com</td>--}}
-        {{--</tr>--}}
-        {{--<tr class="active">--}}
-            {{--<td>Active</td>--}}
-            {{--<td>Activeson</td>--}}
-            {{--<td>act@example.com</td>--}}
-        {{--</tr>--}}
+        @foreach($pushs as $push)
+            <tr>
+                <td>{{$push->id}}</td>
+                <td>{{$push->P_timestamp}}</td>
+                <td>{{$push->Cate_id}}</td>
+                <td>{{$push->P_title}}</td>
+                <td>
+                    <form action="{{ route('pushdestroy', $push->id) }}" method="POST">
+                    <a href="{{route('pushcreate',$push->id)}}" class="text-success "><strong>詳細</strong></a>
+                        /
+                    <a href="{{route('pushcreate',$push->id)}}" class="text-primary "><strong>編輯</strong></a>
+                        /
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        {{--<button class="text-danger ">刪除</button>--}}
+                        <a href="{{route('pushcreate',$push->id)}}" class="text-danger "><strong>刪除</strong></a>
+                    </form>
+
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 </div>
