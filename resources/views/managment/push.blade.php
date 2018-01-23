@@ -39,16 +39,14 @@
                 <td>{{$push->P_title}}</td>
                 <td>
                     <form action="{{ route('pushdestroy', $push->id) }}" method="POST">
-                    <a href="{{route('pushcreate',$push->id)}}" class="text-success "><strong>詳細</strong></a>
+                    <a href="{{route('pushcreate',$push->id)}}" class="text-success"><strong>詳細</strong></a>
                         /
-                    <a href="{{route('pushcreate',$push->id)}}" class="text-primary "><strong>編輯</strong></a>
+                    <a href="{{route('pushedit',$push->id)}}"  class="text-warning"><strong>編輯</strong></a>
                         /
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        {{--<button class="text-danger ">刪除</button>--}}
-                        <a href="{{route('pushcreate',$push->id)}}" class="text-danger "><strong>刪除</strong></a>
+                        <button class=" btn-link"><strong>刪除</strong></button>
                     </form>
-
                 </td>
             </tr>
         @endforeach

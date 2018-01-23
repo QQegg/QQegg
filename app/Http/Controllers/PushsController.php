@@ -28,7 +28,9 @@ class PushsController extends Controller
     public function update()
     {
     }
-    public function destroy()
+    public function destroy($id)
     {
+        Push::destroy($id);
+        return redirect()->route('pushlist');
     }
 }
