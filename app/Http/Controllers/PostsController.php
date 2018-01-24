@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-class PostsController extends Controller
+class PostsController extends Controller //公告管理
 {
     public function index()
     {
@@ -22,21 +22,19 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::all()->where('id','=',$id);
-        $data=['posts'=>$post];
-        return view('admin.postedit')->with('push',$data);;
+        $data=['post'=>$post];
+        return view('admin.postedit',$data);
     }
     public function update(Request $request,$id)
     {
         $post=Post::find($id);
         $post->update($request->all());
-        return View('admin.postlist');
+        return redirect()->route('postlist');
     }
     public function destroy($id)
     {
         Post::destroy($id);
-        $post=Post::all();
-        $data=['posts'=>$post];
-        return view('admin.postlist',$data);
+        return redirect()->route('postlist');
     }
 
 }

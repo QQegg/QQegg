@@ -53,12 +53,12 @@
                     </div>
                     <div class="row" style="margin-top:10px;">
                         <div class="col-md-12">
-                            <a href="{{route('/post/edit',['id'=>$posts->id]) }}" class="btn btn-xs btn-danger">公告修改</a>
+                            <a href="{{route('postedit',['id'=>$posts->id]) }}" class="btn btn-xs btn-danger">修改</a>
                         </div>
                     </div>
                     <div class="row" style="margin-top:10px;">
                         <div class="col-md-12">
-                            <a href="{{route('/post/destroy',['id'=>$posts->id]) }}" class="btn btn-xs btn-danger">公告</a>
+                            <a href="{{route('postdestroy',['id'=>$posts->id]) }}" class="btn btn-xs btn-danger">刪除</a>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
         </div>
     @endforeach
     <form action="/post/store" method="POST" role="form">
-        {{ csrf_field() }}
+        {{ csrf_field()}}
         <div class="form-group">
             <label>標題</label>
             <input name="title" class="form-control" placeholder="請標題">
