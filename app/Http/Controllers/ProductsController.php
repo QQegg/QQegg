@@ -19,14 +19,19 @@ class ProductsController extends Controller
     }
     public function store(Request $request)
     {
-//        Product::create($request->all());
+        $product = Product::create($request->all());
 
-        if ($request->hasFile('Comm_img')){
-            return 'yes';
-        }else{
-            dd($request->file('Comm_img'));
+
+        if ($request->hasFile('Comm_img')) {
+            $file_name = $request->file('Comm_img')->getClientOriginalName();
+            $destinationPath = '/public';
+            $request->file('Comm_img')->storeAs($destinationPath,$file_name);
+
+            // save new image $file_name to database
+            $product->update(['Comm_img' => $file_name]);
         }
-//        return redirect()->route('procreate');
+
+        return redirect()->route('procreate');
     }
     public function edit($id)
     {
