@@ -21,12 +21,19 @@ class PushsController extends Controller
     {
         Push::create($request->all());
         return redirect()->route('pushlist');
+
     }
-    public function edit()
+    public function edit($id)
     {
+        $push=Push::all()->where('id',$id);
+        $data=['pushs'=>$push];
+        return view('managment.pushedit',$data);
     }
-    public function update()
+    public function update(Request $request,$id)
     {
+        $push=Push::find($id);
+        $push->update($request->all());
+        return redirect()->route('pushlist');
     }
     public function destroy($id)
     {
