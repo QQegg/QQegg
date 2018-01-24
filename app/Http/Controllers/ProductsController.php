@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -18,18 +19,14 @@ class ProductsController extends Controller
     }
     public function store(Request $request)
     {
-        $product = Product::create($request->all());
-        if ($request->hasFile('Comm_img')) {
-            $request->file('Comm_img')->store('\storage\app\public');
+//        Product::create($request->all());
 
-            // ensure every image has a different name
-            $file_name = $request->file('Comm_img')->hashName();
-
-            // save new image $file_name to database
-            $product->update(['Comm_img' => $file_name]);
+        if ($request->hasFile('Comm_img')){
+            return 'yes';
+        }else{
+            dd($request->file('Comm_img'));
         }
-
-        return redirect()->route('procreate');
+//        return redirect()->route('procreate');
     }
     public function edit($id)
     {
