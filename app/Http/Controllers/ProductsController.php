@@ -42,6 +42,16 @@ class ProductsController extends Controller
     {
         $product=Product::find($id);
         $product->update($request->all());
+        if ($request->hasFile('Comm_img')){
+            $file_name = $request->file('Comm_img')->getClientOriginalName();
+
+            $destinationPath = '/public';
+            $request->file('Comm_img')->storeAs($destinationPath,$file_name);
+
+            // save new image $file_name to database
+            $product->update(['Comm_img' => $file_name]);
+        }
+
         return redirect()->route('prolist');
     }
     public function destroy($id)
