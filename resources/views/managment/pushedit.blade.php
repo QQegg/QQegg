@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
+<div>
 
 <div class="navbar-collapse collapse ">
     <ul class="nav navbar-nav">
@@ -17,13 +17,14 @@
 </div>
 
 <div class='container'>
-    <form action="{{route('pushstore')}}" method="POST" role="form">
-        {{ csrf_field() }}
-        <h2  class="text-center & text-success" ><strong>新增推播訊息</strong></h2>
-
-        <div class="form-group">
+    <h2  class="text-center & text-success" ><strong>修改推播訊息</strong></h2>
+        @foreach($pushs as $push)
+            <form action="{{route('pushupdate', ['id'=>$push->id])}}" method="POST" role="form">
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
+            <div class="form-group">
             <label>店家編號</label>
-            <input name="S_id" class="form-control"  value="99">
+            <input name="S_id" class="form-control"  value="{{$push->S_id}}">
         </div>
         <div class="form-group">
             <label>類別</label>
@@ -46,25 +47,27 @@
         </div>
         <div class="form-group">
             <label>標題</label>
-            <textarea name="P_title" class="form-control" rows="1"></textarea>
+            <textarea name="P_title" class="form-control" rows="1" >{{$push->P_title}}</textarea>
         </div>
         <div class="form-group">
             <label>內容</label>
-            <textarea name="P_content" class="form-control" rows="5"></textarea>
+            <textarea name="P_content" class="form-control" rows="5" >{{$push->P_content}}</textarea>
         </div>
         <div class="form-group">
             <label>日期及時間</label>
-            <input type="datetime-local" name="P_timestamp" class="form-control" >
+            {{--<input type="datetime-local" name="P_timestamp" class="form-control" value="{{$push->P_timestamp}}">--}}
+            <textarea name="P_timestamp" class="form-control" rows="1" >{{$push->P_timestamp}}</textarea>
         </div>
         <div class="form-group">
             <label>上傳圖片</label>
-            <input type="file"  class="form-control" name="P_picture" id="P_picture" class="photo-input"></input>
+            <input type="file"  class="form-control" name="P_picture" id="P_picture" class="photo-input" value="{{$push->P_picture}}">
         </div>
         <div class="text-right">
-            <button type="submit" class="btn btn-primary ">新增</button>
+            <button type="submit" class="btn btn-primary ">修改</button>
+        </div>
         </div>
     </form>
+    @endforeach
 </div>
-
-</body>
+</div>
 </html>
