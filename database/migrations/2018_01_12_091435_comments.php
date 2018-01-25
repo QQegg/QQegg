@@ -15,17 +15,14 @@ class Comments extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('M_id');
-            $table->integer('Comm_id')->nullable();
-            $table->integer('S_id');
-            $table->string('Cmt_title');
+            $table->integer('M_id')->nullable();
+            $table->integer('S_id')->nullable();
             $table->string('Cmt_conten');
             $table->string('Cmt_rating');
             $table->rememberToken();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

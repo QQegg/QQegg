@@ -84,8 +84,13 @@ Route::group(['prefix' => 'bulletin'], function() {
     Route::put('/update/{id}',['as'=>'bulupdate','uses'=>'BulletinsController@update']);
     Route::delete('/destroy/{id}',['as'=>'buldestroy','uses'=>'BulletinsController@destroy']);
 });
-
-
+Route::group(['prefix' => 'comment'], function() {
+    Route::get('/',['as'=>'comlist','uses'=>'CommentsController@index']);
+    Route::post('/store',['as' => 'comstore' ,'uses'=>'CommentsController@store']);
+    Route::get('/edit/{id}',['as'=>'comedit','uses'=>'CommentsController@edit']);
+    Route::post('/update/{id}',['as'=>'comupdate','uses'=>'CommentsController@update']);
+    Route::get('/destroy/{id}',['as'=>'comdestroy','uses'=>'CommentsController@destroy']);
+});
 /*完工*/
 Route::group(['prefix' => 'post'], function() {
     Route::get('/',['as'=>'postlist','uses'=>'PostsController@index']);
