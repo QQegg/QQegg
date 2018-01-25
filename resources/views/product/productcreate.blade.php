@@ -2,7 +2,7 @@
 @section('title','書籍觀看')
 @section('content')
     <div class='container'>
-        <form action="{{route('prostore')}}" method="POST" role="form">
+        <form action="{{route('prostore')}}" method="POST" role="form" enctype="multipart/form-data" >
             {{ csrf_field() }}
             <div class="form-group">
                 <label>產品名稱</label>
@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label>上傳產品照片</label>
-                    <input type="file" class="form-control" id="picture" name="Comm_img" placeholder="上傳圖片">
+                    <input type="file" class="form-control" name="Comm_img" placeholder="上傳圖片">
             </div>
             <div class="text-right">
                 <button type="submit" class="btn btn-success">新增</button>
