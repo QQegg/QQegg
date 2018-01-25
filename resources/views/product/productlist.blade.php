@@ -15,7 +15,7 @@
                     <h1 style="margin-top:0;"></h1>
                 </div>
             </div>
-            <img src="{{ asset('\public\storage' . $product->Comm_img) }}">
+            <img src="{{url('../storage/'. $product->Comm_img)}}" width="300px" height="200px">
             <div class="row">
                 <div class="col-md-12">
                     <font size=5>商品名稱:{{$product->Comm_name}}</font>
