@@ -17,7 +17,7 @@
 </div>
 
 <div class='container'>
-    <form action="{{route('pushstore')}}" method="POST" role="form">
+    <form action="{{route('pushstore')}}" method="POST" role="form" enctype="multipart/form-data">
         {{ csrf_field() }}
         <h2  class="text-center & text-success" ><strong>新增推播訊息</strong></h2>
 

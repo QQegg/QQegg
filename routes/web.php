@@ -57,6 +57,7 @@ Route::group(['prefix' => 'push'], function() {
     Route::get('/create',['as'=>'pushcreate','uses'=>'PushsController@create']);
     Route::post('/store',['as' => 'pushstore' ,'uses'=>'PushsController@store']);
     Route::get('/edit/{id}',['as'=>'pushedit','uses'=>'PushsController@edit']);
+    Route::get('/view/{id}',['as'=>'pushview','uses'=>'PushsController@view']);
     Route::patch('/update/{id}',['as'=>'pushupdate','uses'=>'PushsController@update']);
     Route::delete('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
 });
