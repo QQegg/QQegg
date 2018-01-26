@@ -24,7 +24,7 @@ class ProductsController extends Controller
 
         if ($request->hasFile('Comm_img')) {
             $file_name = $request->file('Comm_img')->getClientOriginalName();
-            $destinationPath = '/public';
+            $destinationPath = '/public/product';
             $request->file('Comm_img')->storeAs($destinationPath,$file_name);
 
             // save new image $file_name to database
@@ -45,7 +45,7 @@ class ProductsController extends Controller
         if ($request->hasFile('Comm_img')){
             $file_name = $request->file('Comm_img')->getClientOriginalName();
 
-            $destinationPath = '/public';
+            $destinationPath = '/public/product';
             $request->file('Comm_img')->storeAs($destinationPath,$file_name);
 
             // save new image $file_name to database
