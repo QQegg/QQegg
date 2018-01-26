@@ -30,7 +30,6 @@ class PushsController extends Controller
     {
         Push::create($request->all());
         return redirect()->route('pushlist');
-        
     }
 
     public function edit($id)

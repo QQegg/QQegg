@@ -58,7 +58,7 @@
         </div>
         <div class="form-group">
             <label>上傳圖片</label>
-            <input type="file"  class="form-control" name="P_picture" id="P_picture" class="photo-input"></input>
+            <input type="file"  class="form-control " name="P_picture" id="P_picture" >
         </div>
         <div class="text-right">
             <button type="submit" class="btn btn-primary ">新增</button>
