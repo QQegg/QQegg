@@ -13,6 +13,6 @@ class Push extends Model
         'Cate_id',
         'P_title',
         'P_content',
-        'P_picturet',
+        'P_picture',
         'P_timestamp'
     ];}
