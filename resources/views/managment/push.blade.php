@@ -66,7 +66,7 @@
                 <td>{{$push->P_title}}</td>
                 <td>
                     <form action="{{ route('pushdestroy', $push->id) }}" method="POST">
-                    <a href="{{route('pushcreate',$push->id)}}" class="text-success"><strong>詳細</strong></a>
+                    <a href="{{route('pushview',$push->id)}}" class="text-success"><strong>詳細</strong></a>
                         /
                     <a href="{{route('pushedit',$push->id)}}"  class="text-warning"><strong>編輯</strong></a>
                         /
