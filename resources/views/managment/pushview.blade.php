@@ -67,7 +67,7 @@
                     <p>{{$push->P_timestamp}}</p>
                 </div>
                 <div class="form-group">
-                    <img src="{{url('../storage/'. $push->P_picture)}}" width="300px" height="200px">
+                    <img src="{{url('../storage/push/'. $push->P_picture)}}" width="300px" height="200px">
                 <div class="text-right">
                     <button type="submit" class="btn btn-primary ">修改</button>
                 </div>
