@@ -8,13 +8,13 @@ class Product extends Model
 {
     protected $fillable=[
         'id',
-        'Cate_id',
-        'Comm_name',
-        'Comm_spec',
-        'Comm_price',
-        'Comm_unit',
-        'Comm_inv',
-        'Comm_img',
+        'Category_id',
+        'name',
+        'specification',
+        'price',
+        'unit',
+        'inventory',
+        'picture',
     ];
 
     protected $table="commoditys";
