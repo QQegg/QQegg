@@ -13,10 +13,19 @@
             <div class="form-group">
                 <label>選擇產品類別</label>
                 <select name="Cate_id">
-                    　<option value="1">服飾</option>
-                    　<option value="2">食品</option>
-                    　<option value="3">鞋子</option>
-                    　<option value="4">電子產品</option>
+                    <option value="1">女生服飾</option>
+                    <option value="2">男生服飾</option>
+                    <option value="3">美妝保健</option>
+                    <option value="4">手機平板與週邊</option>
+                    <option value="5">嬰幼童與母親</option>
+                    <option value="6">3C相關</option>
+                    <option value="7">居家生活</option>
+                    <option value="8">家電影音</option>
+                    <option value="9">戶外與運動用品</option>
+                    <option value="10">美食、伴手禮</option>
+                    <option value="11">汽機車零件百貨</option>
+                    <option value="12">寵物</option>
+                    <option value="13">娛樂</option>
                 </select>
             </div>
             <div class="form-group">
