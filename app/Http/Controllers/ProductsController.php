@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Product;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,13 +23,13 @@ class ProductsController extends Controller
         $product = Product::create($request->all());
 
 
-        if ($request->hasFile('Comm_img')) {
-            $file_name = $request->file('Comm_img')->getClientOriginalName();
+        if ($request->hasFile('picture')) {
+            $file_name = $request->file('picture')->getClientOriginalName();
             $destinationPath = '/public/product';
-            $request->file('Comm_img')->storeAs($destinationPath,$file_name);
+            $request->file('picture')->storeAs($destinationPath,$file_name);
 
             // save new image $file_name to database
-            $product->update(['Comm_img' => $file_name]);
+            $product->update(['picture' => $file_name]);
         }
 
         return redirect()->route('procreate');
@@ -42,14 +43,14 @@ class ProductsController extends Controller
     {
         $product=Product::find($id);
         $product->update($request->all());
-        if ($request->hasFile('Comm_img')){
-            $file_name = $request->file('Comm_img')->getClientOriginalName();
+        if ($request->hasFile('picture')){
+            $file_name = $request->file('picture')->getClientOriginalName();
 
             $destinationPath = '/public/product';
-            $request->file('Comm_img')->storeAs($destinationPath,$file_name);
+            $request->file('picture')->storeAs($destinationPath,$file_name);
 
             // save new image $file_name to database
-            $product->update(['Comm_img' => $file_name]);
+            $product->update(['picture' => $file_name]);
         }
 
         return redirect()->route('prolist');
