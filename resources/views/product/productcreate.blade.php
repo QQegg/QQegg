@@ -16,11 +16,11 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <label>產品名稱</label>
-                <input name="Comm_name" class="form-control" placeholder="請輸入產品名稱">
+                <input name="name" class="form-control" placeholder="請輸入產品名稱">
             </div>
             <div class="form-group">
                 <label>選擇產品類別</label>
-                <select name="Cate_id" class="form-control">
+                <select name="Category_id" class="form-control">
                     <option value="1">女生服飾</option>
                     <option value="2">男生服飾</option>
                     <option value="3">美妝保健</option>
@@ -38,23 +38,23 @@
             </div>
             <div class="form-group">
                 <label>產品規格</label>
-                <textarea name="Comm_spec" class="form-control" rows="5"></textarea>
+                <textarea name="specification" class="form-control" rows="5"></textarea>
             </div>
             <div class="form-group">
                 <label>單價</label>
-                <textarea name="Comm_price" class="form-control" rows="1"></textarea>
+                <textarea name="price" class="form-control" rows="1"></textarea>
             </div>
             <div class="form-group">
                 <label>單位</label>
-                <textarea name="Comm_unit" class="form-control" rows="1"></textarea>
+                <textarea name="unit" class="form-control" rows="1"></textarea>
             </div>
             <div class="form-group">
                 <label>庫存量</label>
-                <textarea name="Comm_inv" class="form-control" rows="1"></textarea>
+                <textarea name="inventory" class="form-control" rows="1"></textarea>
             </div>
             <div class="form-group">
                 <label>上傳產品照片</label>
-                    <input type="file" class="form-control" name="Comm_img" placeholder="上傳圖片">
+                    <input type="file" class="form-control" name="picture" placeholder="上傳圖片">
             </div>
             <div class="text-right">
                 <button type="submit" class="btn btn-success">新增</button>

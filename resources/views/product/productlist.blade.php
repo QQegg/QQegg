@@ -15,29 +15,29 @@
                     <h1 style="margin-top:0;"></h1>
                 </div>
             </div>
-            <img src="{{url('../storage/product/'. $product->Comm_img)}}" width="300px" height="200px">
+            <img src="{{url('../storage/product/'. $product->picture)}}" width="300px" height="200px">
             <div class="row">
                 <div class="col-md-12">
-                    <font size=5>商品名稱:{{$product->Comm_name}}</font>
+                    <font size=5>商品名稱:{{$product->name}}</font>
                 </div>
             </div>
             <hr style="margin:10px 0;" />
             <div class="row">
                 <div class="col-md-12">
                     商品庫存:
-                    {{$product->Comm_inv}}{{$product->Comm_unit}}
+                    {{$product->inventory}}{{$product->unit}}
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     商品規格:
-                    {{$product->Comm_spec}}
+                    {{$product->specification}}
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     商品單價:
-                    {{$product->Comm_price}}
+                    {{$product->price}}
                 </div>
             </div>
             <div class="row" style="margin-top:10px;">
