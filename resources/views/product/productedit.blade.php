@@ -2,8 +2,18 @@
 @section('title','書籍觀看')
 @section('content')
     <div class='container'>
+        <script>
+            function ConfirmEdit()
+            {
+                var x = confirm("你確定要修改此產品嗎?");
+                if (x)
+                    return true;
+                else
+                    return false;
+            }
+        </script>
         @foreach($product as $product)
-        <form action="{{route('proupdate', ['id'=>$product->id])}}" method="POST" role="form" enctype="multipart/form-data">
+        <form action="{{route('proupdate', ['id'=>$product->id])}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmEdit()">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="form-group">
