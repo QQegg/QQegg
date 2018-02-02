@@ -3,7 +3,7 @@
 @section('content')
     <div class='container'>
         <script>
-            function Confirm()
+            function ConfirmCreate()
             {
                 var x = confirm("你確定要新增此產品嗎?");
                 if (x)
@@ -12,7 +12,7 @@
                     return false;
             }
         </script>
-        <form action="{{route('prostore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return Confirm()" >
+        <form action="{{route('prostore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
             {{ csrf_field() }}
             <div class="form-group">
                 <label>產品名稱</label>
