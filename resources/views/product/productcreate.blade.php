@@ -66,7 +66,7 @@
                 <label>上傳產品照片</label>
                     <input type="file" class="form-control" name="picture" placeholder="上傳圖片">
             </div>
-            <div class="text-right">
+            <div class="text-left">
                 <button type="submit" class="btn btn-success">新增</button>
             </div>
         </form>
