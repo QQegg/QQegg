@@ -12,6 +12,15 @@
                     return false;
             }
         </script>
+        @if(count($errors)>0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @foreach($product as $product)
         <form action="{{route('proupdate', ['id'=>$product->id])}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmEdit()">
             {{ csrf_field() }}
@@ -58,10 +67,13 @@
                 <label>上傳產品照片</label>
                 <input type="file" class="form-control" name="picture" placeholder="上傳圖片">
             </div>
-            <div class="text-right">
+            <div class="text-left">
                 <button type="submit" class="btn btn-success">修改</button>
             </div>
         </form>
             @endforeach
+        <div  class="text-right">
+            <a href="{{route('prolist')}}" class="btn btn-success">返回</a>
+        </div>
     </div>
 @endsection
