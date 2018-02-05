@@ -12,6 +12,7 @@
     <link href="{{asset('css/simple-sidebar.css')}}" rel="stylesheet">
 </head>
 <body>
+<div style="overflow:auto;">
     <div id="wrapper" class="toggled">
     <div id="wrapper" >
         <!-- Sidebar -->
@@ -59,5 +60,6 @@
     });
     </script>
     </div>
+</div>
 </body>
 </html>
