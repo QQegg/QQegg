@@ -12,35 +12,35 @@
 
     <div class="navbar-collapse collapse ">
         <ul class="nav navbar-nav">
-            <li><a href='{{ route('conponlist') }}' >優惠券管理</a></li>
+            <li><a href='{{ route('couponlist') }}' >優惠券管理</a></li>
         </ul>
     </div>
 
     <div class='container'>
         <h2  class="text-center & text-success" ><strong>檢視優惠券</strong></h2>
-        @foreach($conpons as $conpon)
+        @foreach($coupons as $coupon)
             <div class="form-group">
                 <label>店家編號</label>
-                <p>{{$conpon->S_id}}</p>
+                <p>{{$coupon->S_id}}</p>
             </div>
             <div class="form-group">
                 <label>標題</label>
-                <p>{{$conpon->Conp_title}}</p>
+                <p>{{$coupon->Coup_title}}</p>
             </div>
             <div class="form-group">
                 <label>內容</label>
-                <p >{{$conpon->Conp_content}}</p>
+                <p >{{$coupon->Coup_content}}</p>
             </div>
             <div class="form-group">
                 <label>起始時間</label>
-                <p>{{$conpon->Conp_start}}</p>
+                <p>{{$coupon->Coup_start}}</p>
                 <div class="form-group">
                 <label>結束時間</label>
-                <p>{{$conpon->Conp_end}}</p>
+                <p>{{$coupon->Coup_end}}</p>
             </div>
 
             <div class="form-group">
-                <img src="{{url('../storage/conpon/'. $conpon->Conp_picture)}}" width="300px" height="200px">
+                <img src="{{url('../storage/coupon/'. $coupon->Coup_picture)}}" width="300px" height="200px">
             </div>
         @endforeach
     </div>

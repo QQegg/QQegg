@@ -31,17 +31,17 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($conpons as $conpon)
+        @foreach($coupons as $coupon)
             <tr>
                 <td><input type="checkbox" name="option" ></td>
-                <td>{{$conpon->Conp_title}}</td>
-                <td>{{$conpon->Conp_start}}</td>
-                <td>{{$conpon->Conp_end}}</td>
+                <td>{{$coupon->Conp_title}}</td>
+                <td>{{$coupon->Conp_start}}</td>
+                <td>{{$coupon->Conp_end}}</td>
                 <td>
-                    <form action="{{ route('condestroy', $conpon->id) }}" method="POST">
-                        <a href="{{route('conview',$conpon->id)}}" class="text-success"><strong>詳細</strong></a>
+                    <form action="{{ route('coudestroy', $coupon->id) }}" method="POST">
+                        <a href="{{route('couview',$coupon->id)}}" class="text-success"><strong>詳細</strong></a>
                         /
-                        <a href="{{route('conedit',$conpon->id)}}"  class="text-warning"><strong>編輯</strong></a>
+                        <a href="{{route('couedit',$coupon->id)}}"  class="text-warning"><strong>編輯</strong></a>
                         /
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}

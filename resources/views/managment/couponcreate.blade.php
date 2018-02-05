@@ -17,7 +17,7 @@
 </div>
 
 <div class='container'>
-    <form action="{{route('constore')}}" method="POST" role="form" enctype="multipart/form-data">
+    <form action="{{route('coustore')}}" method="POST" role="form" enctype="multipart/form-data">
         {{ csrf_field() }}
         <h2  class="text-center & text-success" ><strong>新增優惠券</strong></h2>
 
