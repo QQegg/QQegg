@@ -66,7 +66,8 @@ Route::group(['prefix' => 'coupon'], function() {
     Route::get('/create',['as'=>'coucreate','uses'=>'CouponsController@create']);
     Route::post('/store',['as' => 'coustore' ,'uses'=>'CouponsController@store']);
     Route::get('/edit/{id}',['as'=>'couedit','uses'=>'CouponsController@edit']);
-    Route::put('/update/{id}',['as'=>'couupdate','uses'=>'CouponsController@update']);
+    Route::get('/view/{id}',['as'=>'couview','uses'=>'CouponsController@view']);
+    Route::patch('/update/{id}',['as'=>'couupdate','uses'=>'CouponsController@update']);
     Route::delete('/destroy/{id}',['as'=>'coudestroy','uses'=>'CouponsController@destroy']);
 });
 Route::group(['prefix' => 'evaluation'], function() {
