@@ -16,6 +16,7 @@ class Commoditys extends Migration
         Schema::create('commoditys', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('Category_id');
+            $table->integer('store_id');
             $table->string('name');
             $table->string('specification');
             $table->integer('price');

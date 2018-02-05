@@ -21,6 +21,7 @@ class Stores extends Migration
             $table->string('S_pwd');
             $table->string('S_phone');
             $table->string('S_addr');
+            //$table->string('picture');
             $table->timestamps();
             $table->dateTime('S_expire');
             $table->rememberToken();

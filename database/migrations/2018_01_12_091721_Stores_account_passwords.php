@@ -15,9 +15,8 @@ class StoresAccountPasswords extends Migration
     {
         Schema::create('Stores account passwords', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cate_id');
             $table->integer('S_id');
-            $table->string('S_acct');
-            $table->string('S_pwd');
             $table->rememberToken();
             $table->timestamps();
         });
