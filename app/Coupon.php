@@ -13,7 +13,6 @@ class Coupon extends Model
         'S_id',
         'Coup_title',
         'Coup_content',
-        'P_content',
         'Coup_start',
         'Coup_end',
         'Coup_picture'
