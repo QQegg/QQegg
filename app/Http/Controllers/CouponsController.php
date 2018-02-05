@@ -39,7 +39,7 @@ class CouponsController extends Controller
             $conpon->update(['Coup_picture' => $file_name]);
 
         }
-        return redirect()->route('conponlist');
+        return redirect()->route('conlist');
     }
 
     public function edit($id)
@@ -62,11 +62,11 @@ class CouponsController extends Controller
             $conpon->update(['Coup_picture' => $file_name]);
 
         }
-        return redirect()->route('conponlist');
+        return redirect()->route('conlist');
     }
     public function destroy($id)
     {
         Coupon::destroy($id);
-        return redirect()->route('conponlist');
+        return redirect()->route('conlist');
     }
 }
