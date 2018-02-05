@@ -1,7 +1,7 @@
 @extends('product.layout.master')
 @section('title','書籍觀看')
 @section('content')
-    <div class='container'>
+    <div class='container-fluid'>
         <script>
             function ConfirmEdit()
             {
@@ -67,13 +67,12 @@
                 <label>上傳產品照片</label>
                 <input type="file" class="form-control" name="picture" placeholder="上傳圖片">
             </div>
-            <div class="text-left">
+            <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="submit" class="btn btn-success">修改</button>
+            <a href="{{route('prolist')}}" class="btn btn-success">返回</a>
             </div>
         </form>
             @endforeach
-        <div  class="text-right">
-            <a href="{{route('prolist')}}" class="btn btn-success">返回</a>
-        </div>
+
     </div>
 @endsection
