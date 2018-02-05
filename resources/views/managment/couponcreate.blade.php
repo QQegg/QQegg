@@ -12,7 +12,7 @@
 
 <div class="navbar-collapse collapse ">
     <ul class="nav navbar-nav">
-        <li><a href='{{ route('conlist') }}' >優惠券訊息管理</a></li>
+        <li><a href='{{ route('coulist') }}' >優惠券訊息管理</a></li>
     </ul>
 </div>
 
@@ -27,23 +27,23 @@
         </div>
         <div class="form-group">
             <label>標題</label>
-            <textarea name="Conp_title" class="form-control" rows="1"></textarea>
+            <textarea name="Coup_title" class="form-control" rows="1"></textarea>
         </div>
         <div class="form-group">
             <label>內容</label>
-            <textarea name="Conp_content" class="form-control" rows="5"></textarea>
+            <textarea name="Coup_content" class="form-control" rows="5"></textarea>
         </div>
         <div class="form-group">
             <label>起始時間</label>
-            <input type="datetime-local" name="Conp_start" class="form-control" >
+            <input type="datetime-local" name="Coup_start" class="form-control" >
         </div>
         <div class="form-group">
             <label>結束時間</label>
-            <input type="datetime-local" name="Conp_end" class="form-control" >
+            <input type="datetime-local" name="Coup_end" class="form-control" >
         </div>
         <div class="form-group">
             <label>上傳圖片</label>
-            <input type="file"  class="form-control " name="Conp_picture" id="Conp_picture" >
+            <input type="file"  class="form-control" name="Coup_picture" id="Coup_picture"  >
         </div>
         <div class="text-right">
             <button type="submit" class="btn btn-primary ">新增</button>

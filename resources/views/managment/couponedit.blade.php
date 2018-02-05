@@ -19,7 +19,7 @@
     <div class='container'>
         <h2  class="text-center & text-success" ><strong>修改優惠券</strong></h2>
         @foreach($coupons as $coupon)
-            <form action="{{route('couponupdate', ['id'=>$coupon->id])}}" method="POST" role="form">
+            <form action="{{route('couupdate', ['id'=>$coupon->id])}}" method="POST" role="form">
                 {{ csrf_field() }}
                 {{ method_field('PATCH') }}
                 <div class="form-group">
