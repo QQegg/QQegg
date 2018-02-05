@@ -1,7 +1,7 @@
 @extends('product.layout.master')
 @section('title','書籍觀看')
 @section('content')
-    <div class='container'>
+    <div class='container-fluid'>
         <script>
             function ConfirmCreate()
             {
