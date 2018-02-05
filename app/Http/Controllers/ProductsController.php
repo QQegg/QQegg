@@ -69,6 +69,31 @@ class ProductsController extends Controller
     }
     public function update(Request $request,$id)
     {
+        $messsages = array(
+            'name.required'=>'你必須輸入產品名稱',
+            'specification.required'=>'你必須輸入產品規格',
+            'price.required'=>'你必須輸入單價',
+            'unit.required'=>'你必須輸入單位',
+            'inventory.required'=>'你必須輸入庫存量',
+            'picture.required'=>'你必須選擇照片',
+        );
+
+        $rules = array(
+            'name' => 'required|max:255',
+            'Category_id' => 'required',
+            'specification' => 'required',
+            'price' => 'required|integer',
+            'unit' => 'required|string',
+            'inventory' => 'required|integer',
+            'picture' => 'required',
+        );
+
+        $validator = Validator::make($request->all(), $rules,$messsages);
+
+        if ($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator->errors());
+        }
         $product=Product::find($id);
         $product->update($request->all());
         if ($request->hasFile('picture')){
