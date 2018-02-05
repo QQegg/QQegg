@@ -17,4 +17,5 @@ class Coupon extends Model
         'Coup_start',
         'Coup_end',
         'Coup_picture'
+
     ];}
