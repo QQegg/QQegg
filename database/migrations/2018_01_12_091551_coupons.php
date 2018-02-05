@@ -16,13 +16,13 @@ class Coupons extends Migration
         Schema::create('coupons', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('S_id');
-            $table->integer('M_id');
             $table->string('Coup_title');
             $table->string('Coup_content');
-            $table->timestamps();
+            $table->dateTime('Coup_start');
             $table->dateTime('Coup_end');
-            $table->boolean('Coup_status');
+            $table->string('Coup_picture');
             $table->rememberToken();
+            $table->timestamps();
         });
     }
 

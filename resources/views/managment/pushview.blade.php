@@ -17,7 +17,7 @@
     </div>
 
     <div class='container'>
-        <h2  class="text-center & text-success" ><strong>修改推播訊息</strong></h2>
+        <h2  class="text-center & text-success" ><strong>檢視推播訊息</strong></h2>
         @foreach($pushs as $push)
                 <div class="form-group">
                     <label>店家編號</label>
@@ -68,9 +68,9 @@
                 </div>
                 <div class="form-group">
                     <img src="{{url('../storage/push/'. $push->P_picture)}}" width="300px" height="200px">
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary ">修改</button>
-                </div>
+                {{--<div class="text-right">--}}
+                    {{--<button type="submit" class="btn btn-primary ">修改</button>--}}
+                {{--</div>--}}
     </div>
     @endforeach
 </div>

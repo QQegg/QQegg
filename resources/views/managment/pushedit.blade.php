@@ -65,8 +65,9 @@
         <div class="text-right">
             <button type="submit" class="btn btn-primary ">修改</button>
         </div>
+            </form>
         </div>
-    </form>
+
     @endforeach
 </div>
 </div>
