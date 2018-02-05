@@ -12,7 +12,7 @@
 
 <div class="navbar-collapse collapse ">
     <ul class="nav navbar-nav">
-        <li><a href='{{ route('couponcreate') }}' >新增優惠券</a></li>
+        <li><a href='{{ route('coucreate') }}' >新增優惠券</a></li>
     </ul>
 </div>
 
@@ -34,9 +34,9 @@
         @foreach($coupons as $coupon)
             <tr>
                 <td><input type="checkbox" name="option" ></td>
-                <td>{{$coupon->Conp_title}}</td>
-                <td>{{$coupon->Conp_start}}</td>
-                <td>{{$coupon->Conp_end}}</td>
+                <td>{{$coupon->Coup_title}}</td>
+                <td>{{$coupon->Coup_start}}</td>
+                <td>{{$coupon->Coup_end}}</td>
                 <td>
                     <form action="{{ route('coudestroy', $coupon->id) }}" method="POST">
                         <a href="{{route('couview',$coupon->id)}}" class="text-success"><strong>詳細</strong></a>

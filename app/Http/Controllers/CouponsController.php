@@ -8,8 +8,8 @@ class CouponsController extends Controller
 {
     public function index()
     {
-        $conpon=Coupon::all();
-        $data=['conpons'=>$conpon];
+        $coupon=Coupon::all();
+        $data=['coupons'=>$coupon];
         return view('managment.coupon',$data);
     }
 
@@ -28,7 +28,7 @@ class CouponsController extends Controller
 
     public function store(Request $request)
     {
-        $conpon=Coupon::create($request->all());
+        $coupon=Coupon::create($request->all());
 
         if ($request->hasFile('Coup_picture')) {
             $file_name = $request->file('Coup_picture')->getClientOriginalName();
@@ -36,7 +36,7 @@ class CouponsController extends Controller
             $request->file('Coup_picture')->storeAs($destinationPath,$file_name);
 
             // save new image $file_name to database
-            $conpon->update(['Coup_picture' => $file_name]);
+            $coupon->update(['Coup_picture' => $file_name]);
 
         }
         return redirect()->route('coulist');

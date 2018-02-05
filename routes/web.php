@@ -62,7 +62,7 @@ Route::group(['prefix' => 'push'], function() {
     Route::delete('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
 });
 Route::group(['prefix' => 'coupon'], function() {
-    Route::get('/',['as'=>'conlist','uses'=>'CouponsController@index']);
+    Route::get('/',['as'=>'coulist','uses'=>'CouponsController@index']);
     Route::get('/create',['as'=>'coucreate','uses'=>'CouponsController@create']);
     Route::post('/store',['as' => 'coustore' ,'uses'=>'CouponsController@store']);
     Route::get('/edit/{id}',['as'=>'couedit','uses'=>'CouponsController@edit']);
