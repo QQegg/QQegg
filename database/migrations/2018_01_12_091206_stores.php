@@ -15,17 +15,17 @@ class Stores extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('S_name');
-            $table->string('S_contact');
-            $table->string('S_acct');
-            $table->string('S_pwd');
-            $table->string('S_phone');
-            $table->string('S_addr');
-            //$table->string('picture');
+            $table->string('name');
+            $table->string('contact');
+            $table->string('account');
+            $table->string('password');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('picture');
+            $table->string('right');
             $table->timestamps();
-            $table->dateTime('S_expire');
+            $table->dateTime('expire');
             $table->rememberToken();
-
         });
     }
 
