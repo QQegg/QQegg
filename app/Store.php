@@ -20,4 +20,13 @@ class Store extends Model
     ];
 
     protected $table="stores";
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    public function getAuthPassword()
+    {
+        return $this->passcode;
+    }
 }
