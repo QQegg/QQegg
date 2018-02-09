@@ -14,7 +14,7 @@
                             <label for="account" class="col-md-4 control-label">帳號</label>
 
                             <div class="col-md-6">
-                                <input id="account" type="account" class="form-control" name="account" value="{{ old('account') }}" required autofocus>
+                                <input id="account" class="form-control" name="account" value="{{ old('account') }}" required autofocus>
                                 @if ($errors->has('account'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('account') }}</strong>
