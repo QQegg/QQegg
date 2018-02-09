@@ -2,10 +2,14 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Store extends Model
+class Store extends Authenticatable
 {
+    use Notifiable;
+
     protected $fillable = [
         'id',
         'name',
@@ -27,6 +31,6 @@ class Store extends Model
 
     public function getAuthPassword()
     {
-        return $this->passcode;
+        return $this->password;
     }
 }
