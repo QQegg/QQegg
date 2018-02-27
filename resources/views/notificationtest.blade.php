@@ -16,19 +16,19 @@
         }
     </script>
     <script> //timer countdown
-        // Set the date we're counting down to
+        // 標準時間
         var countDownDate = new Date().getTime();
 
         // Update the count down every 1 second
         var x = setInterval(function() {
 
-            // Get todays date and time
+            // 比較時間
             var now = new Date().getTime();
 
-            // Find the distance between now an the count down date
+            // 時間比較
             var distance = now - countDownDate;
 
-            // If the count down is over, write some text
+            // 如果有超過固定時間 進行推播更新
             if (distance > 10) {
 
             }
