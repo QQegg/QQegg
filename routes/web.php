@@ -13,27 +13,42 @@
 
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
+//store 登入
+Route::group(['middleware'=>['auth:store'],'prefix'=>'store'],function (){
+    Route::get('logout', 'Auth\StoreLoginController@logout')
+        ->name('store.logout');
+    Route::get('/', 'Admin\HomeController@index')->name('store');
 
-Route::get('/appconnecttest','NotificationsController@test');
 
-
-
-Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
-
-Route::group(['prefix' => 'store'], function() {
     Route::get('/',['as'=>'storelist','uses'=>'StoresController@index']);
     Route::get('/create',['as'=>'storecreate','uses'=>'StoresController@create']);
     Route::post('/store',['as' => 'XS' ,'uses'=>'StoresController@store']);
     Route::get('/edit/{id}',['as'=>'storeedit','uses'=>'StoresController@edit']);
     Route::put('/update/{id}',['as'=>'storeupdate','uses'=>'StoresContreller@update']);
     Route::delete('/destroy/{id}',['as'=>'storedestroy','uses'=>'StoresContreller@destroy']);
+
 });
+
+Route::group(['prefix' => 'sale'], function() {
+    Route::get('/',['as'=>'salecreat','uses'=>'SalesController@index']);
+    Route::post('/store',['as' => 'salestore' ,'uses'=>'SalesController@store']);
+    Route::get('/edit/{id}',['as'=>'saleedit','uses'=>'SalesController@edit']);
+    Route::post('/update/{id}',['as'=>'saleupdate','uses'=>'SalesController@update']);
+});
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/appconnecttest','NotificationsController@test');
+
+Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
 Route::group(['prefix' => 'costomer'], function() {
     Route::get('/',['as'=>'coslist','uses'=>'CostomersController@index']);
     Route::get('/create',['as'=>'coscreate','uses'=>'CostomersController@create']);
