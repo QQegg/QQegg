@@ -52,8 +52,7 @@ class ProductsController extends Controller
 
         $product = Product::create($request->all());
 
-
-        $product->store_id = $store['id'];
+        $product->update(['store_id'=>$store['id']]);
 
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();
