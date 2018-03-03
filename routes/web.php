@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,14 @@
 
 
 Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function () {
+    return view('no use.index');
+});
+
+
+
+Route::get('/appconnecttest','NotificationsController@test');
 
 
 //store 登入
