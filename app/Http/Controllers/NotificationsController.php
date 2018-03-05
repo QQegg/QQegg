@@ -42,4 +42,10 @@ class NotificationsController extends Controller//這個是推播的基本架構
         $data=['pushs'=>$push];
         return view('notification.index',$data);
     }
+
+    //店家瀏覽頁面(暫時放在這之後要換到HomeController)
+    public function all()
+    {
+        return view('all');
+    }
 }

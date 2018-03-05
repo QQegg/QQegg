@@ -102,6 +102,9 @@ Route::group(['prefix' => 'post'], function() {
     Route::get('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
 });
 
+//店家瀏覽頁面(暫時放在這之後要換到HomeController)
+Route::get('/all',['as'=>'all','uses'=>'NotificationsController@all']);
+
 
 
 
