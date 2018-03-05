@@ -12,12 +12,12 @@
 
     <div class="navbar-collapse collapse ">
         <ul class="nav navbar-nav">
-            <li><a href='{{ route('coulist') }}' >優惠券管理</a></li>
+            <li><a href='{{ route('coulist') }}' >折價券管理</a></li>
         </ul>
     </div>
 
     <div class='container'>
-        <h2  class="text-center & text-success" ><strong>修改優惠券</strong></h2>
+        <h2  class="text-center & text-success" ><strong>修改折價券</strong></h2>
         @foreach($coupons as $coupon)
             <form action="{{route('couupdate', ['id'=>$coupon->id])}}" method="POST" role="form">
                 {{ csrf_field() }}

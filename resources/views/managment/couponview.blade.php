@@ -17,7 +17,7 @@
     </div>
 
     <div class='container'>
-        <h2  class="text-center & text-success" ><strong>檢視優惠券</strong></h2>
+        <h2  class="text-center & text-success" ><strong>檢視折價券</strong></h2>
         @foreach($coupons as $coupon)
             <div class="form-group">
                 <label>店家編號</label>

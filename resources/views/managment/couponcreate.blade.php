@@ -12,14 +12,14 @@
 
 <div class="navbar-collapse collapse ">
     <ul class="nav navbar-nav">
-        <li><a href='{{ route('coulist') }}' >優惠券訊息管理</a></li>
+        <li><a href='{{ route('coulist') }}' >折價券訊息管理</a></li>
     </ul>
 </div>
 
 <div class='container'>
     <form action="{{route('coustore')}}" method="POST" role="form" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <h2  class="text-center & text-success" ><strong>新增優惠券</strong></h2>
+        <h2  class="text-center & text-success" ><strong>新增折價券</strong></h2>
 
         <div class="form-group">
             <label>店家編號</label>
