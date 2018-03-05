@@ -44,6 +44,14 @@
                     <textarea name="Coup_end" class="form-control" rows="1" >{{$coupon->Coup_end}}</textarea>
                 </div>
                 <div class="form-group">
+                    <label>折扣金額</label>
+                    <textarea name="Coup_discount" class="form-control" rows="1">{{$coupon->Coup_discount}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>至少購物金額</label>
+                    <textarea name="Coup_lowestprice" class="form-control" rows="1">{{$coupon->Coup_lowestprice}}</textarea>
+                </div>
+                <div class="form-group">
                     <label>上傳圖片</label>
                     <input type="file"  class="form-control" name="Coup_picture" id="Coup_picture" class="photo-input" value="{{$coupon->Coup_picture}}">
                 </div>
