@@ -12,7 +12,7 @@
 
 <div class="navbar-collapse collapse ">
     <ul class="nav navbar-nav">
-        <li><a href='{{ route('coucreate') }}' >新曾折價券</a></li>
+        <li><a href='{{ route('coucreate') }}' >新增折價券</a></li>
     </ul>
 </div>
 
