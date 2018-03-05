@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Notification;
 use Illuminate\Http\Request;
-class NotificationsController extends Controller//這個是推播的基本架構 直接拿過去改
+class NotificationsController extends Controller
 {
+    public function  test(){
+     return view('notificationtest');
+    }
+
+
     public function index()
     {
         $push=Notification::all();

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Store;
 use Illuminate\Support\Facades\DB;
 use App\Product;
 use Illuminate\Support\Facades\Validator;
@@ -47,9 +48,11 @@ class ProductsController extends Controller
             return redirect()->back()->withErrors($validator->errors());
         }
 
+        $store = Store::all()->where('account','a0952288480');
 
         $product = Product::create($request->all());
 
+        $product->update(['store_id'=>$store['id']]);
 
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();

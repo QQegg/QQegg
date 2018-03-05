@@ -1,41 +1,37 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
-
-use App\User;
+use App\Store;
+use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-
-class RegisterController extends Controller
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+class AuthController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Register Controller
+    | Registration & Login Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
+    | This controller handles the registration of new users, as well as the
+    | authentication of existing users. By default, this controller uses
+    | a simple trait to add these behaviors. Why don't you explore it?
     |
     */
-    use RegistersUsers;
-
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
     /**
-     * Where to redirect users after registration.
+     * Where to redirect users after login / registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-
+    protected $redirectTo = '/tasks';
     /**
-     * Create a new controller instance.
+     * Create a new authentication controller instance.
      *
      * @return void
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest', ['except' => 'logout']);
     }
     /**
      * Get a validator for an incoming registration request.
@@ -46,20 +42,20 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
         ]);
     }
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return User
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Store::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
