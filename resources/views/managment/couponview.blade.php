@@ -38,6 +38,14 @@
                 <label>結束時間</label>
                 <p>{{$coupon->Coup_end}}</p>
             </div>
+                <div class="form-group">
+                    <label>折扣金額</label>
+                    <p>{{$coupon->Coup_discount}}元</p>
+                </div>
+                <div class="form-group">
+                    <label>至少購物金額</label>
+                    <p >{{$coupon->Coup_lowestprice}}元</p>
+                </div>
 
             <div class="form-group">
                 <img src="{{url('../storage/coupon/'. $coupon->Coup_picture)}}" >
