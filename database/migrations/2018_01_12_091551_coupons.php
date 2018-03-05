@@ -20,6 +20,8 @@ class Coupons extends Migration
             $table->string('Coup_content');
             $table->dateTime('Coup_start');
             $table->dateTime('Coup_end');
+            $table->string('Coup_discount');
+            $table->string('Coup_lowestprice');
             $table->string('Coup_picture');
             $table->rememberToken();
             $table->timestamps();

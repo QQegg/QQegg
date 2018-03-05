@@ -52,9 +52,8 @@ class CouponsController extends Controller
     {
         $coupon=Coupon::find($id);
         $coupon->update($request->all());
-        if ($request->hasFile('Coup_picture')){
+        if ($request->hasFile('Coup_picture')) {
             $file_name = $request->file('Coup_picture')->getClientOriginalName();
-
             $destinationPath = '/public/coupon';
             $request->file('Coup_picture')->storeAs($destinationPath,$file_name);
 

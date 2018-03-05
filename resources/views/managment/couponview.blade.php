@@ -12,7 +12,7 @@
 
     <div class="navbar-collapse collapse ">
         <ul class="nav navbar-nav">
-            <li><a href='{{ route('coulist') }}' >優惠券管理</a></li>
+            <li><a href='{{ route('coulist') }}' >折價券管理</a></li>
         </ul>
     </div>
 
@@ -40,7 +40,7 @@
             </div>
 
             <div class="form-group">
-                <img src="{{url('../storage/coupon/'. $coupon->Coup_picture)}}" width="300px" height="200px">
+                <img src="{{url('../storage/coupon/'. $coupon->Coup_picture)}}" >
             </div>
         @endforeach
     </div>
