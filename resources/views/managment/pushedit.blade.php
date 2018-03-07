@@ -60,7 +60,7 @@
         </div>
         <div class="form-group">
             <label>上傳圖片</label>
-            <input type="file"  class="form-control" name="P_picture" id="P_picture" class="photo-input" value="{{$push->P_picture}}">
+            <input type="file"  class="form-control" name="P_picture" id="P_picture" class="photo-input" >
         </div>
         <div class="text-right">
             <button type="submit" class="btn btn-primary ">修改</button>

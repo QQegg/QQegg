@@ -12,12 +12,12 @@
 
     <div class="navbar-collapse collapse ">
         <ul class="nav navbar-nav">
-            <li><a href='{{ route('coulist') }}' >優惠券管理</a></li>
+            <li><a href='{{ route('coulist') }}' >折價券管理</a></li>
         </ul>
     </div>
 
     <div class='container'>
-        <h2  class="text-center & text-success" ><strong>檢視優惠券</strong></h2>
+        <h2  class="text-center & text-success" ><strong>檢視折價券</strong></h2>
         @foreach($coupons as $coupon)
             <div class="form-group">
                 <label>店家編號</label>
@@ -38,9 +38,17 @@
                 <label>結束時間</label>
                 <p>{{$coupon->Coup_end}}</p>
             </div>
+                <div class="form-group">
+                    <label>折扣金額</label>
+                    <p>{{$coupon->Coup_discount}}元</p>
+                </div>
+                <div class="form-group">
+                    <label>至少購物金額</label>
+                    <p >{{$coupon->Coup_lowestprice}}元</p>
+                </div>
 
             <div class="form-group">
-                <img src="{{url('../storage/coupon/'. $coupon->Coup_picture)}}" width="300px" height="200px">
+                <img src="{{url('../storage/coupon/'. $coupon->Coup_picture)}}" >
             </div>
         @endforeach
     </div>

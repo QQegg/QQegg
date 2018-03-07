@@ -12,21 +12,23 @@
 
 <div class="navbar-collapse collapse ">
     <ul class="nav navbar-nav">
-        <li><a href='{{ route('coucreate') }}' >新增優惠券</a></li>
+        <li><a href='{{ route('coucreate') }}' >新曾折價券</a></li>
     </ul>
 </div>
 
 <div class="container">
-    <h2  class="text-center & text-success" ><strong>優惠券管理</strong></h2>
+    <h2  class="text-center & text-success" ><strong>折價券管理</strong></h2>
     <hr class="colorgraph">
     <table class="table">
         <thead>
         <tr>
 
             <th>選項</th>
-            <th>優惠券名稱</th>
+            <th>折價券名稱</th>
             <th>起始時間</th>
             <th>結束時間</th>
+            <th>折扣金額</th>
+            <th>至少購物金額</th>
             <th>功能</th>
         </tr>
         </thead>
@@ -37,6 +39,8 @@
                 <td>{{$coupon->Coup_title}}</td>
                 <td>{{$coupon->Coup_start}}</td>
                 <td>{{$coupon->Coup_end}}</td>
+                <td>{{$coupon->Coup_discount}}元</td>
+                <td>{{$coupon->Coup_lowestprice}}元</td>
                 <td>
                     <form action="{{ route('coudestroy', $coupon->id) }}" method="POST">
                         <a href="{{route('couview',$coupon->id)}}" class="text-success"><strong>詳細</strong></a>

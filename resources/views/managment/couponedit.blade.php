@@ -12,12 +12,12 @@
 
     <div class="navbar-collapse collapse ">
         <ul class="nav navbar-nav">
-            <li><a href='{{ route('coulist') }}' >優惠券管理</a></li>
+            <li><a href='{{ route('coulist') }}' >折價券管理</a></li>
         </ul>
     </div>
 
     <div class='container'>
-        <h2  class="text-center & text-success" ><strong>修改優惠券</strong></h2>
+        <h2  class="text-center & text-success" ><strong>修改折價券</strong></h2>
         @foreach($coupons as $coupon)
             <form action="{{route('couupdate', ['id'=>$coupon->id])}}" method="POST" role="form">
                 {{ csrf_field() }}
@@ -42,6 +42,14 @@
                 <div class="form-group">
                     <label>結束時間</label>
                     <textarea name="Coup_end" class="form-control" rows="1" >{{$coupon->Coup_end}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>折扣金額</label>
+                    <textarea name="Coup_discount" class="form-control" rows="1">{{$coupon->Coup_discount}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>至少購物金額</label>
+                    <textarea name="Coup_lowestprice" class="form-control" rows="1">{{$coupon->Coup_lowestprice}}</textarea>
                 </div>
                 <div class="form-group">
                     <label>上傳圖片</label>

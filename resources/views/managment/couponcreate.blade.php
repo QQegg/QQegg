@@ -12,14 +12,14 @@
 
 <div class="navbar-collapse collapse ">
     <ul class="nav navbar-nav">
-        <li><a href='{{ route('coulist') }}' >優惠券訊息管理</a></li>
+        <li><a href='{{ route('coulist') }}' >折價券訊息管理</a></li>
     </ul>
 </div>
 
 <div class='container'>
     <form action="{{route('coustore')}}" method="POST" role="form" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <h2  class="text-center & text-success" ><strong>新增優惠券</strong></h2>
+        <h2  class="text-center & text-success" ><strong>新增折價券</strong></h2>
 
         <div class="form-group">
             <label>店家編號</label>
@@ -40,6 +40,14 @@
         <div class="form-group">
             <label>結束時間</label>
             <input type="datetime-local" name="Coup_end" class="form-control" >
+        </div>
+        <div class="form-group">
+            <label>折扣金額</label>
+            <textarea name="Coup_discount" class="form-control" rows="1"></textarea>
+        </div>
+        <div class="form-group">
+            <label>至少購物金額</label>
+            <textarea name="Coup_lowestprice" class="form-control" rows="1"></textarea>
         </div>
         <div class="form-group">
             <label>上傳圖片</label>

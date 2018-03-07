@@ -15,6 +15,8 @@ class Coupon extends Model
         'Coup_content',
         'Coup_start',
         'Coup_end',
+        'Coup_discount',
+        'Coup_lowestprice',
         'Coup_picture'
 
     ];}
