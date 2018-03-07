@@ -22,7 +22,7 @@ class Stores extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('picture');
-            $table->string('right');
+            $table->integer('right');
             $table->timestamps();
             $table->dateTime('expire');
             $table->rememberToken();
