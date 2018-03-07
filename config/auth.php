@@ -47,7 +47,7 @@ return [
         ],
         'store'=>[
             'driver'=>'session',
-            'provider'=>'managers',
+            'provider'=>'store',
         ]
     ],
 
