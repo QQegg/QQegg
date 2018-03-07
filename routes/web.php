@@ -49,10 +49,10 @@ Route::group(['prefix' => 'sale'], function() {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('admin/login', 'Auth.StoreLoginController@showLoginForm')
+    ->name('admin.login');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::post('admin/login', 'Auth\StoreLoginController@login');
 
 Route::get('/appconnecttest','NotificationsController@test');
 
