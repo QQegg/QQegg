@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Push;
+use App\Store;
+use Illuminate\Support\Facades\Auth;
 class PushsController extends Controller
 {
     public function index()
@@ -28,7 +30,7 @@ class PushsController extends Controller
 
     public function store(Request $request)
     {
-        $push=Push::create($request->all());
+        $store = Store::all()->where('email','mimi@gmail.com')->pluck('id');
 
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();
@@ -36,8 +38,15 @@ class PushsController extends Controller
             $request->file('picture')->storeAs($destinationPath,$file_name);
 
             // save new image $file_name to database
-            $push->update(['picture' => $file_name]);
+//            $push->update(['picture' => $file_name]);
 
+            Push::create([
+                'Store_id' => $store['0'],
+                'title' => $request['title'],
+                'content' => $request['content'],
+                'picture' => $file_name,
+                'datetime' => $request['datetime'],
+            ]);
         }
         return redirect()->route('pushlist');
     }
