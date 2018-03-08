@@ -19,10 +19,7 @@
     <div class='container'>
         <h2  class="text-center & text-success" ><strong>檢視折價券</strong></h2>
         @foreach($coupons as $coupon)
-            <div class="form-group">
-                <label>店家編號</label>
-                <p>{{$coupon->Store_id}}</p>
-            </div>
+           
             <div class="form-group">
                 <label>標題</label>
                 <p>{{$coupon->title}}</p>
