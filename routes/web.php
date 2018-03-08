@@ -17,21 +17,26 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('no use.index');
 });
-
+//Route::get('/store','StoresController@index')->name('store');
+Route::prefix('store')->group(function () {
+    Route::get('/', 'StoresController@index')->name('store.dashboard');
+    Route::get('/login', 'Auth\StoreLoginController@showLoginForm')->name('store.login');
+    Route::post('/login', 'Auth\StoreLoginController@login')->name('store.login.submit');
+});
 
 
 Route::get('/appconnecttest','NotificationsController@test');
 
 
 //store 登入
-Route::group(['middleware'=>['auth:store'],'prefix'=>'store'],function (){
-    Route::get('/',['as'=>'storelist','uses'=>'StoresController@index']);
-    Route::get('/create',['as'=>'storecreate','uses'=>'StoresController@create']);
-    Route::post('/store',['as' => 'XS' ,'uses'=>'StoresController@store']);
-    Route::get('/edit/{id}',['as'=>'storeedit','uses'=>'StoresController@edit']);
-    Route::put('/update/{id}',['as'=>'storeupdate','uses'=>'StoresContreller@update']);
-    Route::delete('/destroy/{id}',['as'=>'storedestroy','uses'=>'StoresContreller@destroy']);
-});
+//Route::group(['middleware'=>['auth:store'],'prefix'=>'store'],function (){
+//    Route::get('/',['as'=>'storelist','uses'=>'StoresController@index']);
+//    Route::get('/create',['as'=>'storecreate','uses'=>'StoresController@create']);
+//    Route::post('/store',['as' => 'XS' ,'uses'=>'StoresController@store']);
+//    Route::get('/edit/{id}',['as'=>'storeedit','uses'=>'StoresController@edit']);
+//    Route::put('/update/{id}',['as'=>'storeupdate','uses'=>'StoresContreller@update']);
+//    Route::delete('/destroy/{id}',['as'=>'storedestroy','uses'=>'StoresContreller@destroy']);
+//});
 
 Route::group(['prefix' => 'sale'], function() {
     Route::get('/',['as'=>'salecreat','uses'=>'SalesController@index']);
@@ -40,8 +45,6 @@ Route::group(['prefix' => 'sale'], function() {
     Route::post('/update/{id}',['as'=>'saleupdate','uses'=>'SalesController@update']);
 });
 
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/appconnecttest','NotificationsController@test');
 

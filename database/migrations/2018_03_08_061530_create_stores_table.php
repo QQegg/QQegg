@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Stores extends Migration
+class CreateStoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,16 +16,10 @@ class Stores extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('contact');
-            $table->string('account');
+            $table->string('email')->unique();
+            $table->string('title');
             $table->string('password');
-            $table->string('phone');
-            $table->string('address');
-            $table->string('picture');
-            $table->integer('right');
             $table->timestamps();
-            $table->dateTime('expire');
-            $table->rememberToken();
         });
     }
 
