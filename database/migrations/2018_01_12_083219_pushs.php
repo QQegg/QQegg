@@ -15,6 +15,7 @@ class Pushs extends Migration
     {
         Schema::create('pushs', function (Blueprint $table) {
             $table->increments('id');
+
             $table->integer('Store_id');
             $table->string('title');
             $table->string('content');

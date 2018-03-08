@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>test</title>
+
     <script type="text/javascript">
         function test(){
             client.responseID("推播數量");
@@ -15,6 +16,7 @@
 
         }
     </script>
+
     <script> //timer countdown
         // 標準時間
         var countDownDate = new Date().getTime();
