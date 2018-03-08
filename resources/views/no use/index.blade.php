@@ -71,7 +71,9 @@
 						<ul class="nav navbar-nav">
 							<li><a href="{{route('prolist')}}">商品管理</a></li>
 							<li><a href="{{route('pushlist')}}">促銷訊息管理</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="{{route('coulist')}}">折價券</a></li>
+							<li><a href="#">交易紀錄</a></li>
+							<li><a href="#">修改店家基本資料</a></li>
 						</ul>
 					</div>
 				</div>

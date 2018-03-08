@@ -19,6 +19,9 @@ class ProductsController extends Controller
     {
         return view('product.productcreate');
     }
+
+
+
     public function store(Request $request)
     {
 
@@ -30,7 +33,6 @@ class ProductsController extends Controller
             'inventory.required'=>'你必須輸入庫存量',
             'picture.required'=>'你必須選擇照片',
         );
-
         $rules = array(
             'name' => 'required|max:255',
             'Category_id' => 'required',
@@ -48,21 +50,25 @@ class ProductsController extends Controller
             return redirect()->back()->withErrors($validator->errors());
         }
 
-        $store = Store::all()->where('account','a0952288480');
-
-        $product = Product::create($request->all());
-
-        $product->update(['store_id'=>$store['id']]);
+        $store = Store::all()->where('account','a0952288480')->pluck('id');
 
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();
             $destinationPath = '/public/product';
-            $request->file('picture')->storeAs($destinationPath,$file_name);
-
+            $request->file('picture')->storeAs($destinationPath, $file_name);
             // save new image $file_name to database
-            $product->update(['picture' => $file_name]);
+            // $product->update(['picture' => $file_name]);
+            Product::create([
+                'Category_id' => $request['Category_id'],
+                'store_id' => $store['0'],
+                'name' => $request['name'],
+                'specification' => $request['specification'],
+                'price' => $request['price'],
+                'unit' => $request['unit'],
+                'inventory' => $request['inventory'],
+                'picture' => $file_name,
+            ]);
         }
-
         return redirect()->route('procreate');
     }
     public function edit($id)
