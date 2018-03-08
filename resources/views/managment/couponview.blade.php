@@ -21,34 +21,34 @@
         @foreach($coupons as $coupon)
             <div class="form-group">
                 <label>店家編號</label>
-                <p>{{$coupon->S_id}}</p>
+                <p>{{$coupon->Store_id}}</p>
             </div>
             <div class="form-group">
                 <label>標題</label>
-                <p>{{$coupon->Coup_title}}</p>
+                <p>{{$coupon->title}}</p>
             </div>
             <div class="form-group">
                 <label>內容</label>
-                <p >{{$coupon->Coup_content}}</p>
+                <p >{{$coupon->content}}</p>
             </div>
             <div class="form-group">
                 <label>起始時間</label>
-                <p>{{$coupon->Coup_start}}</p>
+                <p>{{$coupon->start}}</p>
                 <div class="form-group">
                 <label>結束時間</label>
-                <p>{{$coupon->Coup_end}}</p>
+                <p>{{$coupon->end}}</p>
             </div>
                 <div class="form-group">
                     <label>折扣金額</label>
-                    <p>{{$coupon->Coup_discount}}元</p>
+                    <p>{{$coupon->discount}}元</p>
                 </div>
                 <div class="form-group">
                     <label>至少購物金額</label>
-                    <p >{{$coupon->Coup_lowestprice}}元</p>
+                    <p >{{$coupon->lowestprice}}元</p>
                 </div>
 
             <div class="form-group">
-                <img src="{{url('../storage/coupon/'. $coupon->Coup_picture)}}" >
+                <img src="{{url('../storage/coupon/'. $coupon->picture)}}" >
             </div>
         @endforeach
     </div>

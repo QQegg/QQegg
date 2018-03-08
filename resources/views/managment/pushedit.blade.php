@@ -24,43 +24,24 @@
             {{ method_field('PATCH') }}
             <div class="form-group">
             <label>店家編號</label>
-            <input name="S_id" class="form-control"  value="{{$push->S_id}}">
-        </div>
-        <div class="form-group">
-            <label>類別</label>
-            <select name="Cate_id" class="form-control">
-                　<option value="1">女生服飾</option>
-                　<option value="2">男生服飾</option>
-                　<option value="3">美妝保健</option>
-                　<option value="4">手機平板與周邊</option>
-                　<option value="5">嬰幼童母親</option>
-                　<option value="6">3C</option>
-                　<option value="7">居家生活</option>
-                　<option value="8">家電影音</option>
-                　<option value="9">戶外與運動用品</option>
-                　<option value="10">美食、伴手禮</option>
-                　<option value="11">汽機車零件百貨</option>
-                　<option value="12">寵物</option>
-                　<option value="13">娛樂</option>
-                　
-            </select>
+            <input name="Store_id" class="form-control"  value="{{$push->Store_id}}">
         </div>
         <div class="form-group">
             <label>標題</label>
-            <textarea name="P_title" class="form-control" rows="1" >{{$push->P_title}}</textarea>
+            <textarea name="title" class="form-control" rows="1" >{{$push->title}}</textarea>
         </div>
         <div class="form-group">
             <label>內容</label>
-            <textarea name="P_content" class="form-control" rows="5" >{{$push->P_content}}</textarea>
+            <textarea name="content" class="form-control" rows="5" >{{$push->content}}</textarea>
         </div>
         <div class="form-group">
             <label>日期及時間</label>
             {{--<input type="datetime-local" name="P_timestamp" class="form-control" value="{{$push->P_timestamp}}">--}}
-            <textarea name="P_timestamp" class="form-control" rows="1" >{{$push->P_timestamp}}</textarea>
+            <textarea name="datetime" class="form-control" rows="1" >{{$push->datetime}}</textarea>
         </div>
         <div class="form-group">
             <label>上傳圖片</label>
-            <input type="file"  class="form-control" name="P_picture" id="P_picture" class="photo-input" >
+            <input type="file"  class="form-control " name="picture" id="picture" >
         </div>
         <div class="text-right">
             <button type="submit" class="btn btn-primary ">修改</button>

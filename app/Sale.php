@@ -13,11 +13,11 @@ class Sale extends Model
     protected $table='pushs';
     protected $fillable=[
         'id',
-        'S_id',
-        'Cate_id',
-        'P_title',
-        'P_content',
-        'P_picture',
-        'P_timestamp'
+        'Store_id',
+        'Category_id',
+        'title',
+        'content',
+        'picture',
+        'timestamp'
     ];
 }

@@ -30,13 +30,13 @@ class PushsController extends Controller
     {
         $push=Push::create($request->all());
 
-        if ($request->hasFile('P_picture')) {
-            $file_name = $request->file('P_picture')->getClientOriginalName();
+        if ($request->hasFile('picture')) {
+            $file_name = $request->file('picture')->getClientOriginalName();
             $destinationPath = '/public/push';
-            $request->file('P_picture')->storeAs($destinationPath,$file_name);
+            $request->file('picture')->storeAs($destinationPath,$file_name);
 
             // save new image $file_name to database
-            $push->update(['P_picture' => $file_name]);
+            $push->update(['picture' => $file_name]);
 
         }
         return redirect()->route('pushlist');
@@ -52,14 +52,13 @@ class PushsController extends Controller
     {
         $push=Push::find($id);
         $push->update($request->all());
-        if ($request->hasFile('P_picture')){
-            $file_name = $request->file('P_picture')->getClientOriginalName();
-
+        if ($request->hasFile('picture')) {
+            $file_name = $request->file('picture')->getClientOriginalName();
             $destinationPath = '/public/push';
-            $request->file('P_picture')->storeAs($destinationPath,$file_name);
+            $request->file('picture')->storeAs($destinationPath,$file_name);
 
             // save new image $file_name to database
-            $push->update(['P_picture' => $file_name]);
+            $push->update(['picture' => $file_name]);
 
         }
         return redirect()->route('pushlist');

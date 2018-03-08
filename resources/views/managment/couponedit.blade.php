@@ -24,36 +24,36 @@
                 {{ method_field('PATCH') }}
                 <div class="form-group">
                     <label>店家編號</label>
-                    <input name="S_id" class="form-control"  value="{{$coupon->S_id}}">
+                    <input name="Store_id" class="form-control"  value="{{$coupon->Store_id}}">
                 </div>
 
                 <div class="form-group">
                     <label>標題</label>
-                    <textarea name="Coup_title" class="form-control" rows="1" >{{$coupon->Coup_title}}</textarea>
+                    <textarea name="title" class="form-control" rows="1" >{{$coupon->title}}</textarea>
                 </div>
                 <div class="form-group">
                     <label>內容</label>
-                    <textarea name="Coup_content" class="form-control" rows="5" >{{$coupon->Coup_content}}</textarea>
+                    <textarea name="content" class="form-control" rows="5" >{{$coupon->content}}</textarea>
                 </div>
                 <div class="form-group">
                     <label>起始時間</label>
-                    <textarea name="Coup_start" class="form-control" rows="1" >{{$coupon->Coup_start}}</textarea>
+                    <textarea name="start" class="form-control" rows="1" >{{$coupon->start}}</textarea>
                 </div>
                 <div class="form-group">
                     <label>結束時間</label>
-                    <textarea name="Coup_end" class="form-control" rows="1" >{{$coupon->Coup_end}}</textarea>
+                    <textarea name="end" class="form-control" rows="1" >{{$coupon->end}}</textarea>
                 </div>
                 <div class="form-group">
                     <label>折扣金額</label>
-                    <textarea name="Coup_discount" class="form-control" rows="1">{{$coupon->Coup_discount}}</textarea>
+                    <textarea name="discount" class="form-control" rows="1">{{$coupon->discount}}</textarea>
                 </div>
                 <div class="form-group">
                     <label>至少購物金額</label>
-                    <textarea name="Coup_lowestprice" class="form-control" rows="1">{{$coupon->Coup_lowestprice}}</textarea>
+                    <textarea name="lowestprice" class="form-control" rows="1">{{$coupon->lowestprice}}</textarea>
                 </div>
                 <div class="form-group">
                     <label>上傳圖片</label>
-                    <input type="file"  class="form-control" name="Coup_picture" id="Coup_picture" class="photo-input" value="{{$coupon->Coup_picture}}">
+                    <input type="file"  class="form-control" name="picture" id="picture" >
                 </div>
                 <div class="text-right">
                     <button type="submit" class="btn btn-primary ">修改</button>

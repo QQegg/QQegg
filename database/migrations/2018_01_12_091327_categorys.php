@@ -15,6 +15,7 @@ class Categorys extends Migration
     {
         Schema::create('categorys', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('Store_id');
             $table->string('name');
             $table->rememberToken();
             $table->timestamps();

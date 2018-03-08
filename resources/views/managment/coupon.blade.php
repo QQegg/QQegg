@@ -36,11 +36,11 @@
         @foreach($coupons as $coupon)
             <tr>
                 <td><input type="checkbox" name="option" ></td>
-                <td>{{$coupon->Coup_title}}</td>
-                <td>{{$coupon->Coup_start}}</td>
-                <td>{{$coupon->Coup_end}}</td>
-                <td>{{$coupon->Coup_discount}}元</td>
-                <td>{{$coupon->Coup_lowestprice}}元</td>
+                <td>{{$coupon->title}}</td>
+                <td>{{$coupon->start}}</td>
+                <td>{{$coupon->end}}</td>
+                <td>{{$coupon->discount}}元</td>
+                <td>{{$coupon->lowestprice}}元</td>
                 <td>
                     <form action="{{ route('coudestroy', $coupon->id) }}" method="POST">
                         <a href="{{route('couview',$coupon->id)}}" class="text-success"><strong>詳細</strong></a>

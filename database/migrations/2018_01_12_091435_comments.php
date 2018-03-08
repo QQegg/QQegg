@@ -15,10 +15,10 @@ class Comments extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('M_id')->nullable();
-            $table->integer('S_id')->nullable();
-            $table->string('Cmt_conten');
-            $table->string('Cmt_rating');
+            $table->integer('Member_id')->nullable();
+            $table->integer('Store_id')->nullable();
+            $table->string('content');
+            $table->string('rate');
             $table->rememberToken();
             $table->timestamps();
         });

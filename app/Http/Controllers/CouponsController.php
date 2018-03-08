@@ -30,13 +30,13 @@ class CouponsController extends Controller
     {
         $coupon=Coupon::create($request->all());
 
-        if ($request->hasFile('Coup_picture')) {
-            $file_name = $request->file('Coup_picture')->getClientOriginalName();
+        if ($request->hasFile('picture')) {
+            $file_name = $request->file('picture')->getClientOriginalName();
             $destinationPath = '/public/coupon';
-            $request->file('Coup_picture')->storeAs($destinationPath,$file_name);
+            $request->file('picture')->storeAs($destinationPath,$file_name);
 
             // save new image $file_name to database
-            $coupon->update(['Coup_picture' => $file_name]);
+            $coupon->update(['picture' => $file_name]);
 
         }
         return redirect()->route('coulist');
@@ -52,13 +52,13 @@ class CouponsController extends Controller
     {
         $coupon=Coupon::find($id);
         $coupon->update($request->all());
-        if ($request->hasFile('Coup_picture')) {
-            $file_name = $request->file('Coup_picture')->getClientOriginalName();
+        if ($request->hasFile('picture')) {
+            $file_name = $request->file('picture')->getClientOriginalName();
             $destinationPath = '/public/coupon';
-            $request->file('Coup_picture')->storeAs($destinationPath,$file_name);
+            $request->file('picture')->storeAs($destinationPath,$file_name);
 
             // save new image $file_name to database
-            $coupon->update(['Coup_picture' => $file_name]);
+            $coupon->update(['picture' => $file_name]);
 
         }
         return redirect()->route('coulist');

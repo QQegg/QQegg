@@ -23,35 +23,35 @@
 
         <div class="form-group">
             <label>店家編號</label>
-            <input name="S_id" class="form-control"  value="99">
+            <input name="Store_id" class="form-control"  value="99">
         </div>
         <div class="form-group">
             <label>標題</label>
-            <textarea name="Coup_title" class="form-control" rows="1"></textarea>
+            <textarea name="title" class="form-control" rows="1"></textarea>
         </div>
         <div class="form-group">
             <label>內容</label>
-            <textarea name="Coup_content" class="form-control" rows="5"></textarea>
+            <textarea name="content" class="form-control" rows="5"></textarea>
         </div>
         <div class="form-group">
             <label>起始時間</label>
-            <input type="datetime-local" name="Coup_start" class="form-control" >
+            <input type="datetime-local" name="start" class="form-control" >
         </div>
         <div class="form-group">
             <label>結束時間</label>
-            <input type="datetime-local" name="Coup_end" class="form-control" >
+            <input type="datetime-local" name="end" class="form-control" >
         </div>
         <div class="form-group">
             <label>折扣金額</label>
-            <textarea name="Coup_discount" class="form-control" rows="1"></textarea>
+            <textarea name="discount" class="form-control" rows="1"></textarea>
         </div>
         <div class="form-group">
             <label>至少購物金額</label>
-            <textarea name="Coup_lowestprice" class="form-control" rows="1"></textarea>
+            <textarea name="lowestprice" class="form-control" rows="1"></textarea>
         </div>
         <div class="form-group">
             <label>上傳圖片</label>
-            <input type="file"  class="form-control" name="Coup_picture" id="Coup_picture"  >
+            <input type="file"  class="form-control" name="picture" id="picture"  >
         </div>
         <div class="text-right">
             <button type="submit" class="btn btn-primary ">新增</button>

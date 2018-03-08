@@ -10,13 +10,13 @@ class Coupon extends Model
     protected $fillable=[
 
         'id',
-        'S_id',
-        'Coup_title',
-        'Coup_content',
-        'Coup_start',
-        'Coup_end',
-        'Coup_discount',
-        'Coup_lowestprice',
-        'Coup_picture'
+        'Store_id',
+        'title',
+        'content',
+        'start',
+        'end',
+        'discount',
+        'lowestprice',
+        'picture'
 
     ];}

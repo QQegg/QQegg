@@ -15,13 +15,12 @@ class Pushs extends Migration
     {
         Schema::create('pushs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('S_id');
-            $table->integer('Cate_id');
-            $table->string('P_title');
-            $table->string('P_content');
-            $table->string('P_picture');
+            $table->integer('Store_id');
+            $table->string('title');
+            $table->string('content');
+            $table->string('picture');
 //            $table->binary('P_picture')->nullable();
-            $table->dateTime('P_timestamp');
+            $table->dateTime('datetime');
             $table->timestamps();
             $table->rememberToken();
         });
