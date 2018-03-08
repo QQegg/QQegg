@@ -42,14 +42,9 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e)
+    public function render($request, Exception $exception)
     {
-        if (config('app.debug')&& !$request->ajax()){
-            $whoops = new \Whoops\Run;
-            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-            return $whoops->handleException($e);
-        }
-        return parent::render($request, $e);
+        return parent::render($request, $exception);
     }
 
     /**
@@ -65,6 +60,17 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        return redirect()->guest(route('login'));
+        $guard = array_get($exception->guards(),0);
+
+        //using switch statement to switch between the guards
+        switch ($guard) {
+            case 'store':
+                $login = 'store.login';
+                break;
+            default:
+                $login = 'login';
+                break;
+        }
+        return redirect()->guest(route($login));
     }
 }
