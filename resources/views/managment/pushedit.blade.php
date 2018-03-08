@@ -19,7 +19,7 @@
 <div class='container'>
     <h2  class="text-center & text-success" ><strong>修改推播訊息</strong></h2>
         @foreach($pushs as $push)
-            <form action="{{route('pushupdate', ['id'=>$push->id])}}" method="POST" role="form">
+            <form action="{{route('pushupdate', ['id'=>$push->id])}}" method="POST" role="form" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="form-group">
