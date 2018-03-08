@@ -2,35 +2,31 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Store extends Authenticatable
 {
     use Notifiable;
 
+    protected $guard = 'store';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'id',
-        'name',
-        'contact',
-        'account',
-        'password',
-        'phone',
-        'address',
-        'picture',
-        'right',
-        'expire',
+        'name', 'email', 'password','title',
     ];
 
-    protected $table="stores";
-
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function getAuthPassword()
-    {
-        return $this->password;
-    }
 }
