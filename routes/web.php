@@ -65,7 +65,7 @@ Route::group(['prefix' => 'product'], function() {
     Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
     Route::patch('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
     Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
-})->middleware('admin');
+});
 
 Route::group(['prefix' => 'notification'], function() {
     Route::get('/',['as'=>'notilist','uses'=>'NotificationsController@index']);

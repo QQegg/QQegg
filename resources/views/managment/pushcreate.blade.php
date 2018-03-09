@@ -21,10 +21,7 @@
         {{ csrf_field() }}
         <h2  class="text-center & text-success" ><strong>新增推播訊息</strong></h2>
 
-        <div class="form-group">
-            <label>店家編號</label>
-            <input name="Store_id" class="form-control"  value="99">
-        </div>
+
         <div class="form-group">
             <label>標題</label>
             <textarea name="title" class="form-control" rows="1"></textarea>
