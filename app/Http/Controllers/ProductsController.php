@@ -63,6 +63,7 @@ class ProductsController extends Controller
             $request->file('picture')->storeAs($destinationPath, $file_name);
             // save new image $file_name to database
             // $product->update(['picture' => $file_name]);
+
             Product::create([
                 'Category_id' => $request['Category_id'],
                 'store_id' => $store['0'],

@@ -19,10 +19,7 @@
     <div class='container'>
         <h2  class="text-center & text-success" ><strong>檢視推播訊息</strong></h2>
         @foreach($pushs as $push)
-                <div class="form-group">
-                    <label>店家編號</label>
-                    <p>{{$push->Store_id}}</p>
-                </div>
+
                 <div class="form-group">
                     <label>標題</label>
                     <p>{{$push->title}}</p>
