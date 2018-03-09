@@ -25,4 +25,14 @@ class UserChangeMemberController extends Controller
         else
             return back()->with('error','修改失敗');
     }
+    public function profile()
+    {
+        return view('user_change_profile');
+    }
+    public function update(Request $request)
+    {
+        $User=User::find(Auth::user()->id);
+        $User->update($request->all());
+        return back()->with('success','修改成功');
+    }
 }
