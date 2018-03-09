@@ -31,8 +31,7 @@ class CouponsController extends Controller
 
     public function store(Request $request)
     {
-        $store_email=Auth::user();
-        $store = Store::all()->where('account',$store_email['email'])->pluck('id');
+        $store = Store::all()->where('email' ,  Auth::guard('store')->user()->email)->pluck('id');
 
 
         if ($request->hasFile('picture')) {
