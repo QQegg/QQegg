@@ -14,7 +14,7 @@
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('user_change_profile') }}">
                             {{ csrf_field() }}
-                            <div class="form-group{{ $errors->has('account') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="account" class="col-md-4 control-label">帳號</label>
 
                                 <div class="col-md-6">
