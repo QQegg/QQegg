@@ -49,6 +49,7 @@ Route::group(['prefix' => 'sale'], function() {
 Route::get('/appconnecttest','NotificationsController@test');
 
 Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
+
 Route::group(['prefix' => 'costomer'], function() {
     Route::get('/',['as'=>'coslist','uses'=>'CostomersController@index']);
     Route::get('/create',['as'=>'coscreate','uses'=>'CostomersController@create']);
@@ -64,7 +65,7 @@ Route::group(['prefix' => 'product'], function() {
     Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
     Route::patch('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
     Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
-});
+})->middleware('admin');
 
 Route::group(['prefix' => 'notification'], function() {
     Route::get('/',['as'=>'notilist','uses'=>'NotificationsController@index']);
@@ -74,7 +75,6 @@ Route::group(['prefix' => 'notification'], function() {
     Route::put('/update/{id}',['as'=>'notiupdate','uses'=>'NotificationsController@update']);
     Route::delete('/destroy/{id}',['as'=>'notidestroy','uses'=>'NotificationsController@destroy']);
 });
-
 Route::group(['prefix' => 'push'], function() {
     Route::get('/',['as'=>'pushlist','uses'=>'PushsController@index']);
     Route::get('/create',['as'=>'pushcreate','uses'=>'PushsController@create']);
