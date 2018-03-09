@@ -128,6 +128,8 @@ Route::group(['prefix' => 'post'], function() {
 //店家瀏覽頁面(暫時放在這之後要換到HomeController)
 Route::get('/all',['as'=>'all','uses'=>'NotificationsController@all']);
 
+Route::get('change/password/user', ['as' => 'posts.password', 'uses' => 'UserChangeMemberController@password']);
+Route::post('change/password/user', ['as' => 'posts.change_password', 'uses' => 'UserChangeMemberController@change_password']);
 
 
 
