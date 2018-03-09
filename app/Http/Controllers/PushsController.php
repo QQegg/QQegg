@@ -30,7 +30,8 @@ class PushsController extends Controller
 
     public function store(Request $request)
     {
-        $store = Store::all()->where('email','mimi@gmail.com')->pluck('id');
+        $store_email=Auth::user();
+        $store = Store::all()->where('account',$store_email['email'])->pluck('id');
 
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();

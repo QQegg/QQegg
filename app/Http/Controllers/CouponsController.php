@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Coupon;
+use App\Store;
+use Illuminate\Support\Facades\Auth;
+
 class CouponsController extends Controller
 {
     public function index()
@@ -28,7 +31,9 @@ class CouponsController extends Controller
 
     public function store(Request $request)
     {
-        $coupon=Coupon::create($request->all());
+        $store_email=Auth::user();
+        $store = Store::all()->where('account',$store_email['email'])->pluck('id');
+
 
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();
@@ -36,8 +41,17 @@ class CouponsController extends Controller
             $request->file('picture')->storeAs($destinationPath,$file_name);
 
             // save new image $file_name to database
-            $coupon->update(['picture' => $file_name]);
-
+//            $coupon->update(['picture' => $file_name]);
+            Coupon::create([
+                'Store_id' => $store['0'],
+                'title' => $request['title'],
+                'content' => $request['content'],
+                'start' => $request['start'],
+                'end' => $request['end'],
+                'discount' => $request['discount'],
+                'lowestprice' => $request['lowestprice'],
+                'picture' => $file_name,
+            ]);
         }
         return redirect()->route('coulist');
     }
