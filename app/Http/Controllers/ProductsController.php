@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Store;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Product;
 use Illuminate\Support\Facades\Validator;
@@ -50,7 +51,9 @@ class ProductsController extends Controller
             return redirect()->back()->withErrors($validator->errors());
         }
 
-        $store = Store::all()->where('account','a0952288480')->pluck('id');
+        $user_name = Auth::user();
+
+        $store = Store::all()->where('account',$user_name['email'])->pluck('id');
 
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();
