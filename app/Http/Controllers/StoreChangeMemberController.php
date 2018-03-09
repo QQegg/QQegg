@@ -16,7 +16,7 @@ class StoreChangeMemberController extends Controller
     }
     public function change_password()
     {
-        $Store=Store::find(Auth::user()->id);
+        $Store=Store::find(Auth::guard('store')->user()->id);
         if(Hash::check(Input::get('passwordold'),$Store['password']) && Input::get('password') ==Input::get('password_confirmation')){
             $Store->password =bcrypt(Input::get('password'));
             $Store->save();
@@ -24,5 +24,15 @@ class StoreChangeMemberController extends Controller
         }
         else
             return back()->with('error','修改失敗');
+    }
+    public function profile()
+    {
+        return view('store_change_profile');
+    }
+    public function update(Request $request)
+    {
+        $Store=Store::find(Auth::guard('store')->user()->id);
+        $Store->update($request->all());
+        return back()->with('success','修改成功');
     }
 }

@@ -130,10 +130,11 @@ Route::get('/all',['as'=>'all','uses'=>'NotificationsController@all']);
 
 Route::get('change/profile/user', ['as' => 'posts.user_change_profile', 'uses' => 'UserChangeMemberController@profile']);
 Route::post('change/profile/user', ['as' => 'user_change_profile', 'uses' => 'UserChangeMemberController@update']);
-
 Route::get('change/password/user', ['as' => 'posts.password', 'uses' => 'UserChangeMemberController@password']);
 Route::post('change/password/user', ['as' => 'posts.change_password', 'uses' => 'UserChangeMemberController@change_password']);
 
+Route::get('change/profile/store', ['as' => 'post.store_change_profile', 'uses' => 'StoreChangeMemberController@profile']);
+Route::post('change/profile/store', ['as' => 'store_change_profile', 'uses' => 'StoreChangeMemberController@update']);
 Route::get('change/password/store', ['as' => 'posts.password', 'uses' => 'StoreChangeMemberController@password']);
 Route::post('change/password/store', ['as' => 'posts.change_password', 'uses' => 'StoreChangeMemberController@change_password']);
 
