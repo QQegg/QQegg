@@ -13,7 +13,10 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        $product=Product::all();
+        $store = Store::all()->where('email',Auth::guard('store')->user()->email)->pluck('id');
+
+        $product=Product::all()->where('store_id', $store['0']);
+
         return view('product.productlist',compact('product'));
     }
     public function create()
@@ -51,9 +54,8 @@ class ProductsController extends Controller
             return redirect()->back()->withErrors($validator->errors());
         }
 
-        $user_name = Auth::user();
+        $store = Store::all()->where('email',Auth::guard('store')->user()->email)->pluck('id');
 
-        $store = Store::all()->where('account',$user_name['email'])->pluck('id');
 
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();
