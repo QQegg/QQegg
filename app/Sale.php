@@ -10,14 +10,23 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 class Sale extends Model
 {
-    protected $table='pushs';
+    protected $table='transaction';
     protected $fillable=[
+
         'id',
         'Store_id',
-        'Category_id',
-        'title',
-        'content',
-        'picture',
-        'timestamp'
+        'Member_id',
+        'Coupon_id',
+        'commodity_id',
+        'number',
+        'timestamp',
     ];
 }
+ class categorylist extends Model{
+    protected $table='transaction_CandN';
+    protected $fillable=[
+        'id',
+        'commodity_id',
+        'number',
+    ];
+ }

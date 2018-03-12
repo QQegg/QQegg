@@ -13,7 +13,23 @@ class Sale extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('transaction', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('Store_id');
+            $table->integer('Member_id');
+            $table->string('Coupon_id');
+            $table->timestamps();
+            $table->dateTime('expire');
+            $table->rememberToken();
+        });
+        Schema::create('transaction_CandN', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('commodity_id');
+            $table->string('number');
+            $table->timestamps();
+            $table->dateTime('expire');
+            $table->rememberToken();
+        });
     }
 
     /**
