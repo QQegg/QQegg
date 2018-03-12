@@ -12,7 +12,7 @@ class UserChangeMemberController extends Controller
 {
     public function password()
     {
-        return view('user_change_password');
+        return view('user.user_change_password');
     }
     public function change_password()
     {
@@ -27,7 +27,7 @@ class UserChangeMemberController extends Controller
     }
     public function profile()
     {
-        return view('user_change_profile');
+        return view('user.user_change_profile');
     }
     public function update(Request $request)
     {
