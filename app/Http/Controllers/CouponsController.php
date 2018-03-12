@@ -11,9 +11,9 @@ class CouponsController extends Controller
 {
     public function index()
     {
-        $coupon=Coupon::all();
-        $data=['coupons'=>$coupon];
-        return view('managment.coupon',$data);
+        $store = Store::all()->where('email' ,  Auth::guard('store')->user()->email)->pluck('id');
+        $coupons=Coupon::all()->where('Store_id', $store['0']);
+        return view('managment.coupon',compact('coupons'));
     }
 
     public function create()
