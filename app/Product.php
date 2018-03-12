@@ -14,7 +14,6 @@ class Product extends Model
         'specification',
         'price',
         'unit',
-        'inventory',
         'picture',
     ];
 
