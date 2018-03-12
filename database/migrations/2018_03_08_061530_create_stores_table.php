@@ -19,6 +19,17 @@ class CreateStoresTable extends Migration
             $table->string('email')->unique();
             $table->string('title');
             $table->string('password');
+
+//store欄位
+//            $table->string('name');
+//            $table->string('contact');
+//            $table->string('account')->unique();
+//            $table->string('password');
+//            $table->integer('phone');
+//            $table->string('address');
+//            $table->string('picture');
+//            $table->boolean('right');
+
             $table->timestamps();
         });
     }
