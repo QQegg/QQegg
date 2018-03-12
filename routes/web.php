@@ -13,30 +13,38 @@
 
 
 Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('no use.index');
 });
-//Route::get('/store','StoresController@index')->name('store');
+
+Route::prefix('user')->group(function () {
+    Route::get('change/profile', ['as' => 'user_change_profile', 'uses' => 'UserChangeMemberController@profile']);
+    Route::post('change/profile', ['as' => 'user_change_profile', 'uses' => 'UserChangeMemberController@update']);
+    Route::get('change/password', ['as' => 'user_change_password', 'uses' => 'UserChangeMemberController@password']);
+    Route::post('change/password', ['as' => 'user_change_password', 'uses' => 'UserChangeMemberController@change_password']);
+});
+
 Route::prefix('store')->group(function () {
     Route::get('/', 'StoresController@index')->name('store.dashboard');
+    Route::get('/create',['as'=>'storecreate','uses'=>'StoresController@create']);
+    Route::post('/store',['as' => 'XS' ,'uses'=>'StoresController@store']);
+    Route::get('/edit/{id}',['as'=>'storeedit','uses'=>'StoresController@edit']);
+    Route::put('/update/{id}',['as'=>'storeupdate','uses'=>'StoresContreller@update']);
+    Route::delete('/destroy/{id}',['as'=>'storedestroy','uses'=>'StoresContreller@destroy']);
     Route::get('/login', 'Auth\StoreLoginController@showLoginForm')->name('store.login');
     Route::post('/login', 'Auth\StoreLoginController@login')->name('store.login.submit');
+    Route::post('/login', 'Auth\StoreLoginController@login')->name('store.login.submit');
+    Route::get('change/profile', ['as' => 'store_change_profile', 'uses' => 'StoreChangeMemberController@profile']);
+    Route::post('change/profile', ['as' => 'store_change_profile', 'uses' => 'StoreChangeMemberController@update']);
+    Route::get('change/password', ['as' => 'store_change_password', 'uses' => 'StoreChangeMemberController@password']);
+    Route::post('change/password', ['as' => 'store_change_password', 'uses' => 'StoreChangeMemberController@change_password']);
 });
 
 
 Route::get('/appconnecttest','NotificationsController@test');
 
-
-//store 登入
-//Route::group(['middleware'=>['auth:store'],'prefix'=>'store'],function (){
-//    Route::get('/',['as'=>'storelist','uses'=>'StoresController@index']);
-//    Route::get('/create',['as'=>'storecreate','uses'=>'StoresController@create']);
-//    Route::post('/store',['as' => 'XS' ,'uses'=>'StoresController@store']);
-//    Route::get('/edit/{id}',['as'=>'storeedit','uses'=>'StoresController@edit']);
-//    Route::put('/update/{id}',['as'=>'storeupdate','uses'=>'StoresContreller@update']);
-//    Route::delete('/destroy/{id}',['as'=>'storedestroy','uses'=>'StoresContreller@destroy']);
-//});
 
 Route::group(['prefix' => 'sale'], function() {
     Route::get('/',['as'=>'salecreat','uses'=>'SalesController@index']);
@@ -125,17 +133,9 @@ Route::group(['prefix' => 'post'], function() {
     Route::get('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
 });
 
-//店家瀏覽頁面(暫時放在這之後要換到HomeController)
-Route::get('/all',['as'=>'all','uses'=>'NotificationsController@all']);
 
-Route::get('change/profile/user', ['as' => 'posts.user_change_profile', 'uses' => 'UserChangeMemberController@profile']);
-Route::post('change/profile/user', ['as' => 'user_change_profile', 'uses' => 'UserChangeMemberController@update']);
-Route::get('change/password/user', ['as' => 'posts.password', 'uses' => 'UserChangeMemberController@password']);
-Route::post('change/password/user', ['as' => 'posts.change_password', 'uses' => 'UserChangeMemberController@change_password']);
 
-Route::get('change/profile/store', ['as' => 'post.store_change_profile', 'uses' => 'StoreChangeMemberController@profile']);
-Route::post('change/profile/store', ['as' => 'store_change_profile', 'uses' => 'StoreChangeMemberController@update']);
-Route::get('change/password/store', ['as' => 'posts.password', 'uses' => 'StoreChangeMemberController@password']);
-Route::post('change/password/store', ['as' => 'posts.change_password', 'uses' => 'StoreChangeMemberController@change_password']);
+
+
 
 
