@@ -18,6 +18,7 @@
         }
     </script>
 
+
 </head>
 <body>
 
@@ -28,11 +29,20 @@
 </div>
 
 <div class='container'>
+    @if(count($errors)>0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <form action="{{route('pushstore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()">
         {{ csrf_field() }}
         <h2  class="text-center & text-success" ><strong>新增推播訊息</strong></h2>
-        
+
 
         <div class="form-group">
             <label>標題</label>
