@@ -36,7 +36,7 @@ class PushsController extends Controller
         $messsages = array(
             'title.required'=>'你必須輸入促銷訊息名稱',
             'content.required'=>'你必須輸入促銷訊息內容',
-            'picture.required'=>'你上傳圖片',
+            'picture.required'=>'你必須上傳圖片',
             'datetime.required'=>'你必須輸入日期及時間',
         );
         $rules = array(
