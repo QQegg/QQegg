@@ -19,6 +19,13 @@ class ProductsController extends Controller
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
 
         $product = Product::all()->where('store_id', $store['0']);
+        $cc = 0;
+        foreach ($product as $count){
+            $category_name = Category::all()->where('id',$count['Category_id'])->pluck('name');
+            $product[$cc]['C_name']=$category_name[0];
+            $cc++;
+        }
+        dd($product);
 
         return view('product.productlist', compact('product'));
     }
@@ -80,7 +87,6 @@ class ProductsController extends Controller
                 'specification' => $request['specification'],
                 'price' => $request['price'],
                 'unit' => $request['unit'],
-                'inventory' => $request['inventory'],
                 'picture' => $file_name,
             ]);
         }
@@ -90,6 +96,8 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::all()->where('id', $id);
+        $category_name = Category::all()->where('id',$product[0]['Category_id'])->pluck('name');
+        $product[0]['C_name'] = $category_name['0'];
         return view('product.productedit', compact('product'));
     }
 
@@ -100,17 +108,14 @@ class ProductsController extends Controller
             'specification.required' => '你必須輸入產品規格',
             'price.required' => '你必須輸入單價',
             'unit.required' => '你必須輸入單位',
-            'inventory.required' => '你必須輸入庫存量',
             'picture.required' => '你必須選擇照片',
         );
 
         $rules = array(
             'name' => 'required|max:255',
-            'Category_id' => 'required',
             'specification' => 'required',
             'price' => 'required|integer',
             'unit' => 'required|string',
-            'inventory' => 'required|integer',
             'picture' => 'required',
         );
 
@@ -119,16 +124,36 @@ class ProductsController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
         }
+
+        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
+
+        $category_name = Category::all()->where('name', $request['C_name']);
+
+        if (count($category_name) == 0) {
+            Category::create([
+                'store_id' => $store['0'],
+                'name' => $request['C_name'],
+            ]);
+        }
+
         $product = Product::find($id);
-        $product->update($request->all());
+
+        $category_id = Category::all()->where('name', $request['C_name'])->pluck('id');
+
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();
 
             $destinationPath = '/public/product';
             $request->file('picture')->storeAs($destinationPath, $file_name);
 
-            // save new image $file_name to database
-            $product->update(['picture' => $file_name]);
+            $product->update([
+                'Category_id' => $category_id['0'],
+                'name' => $request['name'],
+                'specification' => $request['specification'],
+                'price' => $request['price'],
+                'unit' => $request['unit'],
+                'picture' => $file_name,
+            ]);
         }
 
         return redirect()->route('prolist');
