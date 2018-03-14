@@ -13,12 +13,11 @@ class Transactions extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('dealmatch', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('Store_id');
-            $table->string('Member_id');
-            $table->string('Coupon_id');
-            $table->dateTime('date');
+            $table->integer('Tran_id');
+            $table->string('Commodity_id');
+            $table->integer('number');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -26,7 +26,9 @@ Route::prefix('store')->group(function () {
 
 
 Route::get('/appconnecttest','NotificationsController@test');
-
+Route::get('/test1',function (){
+   return view('sale.productcreate');
+});
 
 //store 登入
 //Route::group(['middleware'=>['auth:store'],'prefix'=>'store'],function (){
@@ -39,10 +41,8 @@ Route::get('/appconnecttest','NotificationsController@test');
 //});
 
 Route::group(['prefix' => 'sale'], function() {
-    Route::get('/',['as'=>'salecreat','uses'=>'SalesController@index']);
-    Route::post('/store',['as' => 'salestore' ,'uses'=>'SalesController@store']);
-    Route::get('/edit/{id}',['as'=>'saleedit','uses'=>'SalesController@edit']);
-    Route::post('/update/{id}',['as'=>'saleupdate','uses'=>'SalesController@update']);
+    Route::get('/',['as'=>'salecreat','uses'=>'TransactionsController@index']);
+    Route::post('/store',['as' => 'salestore' ,'uses'=>'TransactionsController@store']);
 });
 
 
