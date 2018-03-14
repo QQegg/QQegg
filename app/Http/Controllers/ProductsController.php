@@ -19,13 +19,13 @@ class ProductsController extends Controller
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
 
         $product = Product::all()->where('store_id', $store['0']);
+
         $cc = 0;
         foreach ($product as $count){
             $category_name = Category::all()->where('id',$count['Category_id'])->pluck('name');
-            $product[$cc]['C_name']=$category_name[0];
+            $product[$cc]['C_name'] = $category_name->first();
             $cc++;
         }
-        dd($product);
 
         return view('product.productlist', compact('product'));
     }
@@ -43,6 +43,7 @@ class ProductsController extends Controller
             'name.required' => '你必須輸入產品名稱',
             'specification.required' => '你必須輸入產品規格',
             'price.required' => '你必須輸入單價',
+            'price.integer' => '單價必須為數字',
             'unit.required' => '你必須輸入單位',
             'picture.required' => '你必須選擇照片',
         );
@@ -61,15 +62,6 @@ class ProductsController extends Controller
         }
 
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
-
-        $category_name = Category::all()->where('name', $request['C_name']);
-
-        if (count($category_name) == 0) {
-            Category::create([
-                'store_id' => $store['0'],
-                'name' => $request['C_name'],
-            ]);
-        }
 
         $category_id = Category::all()->where('name', $request['C_name'])->pluck('id');
 
@@ -95,9 +87,9 @@ class ProductsController extends Controller
 
     public function edit($id)
     {
-        $product = Product::all()->where('id', $id);
-        $category_name = Category::all()->where('id',$product[0]['Category_id'])->pluck('name');
-        $product[0]['C_name'] = $category_name['0'];
+        $product= Product::all()->where('id', $id);
+        $category_name = Category::all()->where('id',$product->first()['Category_id'])->pluck('name');
+        $product->first()['C_name'] = $category_name['0'];
         return view('product.productedit', compact('product'));
     }
 
@@ -107,6 +99,7 @@ class ProductsController extends Controller
             'name.required' => '你必須輸入產品名稱',
             'specification.required' => '你必須輸入產品規格',
             'price.required' => '你必須輸入單價',
+            'price.integer' => '單價必須為數字',
             'unit.required' => '你必須輸入單位',
             'picture.required' => '你必須選擇照片',
         );
@@ -123,17 +116,6 @@ class ProductsController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
-        }
-
-        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
-
-        $category_name = Category::all()->where('name', $request['C_name']);
-
-        if (count($category_name) == 0) {
-            Category::create([
-                'store_id' => $store['0'],
-                'name' => $request['C_name'],
-            ]);
         }
 
         $product = Product::find($id);
