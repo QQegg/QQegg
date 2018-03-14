@@ -30,7 +30,10 @@
                     <a href="{{route('procreate')}}">新增商品</a>
                 </li>
                 <li>
-                    <a href="#">會員管理</a>
+                    <a href="{{route('catelist')}}">類別管理</a>
+                </li>
+                <li>
+                    <a href="{{route('catecreate')}}">新增產品類別</a>
                 </li>
                 <li>
                     <a href="#">回到前台</a>
