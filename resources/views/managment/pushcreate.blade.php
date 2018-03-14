@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function ConfirmCreate()
+        {
+            var x = confirm("你確定要新增此促銷訊息嗎?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+    </script>
+
+
 </head>
 <body>
 
@@ -17,7 +29,17 @@
 </div>
 
 <div class='container'>
-    <form action="{{route('pushstore')}}" method="POST" role="form" enctype="multipart/form-data">
+    @if(count($errors)>0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{route('pushstore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()">
         {{ csrf_field() }}
         <h2  class="text-center & text-success" ><strong>新增推播訊息</strong></h2>
 

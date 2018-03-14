@@ -12,7 +12,7 @@ class StoreChangeMemberController extends Controller
 {
     public function password()
     {
-        return view('store_change_password');
+        return view('store.store_change_password');
     }
     public function change_password()
     {
@@ -27,7 +27,7 @@ class StoreChangeMemberController extends Controller
     }
     public function profile()
     {
-        return view('store_change_profile');
+        return view('store.store_change_profile');
     }
     public function update(Request $request)
     {

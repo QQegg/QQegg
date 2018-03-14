@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><h2>{{ Auth::guard()->user()->name}} 修改密碼</h2></div>
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ url('change/password/ww') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('user_change_password') }}">
                             {{ csrf_field() }}
                             @if(session('success'))
                                 <div class="alert alert-success">{{session('success')}}</div>

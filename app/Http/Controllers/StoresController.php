@@ -23,7 +23,7 @@ class StoresController extends Controller
      */
     public function index()
     {
-        return view('store');
+        return view('store.store_Dashboard');
     }
     public function create()
     {

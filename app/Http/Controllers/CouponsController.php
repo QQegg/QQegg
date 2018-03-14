@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 use App\Coupon;
 use App\Store;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Validator;
 class CouponsController extends Controller
 {
     public function index()
     {
-        $coupon=Coupon::all();
-        $data=['coupons'=>$coupon];
-        return view('managment.coupon',$data);
+        $store = Store::all()->where('email' ,  Auth::guard('store')->user()->email)->pluck('id');
+        $coupons=Coupon::all()->where('Store_id', $store['0']);
+        return view('managment.coupon',compact('coupons'));
     }
 
     public function create()
@@ -31,6 +31,33 @@ class CouponsController extends Controller
 
     public function store(Request $request)
     {
+        $messsages = array(
+            'title.required'=>'你必須輸入折價券名稱',
+            'content.required'=>'你必須輸入折價券內容',
+            'start.required'=>'你必須輸入起始時間',
+            'end.required'=>'你必須輸入結束時間',
+            'discount.required'=>'你必須輸入折扣金額',
+            'lowestprice.required'=>'你必須輸入至少購物金額',
+            'picture.required'=>'你必須上傳圖片',
+        );
+        $rules = array(
+            'title' => 'required',
+            'content' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+            'discount' => 'required',
+            'lowestprice' => 'required',
+            'picture' => 'required',
+
+
+        );
+
+        $validator = Validator::make($request->all(), $rules,$messsages);
+
+        if ($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator->errors());
+        }
         $store = Store::all()->where('email' ,  Auth::guard('store')->user()->email)->pluck('id');
 
 

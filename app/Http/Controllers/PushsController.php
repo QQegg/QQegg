@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\Push;
 use App\Store;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 class PushsController extends Controller
 {
     public function index()
     {
-        $push=Push::all();
-        $data=['pushs'=>$push];
-        return view('managment.push',$data);
+        $store = Store::all()->where('email' ,  Auth::guard('store')->user()->email)->pluck('id');
+        $pushs=Push::all()->where('Store_id', $store['0']);
+        return view('managment.push',compact('pushs'));
+
+
     }
 
     public function create()
@@ -30,6 +33,26 @@ class PushsController extends Controller
 
     public function store(Request $request)
     {
+        $messsages = array(
+            'title.required'=>'你必須輸入促銷訊息名稱',
+            'content.required'=>'你必須輸入促銷訊息內容',
+            'picture.required'=>'你必須上傳圖片',
+            'datetime.required'=>'你必須輸入日期及時間',
+        );
+        $rules = array(
+            'title' => 'required',
+            'content' => 'required',
+            'picture' => 'required',
+            'datetime' => 'required',
+
+        );
+
+        $validator = Validator::make($request->all(), $rules,$messsages);
+
+        if ($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator->errors());
+        }
 
         $store = Store::all()->where('email' ,  Auth::guard('store')->user()->email)->pluck('id');
 
