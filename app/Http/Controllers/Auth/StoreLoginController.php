@@ -2,59 +2,42 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\Controller;
+use Auth;
 
-class LoginController extends Controller
+class StoreLoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/store';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        //defining our middleware for this controller
+        $this->middleware('guest:store',['except' => ['logout']]);
     }
 
-    function showLoginForm()
-    {
-        return view('home2');
+    //function to show store login form
+    public function showLoginForm() {
+        return view('auth.store-login');
     }
-    function username()
-    {
-        return'account';
+    //function to login stores
+    public function login(Request $request) {
+        //validate the form data
+        $this->validate($request,[
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+        //attempt to login the stores in
+        if (Auth::guard('store')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)){
+            //if successful redirect to stores dashboard
+            return redirect()->intended(route('store.dashboard'));
+        }
+        //if unsuccessfull redirect back to the login for with form data
+        return redirect()->back()->withInput($request->only('email','remember'));
     }
-    protected function guard()
+
+    public function logout()
     {
-        return \Auth::guard('store');
-    }
-    public function logout(Request $request)
-    {$this->guard()->logout();
-    $request->session()->flush();
-    $request->session()->regenerate();
-    return redirect('/home2');
+        Auth::guard('store')->logout();
+
+        return redirect('/');
     }
 }

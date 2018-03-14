@@ -22,10 +22,7 @@
             <form action="{{route('pushupdate', ['id'=>$push->id])}}" method="POST" role="form" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            <div class="form-group">
-            <label>店家編號</label>
-            <input name="Store_id" class="form-control"  value="{{$push->Store_id}}">
-        </div>
+
         <div class="form-group">
             <label>標題</label>
             <textarea name="title" class="form-control" rows="1" >{{$push->title}}</textarea>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Store;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Product;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +13,10 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        $product=Product::all();
+        $store = Store::all()->where('email',Auth::guard('store')->user()->email)->pluck('id');
+
+        $product=Product::all()->where('store_id', $store['0']);
+
         return view('product.productlist',compact('product'));
     }
     public function create()
@@ -50,7 +54,8 @@ class ProductsController extends Controller
             return redirect()->back()->withErrors($validator->errors());
         }
 
-        $store = Store::all()->where('account','a0952288480')->pluck('id');
+        $store = Store::all()->where('email',Auth::guard('store')->user()->email)->pluck('id');
+
 
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();
@@ -58,6 +63,7 @@ class ProductsController extends Controller
             $request->file('picture')->storeAs($destinationPath, $file_name);
             // save new image $file_name to database
             // $product->update(['picture' => $file_name]);
+
             Product::create([
                 'Category_id' => $request['Category_id'],
                 'store_id' => $store['0'],

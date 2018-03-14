@@ -22,13 +22,7 @@ class Pushs extends Migration
             $table->string('picture');
 //            $table->binary('P_picture')->nullable();
             $table->dateTime('datetime');
-            $table->integer('S_id');
-            $table->integer('Cate_id');
-            $table->string('P_title');
-            $table->string('P_content');
-            $table->string('P_picture');
-//          $table->binary('P_picture')->nullable();
-            $table->dateTime('P_timestamp');
+
             $table->timestamps();
             $table->rememberToken();
         });
