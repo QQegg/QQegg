@@ -31,8 +31,7 @@ class CategorysController extends Controller
 
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
 
-        $category_name = Category::all()->where('name', $request['C_name']);
-
+        $category_name = Category::all()->where('name', $request['name']);
         if (count($category_name) == 0) {
             Category::create([
                 'store_id' => $store['0'],
