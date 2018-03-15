@@ -26,7 +26,7 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <label>類別名稱</label>
-                <input name="C_name" class="form-control" placeholder="請輸入產品類別">
+                <input name="name" class="form-control" placeholder="請輸入產品類別">
             </div>
             <div class="text-left">
                 <button type="submit" class="btn btn-success">新增</button>
