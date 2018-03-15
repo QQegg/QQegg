@@ -31,7 +31,12 @@
             </div>
             <div class="form-group">
                 <label>產品類別</label>
-                <input name="C_name" class="form-control" placeholder="請輸入產品類別"value="{{$product->C_name}}">
+                <select name="C_name" class="form-control">
+                    <option value="{{$product->Category_id}}" selected="selected">{{$product->C_name}}</option>
+                    @foreach($category as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label>產品規格</label>

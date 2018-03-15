@@ -24,8 +24,8 @@
             <hr style="margin:10px 0;" />
             <div class="row">
                 <div class="col-md-12">
-                    商品庫存:
-                    {{$product->inventory}}{{$product->unit}}
+                    商品類別:
+                    {{$product->C_name}}
                 </div>
             </div>
             <div class="row">
@@ -40,10 +40,13 @@
                     {{$product->price}}
                 </div>
             </div>
-            <div class="row" style="margin-top:10px;">
-                <div class="col-md-12">
-                    <a href="{{route('proedit',$product->id)}}" class="btn btn-xs btn-danger">產品修改</a>
-                </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <form class="delete" action="{{ route('prodestroy', $product->id) }}"method="POST" onsubmit="return ConfirmDelete()">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    <input type="submit" class="btn btn-xs btn-danger" value="產品下架">
+                </form>
+                <a href="{{route('proedit',$product->id)}}" class="btn btn-xs btn-danger">產品修改</a>
             </div>
             <script>
                 function ConfirmDelete()
@@ -55,11 +58,6 @@
                         return false;
                 }
             </script>
-            <form class="delete" action="{{ route('prodestroy', $product->id) }}"method="POST" onsubmit="return ConfirmDelete()">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                <input type="submit"class="btn btn-xs btn-danger" value="產品下架">
-            </form>
         </div>
     </div>
 </div>

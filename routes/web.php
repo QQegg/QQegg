@@ -75,6 +75,16 @@ Route::group(['prefix' => 'product'], function() {
     Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
 });
 
+Route::group(['prefix' => 'category'], function() {
+    Route::get('/',['as'=>'catelist','uses'=>'CategorysController@index']);
+    Route::get('/create',['as'=>'catecreate','uses'=>'CategorysController@create']);
+    Route::post('/store',['as' => 'catestore' ,'uses'=>'CategorysController@store']);
+    Route::get('/edit/{id}',['as'=>'cateedit','uses'=>'CategorysController@edit']);
+    Route::patch('/update/{id}',['as'=>'cateupdate','uses'=>'CategorysController@update']);
+    Route::delete('/destroy/{id}',['as'=>'catedestroy','uses'=>'CategorysController@destroy']);
+});
+
+
 Route::group(['prefix' => 'notification'], function() {
     Route::get('/',['as'=>'notilist','uses'=>'NotificationsController@index']);
     Route::get('/create',['as'=>'noticreate','uses'=>'NotificationsController@create']);
