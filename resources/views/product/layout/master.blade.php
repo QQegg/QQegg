@@ -20,7 +20,7 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                      訂單管理後台
+                      產品管理後台
                     </a>
                 </li>
                 <li>
@@ -30,13 +30,13 @@
                     <a href="{{route('procreate')}}">新增商品</a>
                 </li>
                 <li>
-                    <a href="{{route('catelist')}}">類別管理</a>
+                    <a href="{{route('catelist')}}">商品類別管理</a>
                 </li>
                 <li>
-                    <a href="{{route('catecreate')}}">新增產品類別</a>
+                    <a href="{{route('catecreate')}}">新增商品類別</a>
                 </li>
                 <li>
-                    <a href="#">回到前台</a>
+                    <a href="/">回到前台</a>
                 </li>
             </ul>
         </div>
