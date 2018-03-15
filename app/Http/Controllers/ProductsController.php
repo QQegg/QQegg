@@ -17,7 +17,6 @@ class ProductsController extends Controller
     public function index()
     {
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
-
         $product = Product::all()->where('store_id', $store['0']);
         $cc = 0;
         foreach ($product as $count){

@@ -2,28 +2,6 @@
 @section('title','結帳')
 @section('content')
     <div class='container-fluid'>
-        <script>
-            function ConfirmCreate()
-            {
-                var x = confirm("確認結帳內容?");
-                if (x)
-                    return true;
-                else
-                    return false;
-            }
-            var count = 2;
-            function addRow() {
-                var div = document.getElementById('responce');
-                div.innerHTML +=
-                    '商品'+count+'\
-                :<input type="text" class="form-control" name="proid"+count value="" />\
-                        '+'數量'+
-                '<input type="text" class="form-control" name="value"+count value="" />\
-                <br>\
-                ';
-                count++
-            }
-        </script>
         @if(count($errors)>0)
             <div class="alert alert-danger">
                 <ul>
@@ -33,23 +11,56 @@
                 </ul>
             </div>
         @endif
+        <?php
+        $check = 0;
+        ?>
+            @if($salelist!=null){
+            @foreach($salelist as $list){
+            <div class="row">
+                <div class="col-md-12">
+                    商品名稱:{{$list->name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    商品單價:
+                    {{$list->price}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    商品數量:
+                    {{$list->number}}
+                </div>
+            </div>
+            <?php $check =$check+($list->price)*($list->number) ?>
+            }
+            }
+            @else{
+            <div class="col-md-12">
+            目前無商品列表
+            </div>
+            }
 
-        <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
-            {{ csrf_field() }}
-            <div class="form-group">
+            <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
+                {{ csrf_field() }}
+                <div hidden>
+                    <input name="S_id" class="form-control" value="666">
+                </div>
+                <div hidden>
+                    <input name="Tran_id" class="form-control" value={{last($data->id)}} >
+                </div>
+                <div class="form-group">
                 消費者:
                 <input name="cosid" class="form-control" placeholder="請輸入消費者ID">
             </div>
-            商品1:
+                商品輸入:
             <div class="form-group">
-                <input  class="form-control"  name="proid" value="" />
+                <input  class="form-control"  name="proid1" value="" />
                 數量:
-                <input class="form-control"  name="number" value="" />
+                <input class="form-control"  name="number1" value="" />
             </div>
-            <span id="responce"></span>
-            <input type="button" value="+"  onclick="addRow()" >
             <button type="submit" class="btn btn-success">新增</button>
-
         </form>
     </div>
 @endsection

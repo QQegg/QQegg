@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Transactions extends Migration
+class Dealmatch extends Migration
 {
     /**
      * Run the migrations.
@@ -30,6 +30,6 @@ class Transactions extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('dealmatch');
     }
 }
