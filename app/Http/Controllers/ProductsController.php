@@ -32,7 +32,8 @@ class ProductsController extends Controller
 
     public function create()
     {
-        return view('product.productcreate');
+        $category = Category::all();
+        return view('product.productcreate',compact('category'));
     }
 
 
@@ -44,6 +45,7 @@ class ProductsController extends Controller
             'specification.required' => '你必須輸入產品規格',
             'price.required' => '你必須輸入單價',
             'price.integer' => '單價必須為數字',
+            'C_name.required' => '你必須選擇產品類別',
             'unit.required' => '你必須輸入單位',
             'picture.required' => '你必須選擇照片',
         );
@@ -51,6 +53,7 @@ class ProductsController extends Controller
             'name' => 'required|max:255',
             'specification' => 'required',
             'price' => 'required|integer',
+            'C_name' => 'required',
             'unit' => 'required|string',
             'picture' => 'required',
         );
@@ -63,8 +66,6 @@ class ProductsController extends Controller
 
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
 
-        $category_id = Category::all()->where('name', $request['C_name'])->pluck('id');
-
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();
             $destinationPath = '/public/product';
@@ -73,7 +74,7 @@ class ProductsController extends Controller
             // $product->update(['picture' => $file_name]);
 
             Product::create([
-                'Category_id' => $category_id['0'],
+                'Category_id' => $request['C_name'],
                 'store_id' => $store['0'],
                 'name' => $request['name'],
                 'specification' => $request['specification'],
@@ -90,7 +91,8 @@ class ProductsController extends Controller
         $product= Product::all()->where('id', $id);
         $category_name = Category::all()->where('id',$product->first()['Category_id'])->pluck('name');
         $product->first()['C_name'] = $category_name['0'];
-        return view('product.productedit', compact('product'));
+        $category = Category::all()->whereNotIn('id',$product->first()['Category_id']);
+        return view('product.productedit', compact('product','category'));
     }
 
     public function update(Request $request, $id)
@@ -120,8 +122,6 @@ class ProductsController extends Controller
 
         $product = Product::find($id);
 
-        $category_id = Category::all()->where('name', $request['C_name'])->pluck('id');
-
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();
 
@@ -129,7 +129,7 @@ class ProductsController extends Controller
             $request->file('picture')->storeAs($destinationPath, $file_name);
 
             $product->update([
-                'Category_id' => $category_id['0'],
+                'Category_id' => $request['C_name'],
                 'name' => $request['name'],
                 'specification' => $request['specification'],
                 'price' => $request['price'],
