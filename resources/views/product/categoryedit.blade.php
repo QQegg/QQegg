@@ -5,7 +5,7 @@
         <script>
             function ConfirmCreate()
             {
-                var x = confirm("你確定要新增此類別嗎?");
+                var x = confirm("你確定要修改此類別嗎?");
                 if (x)
                     return true;
                 else
