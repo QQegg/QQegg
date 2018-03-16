@@ -3,24 +3,38 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Dealmatch;
 use App\Transaction;
 class TransactionsController extends Controller
 {
+    var $data;
     public  function index(){
        return view('sale.productlist');
     }
     public function prestore(){
-        $data=null;
+        global $data;
         if(count(Transaction::all()->pluck('id'))!=0) {
-            $data = last(last(Transaction::all()->pluck('id')))+1;
+            $data['id'] = last(last(Transaction::all()->pluck('id')))+1;
         }
         else{
-            $data=1;
+            $data['id']=1;
         }
-        return view(sale.productlist,$data);
-    }
+       $salelist = Dealmatch::all()->where('Tran_id' , $data);
+        return view("sale.productcreate")->with(array('salelist'=>$salelist))->with(array('dealid'=>$data));
 
+    }
     public function store(Request $request){
+        global $data;
+        dd($request);
+        Dealmatch::creat([
+            'Tran_id'=>'what'
+            ]);
+        $salelist = Dealmatch::all([
+
+
+
+        ]);
+        return view("sale.productcreate")->with(array('salelist'=>$salelist))->with(array('dealid'=>$data));
 
     }
 }

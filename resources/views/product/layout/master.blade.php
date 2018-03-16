@@ -36,6 +36,10 @@
                     <a href="{{route('catecreate')}}">新增商品類別</a>
                 </li>
                 <li>
+                    <a href="{{route('salecreat')}}">結帳</a>
+                </li>
+
+                <li>
                     <a href="/">回到前台</a>
                 </li>
             </ul>
