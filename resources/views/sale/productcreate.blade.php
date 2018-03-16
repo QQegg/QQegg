@@ -1,7 +1,6 @@
 @extends('product.layout.master')
 @section('title','結帳')
 @section('content')
-
     <div class='container-fluid'>
         @if(count($errors)>0)
             <div class="alert alert-danger">

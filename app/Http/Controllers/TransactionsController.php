@@ -30,9 +30,6 @@ class TransactionsController extends Controller
             'Tran_id'=>'what'
             ]);
         $salelist = Dealmatch::all([
-
-
-
         ]);
         return view("sale.productcreate")->with(array('salelist'=>$salelist))->with(array('dealid'=>$data));
 
