@@ -11,44 +11,42 @@
                 </ul>
             </div>
         @endif
-        <?php
-        $check = 0;
-        ?>
-            @if($salelist!=null){
-            @foreach($salelist as $list){
-            <div class="row">
-                <div class="col-md-12">
-                    商品名稱:{{$list->name}}
+            @if($salelist!=null)
+                @foreach($salelist as $list)
+                <div class="row">
+                    <div class="col-md-12">
+                        商品名稱:{{$list->name}}
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    商品單價:
-                    {{$list->price}}
+                <div class="row">
+                    <div class="col-md-12">
+                        商品單價:
+                        {{$list->price}}
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    商品數量:
-                    {{$list->number}}
+                <div class="row">
+                    <div class="col-md-12">
+                        商品數量:
+                        {{$list->number}}
+                    </div>
                 </div>
-            </div>
-            <?php $check =$check+($list->price)*($list->number) ?>
-            }
-            }
-            @else{
-            <div class="col-md-12">
-            目前無商品列表
-            </div>
-            }
-
-            <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
+                @endforeach
+            @else
+                <div class="col-md-12">
+                    目前無商品列表
+                </div>
+            @endif
+            <?php
+            document.getElementById('S_id').value = "www" ;
+            document.getElementById('Tran_id').valu = $dealid;
+            ?>
+            < form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
                 {{ csrf_field() }}
                 <div hidden>
-                    <input name="S_id" class="form-control" value="666">
+                    <input name="S_id" class="form-control">
                 </div>
                 <div hidden>
-                    <input name="Tran_id" class="form-control" value={{last($data->id)}} >
+                    <input name="Tran_id" class="form-control" >
                 </div>
                 <div class="form-group">
                 消費者:

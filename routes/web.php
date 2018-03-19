@@ -49,7 +49,7 @@ Route::get('/test1',function (){
 });
 
 Route::group(['prefix' => 'sale'], function() {
-    Route::get('/',['as'=>'salecreat','uses'=>'TransactionsController@index']);
+    Route::get('/',['as'=>'salecreat','uses'=>'TransactionsController@prestore']);
     Route::post('/store',['as' => 'salestore' ,'uses'=>'TransactionsController@store']);
 });
 

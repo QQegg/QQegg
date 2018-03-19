@@ -18,14 +18,12 @@ class ProductsController extends Controller
     {
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
         $product = Product::all()->where('store_id', $store['0']);
-
         $cc = 0;
         foreach ($product as $count){
             $category_name = Category::all()->where('id',$count['Category_id'])->pluck('name');
             $product[$cc]['C_name'] = $category_name->first();
             $cc++;
         }
-
         return view('product.productlist', compact('product'));
     }
     //eeeeeee
