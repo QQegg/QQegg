@@ -25,7 +25,11 @@
             <div class="row">
                 <div class="col-md-12">
                     商品類別:
+                    @if(count($product->C_name) == 0)
+                        此產品尚未被分類
+                        @else
                     {{$product->C_name}}
+                        @endif
                 </div>
             </div>
             <div class="row">
