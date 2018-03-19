@@ -26,7 +26,6 @@ class ProductsController extends Controller
         }
         return view('product.productlist', compact('product'));
     }
-    //eeeeeee
 
     public function create()
     {
