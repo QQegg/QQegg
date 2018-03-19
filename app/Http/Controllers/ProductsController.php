@@ -58,7 +58,7 @@ class ProductsController extends Controller
         $validator = Validator::make($request->all(), $rules, $messsages);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors())->withInput();
         }
 
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
@@ -87,7 +87,7 @@ class ProductsController extends Controller
     {
         $product= Product::all()->where('id', $id);
         $category_name = Category::all()->where('id',$product->first()['Category_id'])->pluck('name');
-        $product->first()['C_name'] = $category_name['0'];
+        $product->first()['C_name'] = $category_name->first();
         $category = Category::all()->whereNotIn('id',$product->first()['Category_id']);
         return view('product.productedit', compact('product','category'));
     }
