@@ -13,7 +13,7 @@ class Dealmatch extends Migration
      */
     public function up()
     {
-        Schema::create('dealmatch', function (Blueprint $table) {
+        Schema::create('dealmatchs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('Tran_id');
             $table->string('Commodity_id');
@@ -30,6 +30,6 @@ class Dealmatch extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dealmatch');
+        Schema::dropIfExists('dealmatchs');
     }
 }

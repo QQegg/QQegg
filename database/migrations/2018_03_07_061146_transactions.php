@@ -17,8 +17,8 @@ class Transactions extends Migration
             $table->increments('id');
             $table->integer('Store_id');
             $table->string('Member_id');
-            $table->string('Coupon_id');
-            $table->dateTime('date');
+            $table->string('Coupon_id')->nullable()->default('0');
+            $table->dateTime('date')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

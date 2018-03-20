@@ -2,30 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use App\Store;
 use Illuminate\Http\Request;
 use App\Dealmatch;
 use App\Transaction;
 class TransactionsController extends Controller
 {
-    var $data;
+    var $data,$salelist;
     public  function index(){
        return view('sale.productlist');
     }
+
+    public function readycheck(){
+        return view('sale.productcostomer');
+    }
+
+    public function cotomer(Request $request){
+        global $data,$salelist;
+        $s_id=Store::all()->where("email",Auth::guard('store')->user()->email)->pluck('id');
+        Transaction::create([
+            'Store_id'=>$s_id[0],
+            'Member_id'=>$request['Member_id'],
+            'Coupon_id'=>'0'
+        ]);
+        $data=last(Transaction::all());
+        return view('sale.productcreate')->with('salelist',$salelist);
+    }
+
     public function prestore(){
         global $data;
-        if(count(Transaction::all()->pluck('id'))!=0) {
-            $data['id'] = last(last(Transaction::all()->pluck('id')))+1;
-        }
-        else{
-            $data['id']=1;
-        }
-       $salelist = Dealmatch::all()->where('Tran_id' , $data);
-        return view("sale.productcreate")->with(array('salelist'=>$salelist))->with(array('dealid'=>$data));
-
+        $salelist=Dealmatch::all()->where('id',$data);
+        return view('sale.productcreate')->with('salelist',$salelist);
     }
+
+
     public function store(Request $request){
         global $data;
-        dd($request);
         Dealmatch::creat([
             'Tran_id'=>'what'
             ]);
