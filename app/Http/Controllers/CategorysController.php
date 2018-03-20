@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Product;
 use App\Store;
 use App\Category;
+use update;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -76,8 +78,9 @@ class CategorysController extends Controller
     public function destroy($id)
     {
         $whereArray = array('id' => $id);
+        $whereArray2 = array('Category_id' => $id);
         DB::table('categorys')->where($whereArray)->delete();
-        DB::table('commoditys')->where('Category_id',$whereArray)->delete();
+        DB::table('commoditys')->where($whereArray2)->update(['Category_id'=>'0']);
         return redirect()->route('catelist');
     }
 }

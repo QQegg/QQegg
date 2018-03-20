@@ -32,7 +32,11 @@
             <div class="form-group">
                 <label>產品類別</label>
                 <select name="C_name" class="form-control">
-                    <option value="{{$product->Category_id}}" selected="selected">{{$product->C_name}}</option>
+                    @if($product->Category_id == 0)
+                        <option value="{{$product->Category_id}}" selected="selected">未分類</option>
+                        @else
+                        <option value="{{$product->Category_id}}" selected="selected">{{$product->C_name}}</option>
+                    @endif
                     @foreach($category as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
@@ -52,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label>上傳產品照片</label>
-                <input type="file" class="form-control" name="picture" placeholder="上傳圖片"{{$product->picture}}>
+                <input type="file" class="form-control" name="picture" placeholder="上傳圖片">
             </div>
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="submit" class="btn btn-success">修改</button>
