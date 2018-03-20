@@ -29,7 +29,8 @@ class ProductsController extends Controller
 
     public function create()
     {
-        $category = Category::all();
+        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
+        $category = Category::all()->where('Store_id',$store['0']);
         return view('product.productcreate',compact('category'));
     }
 
