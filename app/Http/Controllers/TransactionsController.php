@@ -39,7 +39,6 @@ class TransactionsController extends Controller
 
     public function store(Request $request){
         global $data;
-        dd($request);
         Dealmatch::creat([
             'Tran_id'=>'what'
             ]);

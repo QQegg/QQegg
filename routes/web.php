@@ -19,7 +19,7 @@ Route::get('/test',function ()
     \App\Store::create([
         'name' => 'fuck',
         'email' => 'fuck@gmail.com',
-        'password'=>Hash::make('fuck'),
+        'password'=>Hash::make('ffffffff'),
         'title'=>'fuck',
     ]
     );

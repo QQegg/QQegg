@@ -36,7 +36,7 @@
                     目前無商品列表
                 </div>
             @endif
-            <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
+            <form action="{{route('prestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
                 {{ csrf_field() }}
                 商品輸入:
                 <div class="form-group">
