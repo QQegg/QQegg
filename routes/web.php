@@ -14,6 +14,20 @@
 
 Auth::routes();
 
+Route::get('/test',function ()
+{
+    \App\Store::create([
+        'name' => 'fuck',
+        'email' => 'fuck@gmail.com',
+        'password'=>Hash::make('fuck'),
+        'title'=>'fuck',
+    ]
+    );
+
+}
+);
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('no use.index');
@@ -44,14 +58,17 @@ Route::prefix('store')->group(function () {
 
 
 Route::get('/appconnecttest','NotificationsController@test');
-Route::get('/test1',function (){
-   return view('sale.productcreate');
-});
+
+
 
 Route::group(['prefix' => 'sale'], function() {
-    Route::get('/',['as'=>'salecreat','uses'=>'TransactionsController@prestore']);
+    Route::get('/creat',['as'=>'salecreat','uses'=>'TransactionsController@readycheck']);
+    Route::post('/costomer',['as' => 'costomersave' ,'uses'=>'TransactionsController@cotomer']);
+    Route::post('/per',['as' => 'prestore' ,'uses'=>'TransactionsController@prestore']);
     Route::post('/store',['as' => 'salestore' ,'uses'=>'TransactionsController@store']);
 });
+
+
 
 
 Route::get('/appconnecttest','NotificationsController@test');
