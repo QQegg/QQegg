@@ -75,6 +75,7 @@
 							<li><a href="#">交易紀錄</a></li>
 							<li><a href="{{route('store_change_profile')}}">修改基本資料</a></li>
 							<li><a href="{{route('store_change_password')}}">修改密碼</a></li>
+							<li><a href="{{route('store.login')}}">店家登入</a></li>
 						</ul>
 					</div>
 				</div>
