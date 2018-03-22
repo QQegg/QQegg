@@ -10,36 +10,35 @@
                     <div class="alert alert-danger">{{session('error')}}</div>
                 @endif
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h2> store {{ Auth::guard('store')->user()->name}} 修改基本資料</h2> </div>
+                    <div class="panel-heading"><h2> 您好！ {{ Auth::guard('store')->user()->name}} ，您正在修改基本資料</h2> </div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('store_change_profile') }}">
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="account" class="col-md-4 control-label">帳號</label>
+                                <label for="name" class="col-md-4 control-label">店家名稱</label>
 
                                 <div class="col-md-6">
-                                    <label for="account" class="col-md-4 control-label">{{ Auth::guard('store')->user()->name}}</label>
+                                    <label for="name" class="col-md-4 control-label">{{ Auth::guard('store')->user()->name}}</label>
                                 </div>
                             </div>
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">姓名</label>
+                            <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
+                                <label for="contact" class="col-md-4 control-label">聯絡人</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="{{ Auth::guard('store')->user()->name}}" required autofocus>
+                                    <input id="contact" type="text" class="form-control" name="contact" value="{{ old('contact') }}" placeholder="{{ Auth::guard('store')->user()->contact}}" required autofocus>
 
-                                    @if ($errors->has('name'))
+                                    @if ($errors->has('contact'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('contact') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
-
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                                <label for="email" class="col-md-4 control-label">email</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ Auth::guard('store')->user()->email}}" required autofocus>
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -48,21 +47,45 @@
                                     @endif
                                 </div>
                             </div>
-
-                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">title</label>
+                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                <label for="phone" class="col-md-4 control-label">連絡電話</label>
 
                                 <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required>
+                                    <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="{{ Auth::guard('store')->user()->phone}}" required autofocus>
 
-                                    @if ($errors->has('title'))
+                                    @if ($errors->has('phone'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('title') }}</strong>
+                                        <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
 
+                            <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                                <label for="address" class="col-md-4 control-label">地址</label>
+
+                                <div class="col-md-6">
+                                    <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="{{ Auth::guard('store')->user()->address}}" required>
+
+                                    @if ($errors->has('address'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
+                                <label for="picture" class="col-md-4 control-label">上傳大頭貼</label>
+                                <div class="col-md-6">
+                                    <input id="picture" type="file" class="form-control" name="picture" value="{{ old('picture') }}"  required>
+
+                                    @if ($errors->has('picture'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('picture') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
