@@ -33,7 +33,7 @@
             <select name="C_name" class="form-control">
                 <option value="" disabled="disabled" selected="selected">請選擇產品類別</option>
                 @foreach($category as $category)
-                <option value="{{$category->id}}" @if(old('C_name') == $category->id) selected="selected @endif">{{$category->name}}</option>
+                <option value="{{$category->id}}" @if(old('C_name') == $category->id) selected="selected" @endif>{{$category->name}}</option>
                 @endforeach
             </select>
             </div>
