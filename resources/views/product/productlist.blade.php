@@ -15,42 +15,20 @@
                     <h1 style="margin-top:0;"></h1>
                 </div>
             </div>
-            <img src="{{url('../storage/product/'. $product->picture)}}" width="300px" height="200px">
+            <img src="{{url('../storage/product/'. $product->picture)}}" width="300px" height="200px" style="border:2px green dashed;">
             <div class="row">
                 <div class="col-md-12">
                     <font size=5>商品名稱:{{$product->name}}</font>
                 </div>
             </div>
             <hr style="margin:10px 0;" />
-            <div class="row">
-                <div class="col-md-12">
-                    商品類別:
-                    @if(count($product->C_name) == 0)
-                        此產品尚未被分類
-                        @else
-                    {{$product->C_name}}
-                        @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    商品規格:
-                    {{$product->specification}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    商品單價:
-                    {{$product->price}}
-                </div>
-            </div>
             <div class="btn-group" role="group" aria-label="Basic example">
                 <form class="delete" action="{{ route('prodestroy', $product->id) }}"method="POST" onsubmit="return ConfirmDelete()">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <input type="submit" class="btn btn-xs btn-danger" value="產品下架">
+                    <a href="{{route('prodetail',$product->id)}}" class="btn btn-xs btn-danger">觀看產品詳細資訊</a>
                 </form>
-                <a href="{{route('proedit',$product->id)}}" class="btn btn-xs btn-danger">產品修改</a>
             </div>
             <script>
                 function ConfirmDelete()
