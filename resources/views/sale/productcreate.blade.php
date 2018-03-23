@@ -13,7 +13,7 @@
         @endif
             @if($salelist!=null)
                 @foreach($salelist as $list)
-                <div class="row">
+                    <div class="row">
                     <div class="col-md-12">
                         商品名稱:{{$list->name}}
                     </div>
@@ -41,11 +41,23 @@
                 商品輸入:
                 <div class="form-group">
                     ID:
-                    <input  class="form-control"  name="proid1" />
+                    <input  class="form-control"  name="proid" />
                     數量:
-                    <input class="form-control"  name="number1" />
+                    <input class="form-control"  name="number" />
                 </div>
-            <button type="submit" class="btn btn-success">新增</button>
+                <div hidden>
+                    <input  class="form-control"  name="Member_id" value={{$Member_id}} />
+                </div>
+                <button type="submit" class="btn btn-success">新增</button>
             </form>
+            <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
+                {{ csrf_field() }}
+                <div hidden>
+                    <input  class="form-control"  name="Member_id" value={{$Member_id}} />
+                </div>
+                <button type="submit" class="btn btn-success">結帳</button>
+            </form>
+
+
     </div>
 @endsection
