@@ -18,18 +18,13 @@ class ProductsController extends Controller
     {
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
         $product = Product::all()->where('store_id', $store['0']);
-        $cc = 0;
-        foreach ($product as $count){
-            $category_name = Category::all()->where('id',$count['Category_id'])->pluck('name');
-            $product[$cc]['C_name'] = $category_name->first();
-            $cc++;
-        }
         return view('product.productlist', compact('product'));
     }
 
     public function create()
     {
-        $category = Category::all();
+        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
+        $category = Category::all()->where('Store_id',$store['0']);
         return view('product.productcreate',compact('category'));
     }
 
@@ -114,7 +109,7 @@ class ProductsController extends Controller
         $validator = Validator::make($request->all(), $rules, $messsages);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors())->withInput();
         }
 
         $product = Product::find($id);
@@ -143,5 +138,12 @@ class ProductsController extends Controller
         $whereArray = array('id' => $id);
         DB::table('commoditys')->where($whereArray)->delete();
         return redirect()->route('prolist');
+    }
+
+    public function detail($id){
+        $product = Product::all()->where('id',$id);
+        $category_name = Category::all()->where('id',$product->first()['Category_id'])->pluck('name');
+        $product->first()['C_name'] = $category_name->first();
+        return view('product.productdetail',compact('product'));
     }
 }

@@ -16,19 +16,13 @@ class CreateStoresTable extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('contact');
             $table->string('email')->unique();
-            $table->string('title');
             $table->string('password');
-
-//store欄位
-//            $table->string('name');
-//            $table->string('contact');
-//            $table->string('account')->unique();
-//            $table->string('password');
-//            $table->integer('phone');
-//            $table->string('address');
-//            $table->string('picture');
-//            $table->boolean('right');
+            $table->integer('phone');
+            $table->string('address');
+            $table->string('picture')->nullable();
+            $table->boolean('right')->default(0);
 
             $table->timestamps();
         });

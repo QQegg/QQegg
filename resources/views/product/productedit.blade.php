@@ -27,7 +27,7 @@
             {{ method_field('PATCH') }}
             <div class="form-group">
                 <label>產品名稱</label>
-                <input name="name" class="form-control" placeholder="請輸入產品名稱"value="{{$product->name}}">
+                <input name="name" class="form-control" placeholder="請輸入產品名稱" value="{{$product->name}}">
             </div>
             <div class="form-group">
                 <label>產品類別</label>
@@ -38,7 +38,7 @@
                         <option value="{{$product->Category_id}}" selected="selected">{{$product->C_name}}</option>
                     @endif
                     @foreach($category as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        <option value="{{$category->id}}" @if(old('C_name') == $category->id) selected="selected" @endif>{{$category->name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -60,7 +60,7 @@
             </div>
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="submit" class="btn btn-success">修改</button>
-            <a href="{{route('prolist')}}" class="btn btn-success">返回</a>
+            <a href="{{route('prodetail',$product->id)}}" class="btn btn-success">返回</a>
             </div>
         </form>
             @endforeach
