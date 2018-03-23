@@ -10,8 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 Auth::routes();
 
 Route::get('/test',function ()
@@ -23,7 +21,6 @@ Route::get('/test',function ()
         'title'=>'fuck',
     ]
     );
-
 }
 );
 
@@ -66,6 +63,7 @@ Route::group(['prefix' => 'sale'], function() {
     Route::post('/costomer',['as' => 'costomersave' ,'uses'=>'TransactionsController@cotomer']);
     Route::post('/per',['as' => 'prestore' ,'uses'=>'TransactionsController@prestore']);
     Route::post('/store',['as' => 'salestore' ,'uses'=>'TransactionsController@store']);
+    Route::post('/checkout',['as'=>'checkout','uses'=>'TransactionsController@checkout']);
 });
 
 
@@ -100,7 +98,6 @@ Route::group(['prefix' => 'category'], function() {
     Route::patch('/update/{id}',['as'=>'cateupdate','uses'=>'CategorysController@update']);
     Route::delete('/destroy/{id}',['as'=>'catedestroy','uses'=>'CategorysController@destroy']);
 });
-
 
 Route::group(['prefix' => 'notification'], function() {
     Route::get('/',['as'=>'notilist','uses'=>'NotificationsController@index']);
@@ -159,10 +156,4 @@ Route::group(['prefix' => 'post'], function() {
     Route::post('/update/{id}',['as'=>'postupdate','uses'=>'PostsController@update']);
     Route::get('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
 });
-
-
-
-
-
-
 
