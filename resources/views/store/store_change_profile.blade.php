@@ -12,7 +12,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><h2> 您好！ {{ Auth::guard('store')->user()->name}} ，您正在修改基本資料</h2> </div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('store_change_profile') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('store_change_profile') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">店家名稱</label>
@@ -81,14 +81,14 @@
                                 <div class="col-md-6">
                                     <input id="picture" type="file" class="form-control" name="picture" value="{{ old('picture') }}"  required>
 
-                                    @if ($errors->has('picture'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('picture') }}</strong>
-                                    </span>
-                                    @endif
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label for="picture" class="col-md-4 control-label">目前大頭貼</label>
+                            @foreach($store_picture as $store_picture)
+                                <img src="{{url('../storage/store/'. $store_picture->picture)}}" width="300px" height="200px" style="border:2px green dashed;">
+                            @endforeach
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
