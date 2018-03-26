@@ -71,7 +71,13 @@ Route::group(['prefix' => 'sale'], function() {
 
 Route::get('/appconnecttest','NotificationsController@test');
 
-Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
+//Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+});
+
 
 Route::group(['prefix' => 'costomer'], function() {
     Route::get('/',['as'=>'coslist','uses'=>'CostomersController@index']);
