@@ -76,6 +76,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/search/{id}',['as' => 'admin.status', 'uses' => 'AdminController@update']);
+    Route::get('/search', ['as' => 'admin.index', 'uses' => 'AdminController@Show']);
+    Route::delete('/{id}',['as'=>'admin.destroy','uses'=>'AdminController@destroy']);
 });
 
 
