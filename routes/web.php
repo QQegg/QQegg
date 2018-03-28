@@ -53,10 +53,21 @@ Route::prefix('store')->group(function () {
     Route::post('change/password', ['as' => 'store_change_password', 'uses' => 'StoreChangeMemberController@change_password']);
 });
 
+//Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/search/{id}',['as' => 'admin.status', 'uses' => 'AdminController@update']);
+    Route::get('/search', ['as' => 'admin.index', 'uses' => 'AdminController@Show']);
+});
 
 Route::get('/appconnecttest','NotificationsController@test');
 
+//auth認證登入
+Route::group(['middleware'=>'auth:store'], function() {
 
+});
 
 Route::group(['prefix' => 'sale'], function() {
     Route::get('/creat',['as'=>'salecreat','uses'=>'TransactionsController@readycheck']);
@@ -66,19 +77,7 @@ Route::group(['prefix' => 'sale'], function() {
     Route::post('/checkout',['as'=>'checkout','uses'=>'TransactionsController@checkout']);
 });
 
-
-
-
 Route::get('/appconnecttest','NotificationsController@test');
-
-//Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
-Route::prefix('admin')->group(function () {
-    Route::get('/', 'AdminController@index')->name('admin.dashboard');
-    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
-    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-    Route::get('/search/{id}',['as' => 'admin.status', 'uses' => 'AdminController@update']);
-    Route::get('/search', ['as' => 'admin.index', 'uses' => 'AdminController@Show']);
-});
 
 
 Route::group(['prefix' => 'costomer'], function() {
