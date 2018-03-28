@@ -38,7 +38,7 @@
                                 <td align="center">{{($account->right)?'正常使用中':'停權'}}</td>
                                 <td>
                                     <form action="{{ route('admin.status', $account->id) }}" method="POST">
-                                        <a href ="{{route('admin.status', ['id'=>$account->id])}}"class="btn btn-success " role="button" >{{($account->right)?'停權':'開啟'}}</a>
+                                        <a href ="{{route('admin.status', ['id'=>$account->id])}}" class="btn btn-success " type="submit" role="button" >{{($account->right)?'停權':'開啟'}}</a>
                                         {{ csrf_field() }}
                                     </form>
                                 </td>

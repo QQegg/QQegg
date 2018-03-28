@@ -30,18 +30,20 @@ class AdminController extends Controller
         $accounts=Store::all();
         return view('admin.admin-store',compact('accounts'));
     }
-
-    public function update(Request $request)
+    public function update($id)
     {
-        $fix = Store::find($request->id);
-        $fix->right=true;
-        $fix->save();
-        $accounts = Store::all()->where('id',$request->id);
+        $fix = Store::find($id);
+        switch ($fix['right']){
+            case '0':
+                $fix->right=true;
+                $fix->save();
+                break;
+            default:
+                $fix->right=false;
+                $fix->save();
+                break;
+        }
+        $accounts = Store::all()->where('id',$id);
         return back()->with('success','修改成功',compact('accounts'));
-    }
-    public function destroy($id)
-    {
-        Store::destroy($id);
-        return redirect()->route('admin.admin-store');
     }
 }
