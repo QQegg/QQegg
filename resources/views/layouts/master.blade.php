@@ -72,6 +72,7 @@
                         <li><a href="{{route('coulist')}}">折價券</a></li>
                         <li><a href="#">交易紀錄</a></li>
                         <li><a href="{{route('store.login')}}">店家登入</a></li>
+                        <li><a href="{{route('admin.login')}}">管理者登入</a></li>
                     </ul>
                 </div>
             </div>
