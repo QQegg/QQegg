@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use App\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,14 +17,14 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
+        $store = Admin::all()->where('email', Auth::guard('admin')->user()->email)->pluck('id');
         $product = Product::all()->where('store_id', $store['0']);
         return view('product.productlist', compact('product'));
     }
 
     public function create()
     {
-        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
+        $store = Admin::all()->where('email', Auth::guard('admin')->user()->email)->pluck('id');
         $category = Category::all()->where('Store_id',$store['0']);
         return view('product.productcreate',compact('category'));
     }
@@ -56,7 +57,7 @@ class ProductsController extends Controller
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
 
-        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
+        $store = Admin::all()->where('email', Auth::guard('admin')->user()->email)->pluck('id');
 
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();

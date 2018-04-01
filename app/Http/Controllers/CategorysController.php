@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Store;
 use App\Category;
+use App\Admin;
 use update;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class CategorysController extends Controller
 
     public function index(){
 
-        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
+        $store = Admin::all()->where('email', Auth::guard('admin')->user()->email)->pluck('id');
 
         $category = Category::all()->where('Store_id', $store['0']);
 
@@ -31,7 +32,7 @@ class CategorysController extends Controller
     public function store(Request $request){
 
 
-        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
+        $store = Admin::all()->where('email', Auth::guard('admin')->user()->email)->pluck('id');
 
         $category_name = Category::all()->where('name', $request['name']);
         if (count($category_name) == 0) {
