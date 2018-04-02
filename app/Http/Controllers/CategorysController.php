@@ -18,7 +18,7 @@ class CategorysController extends Controller
 
     public function index(){
 
-        $store = Admin::all()->where('email', Auth::guard('admin')->user()->email)->pluck('id');
+        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
 
         $category = Category::all()->where('Store_id', $store['0']);
 
@@ -32,7 +32,7 @@ class CategorysController extends Controller
     public function store(Request $request){
 
 
-        $store = Admin::all()->where('email', Auth::guard('admin')->user()->email)->pluck('id');
+        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
 
         $category_name = Category::all()->where('name', $request['name']);
         if (count($category_name) == 0) {
