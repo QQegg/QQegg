@@ -64,9 +64,6 @@ class TransactionsController extends Controller
         }
         $copon=Coupon_statu::all()->where('Member_id',$request['Member_id']);
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
-        if(!is_numeric($point)){
-            $point = 0;
-        }
         return view('sale.checkout')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('Member_id',$request['Member_id']);
     }
 }
