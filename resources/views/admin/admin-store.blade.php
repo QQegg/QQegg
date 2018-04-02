@@ -23,6 +23,7 @@
                             <th style="text-align: center">圖片</th>
                             <th style="text-align: center">使用權狀態</th>
                             <th width="100" style="text-align: center">開啟/停權</th>
+                            <th width="100" style="text-align: center">功能</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -39,6 +40,12 @@
                                 <td>
                                     <form action="{{ route('admin.status', $account->id) }}" method="POST">
                                         <a href ="{{route('admin.status', ['id'=>$account->id])}}" class="btn btn-success " type="submit" role="button" >{{($account->right)?'停權':'開啟'}}</a>
+                                        {{ csrf_field() }}
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{{ route('admin.status', $account->id) }}" method="POST">
+                                        <a href="{{route('admin.admin-store-view',$account->id)}}" class="text-success"><strong>詳細</strong></a>
                                         {{ csrf_field() }}
                                     </form>
                                 </td>
