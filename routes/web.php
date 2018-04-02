@@ -60,6 +60,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/search/{id}',['as' => 'admin.status', 'uses' => 'AdminController@update']);
     Route::get('/search', ['as' => 'admin.index', 'uses' => 'AdminController@Show']);
+    Route::get('/view/{id}',['as'=>'admin.admin-store-view','uses'=>'AdminController@view']);
+    Route::patch('/update/{id}',['as'=>'admin_store_change_password','uses'=>'AdminController@change_password']);
 });
 
 Route::get('/appconnecttest','NotificationsController@test');

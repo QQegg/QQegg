@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Store;
 use Illuminate\Http\Request;
+use Hash;
+use Illuminate\Support\Facades\Input as input;
 
 class AdminController extends Controller
 {
@@ -47,5 +49,22 @@ class AdminController extends Controller
         }
         $accounts = Store::all()->where('id',$id);
         return view('admin.admin-store',compact('accounts'));
+    }
+    public function view($id)
+    {
+        $accounts=Store::all()->where('id',$id);
+        $data=['stores'=>$accounts];
+        return view('admin.admin-store-view',$data,compact('accounts'));
+    }
+    public function change_password($id)
+    {
+        $Store=Store::find($id);
+        if(Hash::check(Input::get('passwordold'),$Store['password']) && Input::get('password') ==Input::get('password_confirmation')){
+            $Store->password =bcrypt(Input::get('password'));
+            $Store->save();
+            return back()->with('success','修改成功');
+        }
+        else
+            return back()->with('error','修改失敗');
     }
 }
