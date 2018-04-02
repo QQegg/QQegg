@@ -37,19 +37,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <ul class="topleft-info">
-                            <li><i class="fa fa-phone"></i> +62 088 999 123</li>
+                            <a  href="index.html" align="top">
+                                <nobr>
+                                <img src="img/logo2.png" alt="" width="150" height="150" style="float:left;margin:5pt"  />
+                                <h1 style="position: absolute; left:120pt ;top:25pt">商圈促銷資訊就近推播系統</h1>
+                                </nobr>
+                            </a>
                         </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <div id="sb-search" class="sb-search">
-                            <form>
-                                <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
-                                <input class="sb-search-submit" type="submit" value="">
-                                <span class="sb-icon-search" title="Click to start searching"></span>
-                            </form>
-                        </div>
-
-
                     </div>
                 </div>
             </div>
@@ -63,7 +57,6 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="" width="199" height="52" /></a>
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">

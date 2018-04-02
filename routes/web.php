@@ -15,11 +15,25 @@ Auth::routes();
 Route::get('/test',function ()
 {
     \App\Store::create([
-        'name' => 'fuck',
-        'email' => 'fuck@gmail.com',
-        'password'=>Hash::make('ffffffff'),
+        'name' => '文具店',
+        'email' => 'www@gmail.com',
+        'contact' => '小王',
+        'phone' => '0988045436',
+        'address' => '台中市',
+        'password'=>Hash::make('wwwwww'),
         'title'=>'fuck',
     ]
+    );
+}
+);
+
+Route::get('/xd',function ()
+{
+    \App\Admin::create([
+            'account' => 'www',
+            'email' => 'www@gmail.com',
+            'password'=>Hash::make('wwwwww'),
+        ]
     );
 }
 );
