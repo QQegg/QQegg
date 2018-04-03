@@ -11,6 +11,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
+						<marquee bgcolor="#CCCCFF"><font style="font-family:" size="+3">這裡是公告區喔!!</font></marquee>
 						<!-- Slider -->
 						<div id="main-slider" class="main-slider flexslider">
 							<ul class="slides">
