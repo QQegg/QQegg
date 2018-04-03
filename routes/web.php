@@ -41,8 +41,8 @@ Route::get('/xd',function ()
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
-    return view('no use.index');
-});
+    return view('index.index');
+})->name('index');
 
 Route::prefix('user')->group(function () {
     Route::get('change/profile', ['as' => 'user_change_profile', 'uses' => 'UserChangeMemberController@profile']);
@@ -83,6 +83,18 @@ Route::get('/appconnecttest','NotificationsController@test');
 //auth認證登入
 Route::group(['middleware'=>'auth:store'], function() {
 
+    Route::group(['prefix' => 'product'], function() {
+        Route::get('/',['as'=>'prolist','uses'=>'ProductsController@index']);
+        Route::get('/create',['as'=>'procreate','uses'=>'ProductsController@create']);
+        Route::post('/store',['as' => 'prostore' ,'uses'=>'ProductsController@store']);
+        Route::get('/detail/{id}',['as'=>'prodetail','uses'=>'ProductsController@detail']);
+        Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
+        Route::patch('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
+        Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
+    });
+
+
+
 });
 
 Route::group(['prefix' => 'sale'], function() {
@@ -103,15 +115,6 @@ Route::group(['prefix' => 'costomer'], function() {
     Route::get('/edit/{id}',['as'=>'cosedit','uses'=>'CostomersController@edit']);
     Route::put('/update/{id}',['as'=>'cosupdate','uses'=>'CostomersController@update']);
     Route::delete('/destroy/{id}',['as'=>'cosdestroy','uses'=>'CostomerController@destroy']);
-});
-Route::group(['prefix' => 'product'], function() {
-    Route::get('/',['as'=>'prolist','uses'=>'ProductsController@index']);
-    Route::get('/create',['as'=>'procreate','uses'=>'ProductsController@create']);
-    Route::post('/store',['as' => 'prostore' ,'uses'=>'ProductsController@store']);
-    Route::get('/detail/{id}',['as'=>'prodetail','uses'=>'ProductsController@detail']);
-    Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
-    Route::patch('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
-    Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
 });
 
 Route::group(['prefix' => 'category'], function() {
