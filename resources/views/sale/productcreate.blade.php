@@ -50,15 +50,6 @@
                 </div>
                 <button type="submit" class="btn btn-success">新增</button>
             </form>
-            <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
-                {{ csrf_field() }}
-                <div hidden>
-                    <input  class="form-control"  name="Member_id" value={{$Member_id}} />
-                </div>
-                <button type="submit" class="btn btn-success">結帳</button>
-            </form>
-
-
             <div class="col-md-12">
                 <h1> 結帳總金額:{{$saleinfo}}</h1>
             </div>
@@ -82,7 +73,7 @@
                     請輸入要使用的積點數量:(此會員可用積點:{{$point}})
                     <input class="form-control"  name="point" value=0 />
                 </div>
-                <button type="submit" class="btn btn-success">結算</button>
+                <button type="submit" class="btn btn-success">結帳</button>
             </form>
 
 
