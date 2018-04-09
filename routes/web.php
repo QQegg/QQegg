@@ -185,3 +185,29 @@ Route::group(['prefix' => 'post'], function() {
     Route::get('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
 });
 
+Route::get('/test',function ()
+{
+    \App\Store::create([
+            'name' => '貓咪寵物店',
+            'email' => 'mimi@gmail.com',
+            'contact' => '咪咪',
+            'phone' => '0988045436',
+            'address' => '台中市',
+            'password'=>Hash::make('123456'),
+            'title'=>'fuck',
+        ]
+    );
+}
+);
+
+
+Route::get('/xd',function ()
+{
+    \App\Admin::create([
+            'account' => 'sh980932',
+            'email' => 'mimi@gmail.com',
+            'password'=>Hash::make('123456'),
+        ]
+    );
+}
+);
