@@ -41,9 +41,10 @@
                 商品輸入:
                 <div class="form-group">
                     ID:
-                    <input  class="form-control"  name="proid" autofocus/>
+                    <input  class="form-control"  name="proid" autofocus />
                     數量:
                 <input class="form-control"  name="number" value="1"/>
+                    <h1> 結帳總金額:{{$pirce}}</h1>
                     </div>
                 <div hidden>
                     <input  class="form-control"  name="Member_id" value={{$Member_id}} />

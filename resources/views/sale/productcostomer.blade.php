@@ -7,6 +7,7 @@
     <div class="form-group">
         <input name="Member_id" class="form-control" placeholder="請輸入消費者ID" autofocus>
     </div>
+
     <button type="submit" class="btn btn-success">確認</button>
     </form>
 @endsection
