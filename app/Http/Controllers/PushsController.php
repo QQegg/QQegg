@@ -13,14 +13,19 @@ class PushsController extends Controller
     {
         $store = Store::all()->where('email' ,  Auth::guard('store')->user()->email)->pluck('id');
         $pushs=Push::all()->where('Store_id', $store['0']);
+        foreach ($pushs as &$info)
+        {
+            if($info['statue']==1){
+                $info['statue']='已推播';
+            }
+            else{
+                $info['statue']='未推播';
+            }
+        }
         return view('managment.push',compact('pushs'));
-
-
     }
-
     public function create()
     {
-
         return view('managment.pushcreate');
     }
 
@@ -92,13 +97,27 @@ class PushsController extends Controller
 
             // save new image $file_name to database
             $push->update(['picture' => $file_name]);
-
         }
         return redirect()->route('pushlist');
     }
     public function destroy($id)
     {
         Push::destroy($id);
+        return redirect()->route('pushlist');
+    }
+    public function changestatue($id){
+        $push=Push::all()->where('id',$id)->first();
+        if($push['statue']==0){
+            $push->update([
+                'statue'=>1
+            ]);
+
+        }
+        else{
+            $push->update([
+                'statue'=>0
+            ]);
+        }
         return redirect()->route('pushlist');
     }
 }

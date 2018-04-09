@@ -12,6 +12,7 @@ class Push extends Model
         'Store_id',
         'title',
         'content',
+        'statue',
         'picture',
         'datetime'
     ];}
