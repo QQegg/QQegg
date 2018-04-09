@@ -27,7 +27,8 @@ class TransactionsController extends Controller
         Transaction::create([
             'Store_id'=>$s_id[0],
             'Member_id'=>$request['Member_id'],
-            'Coupon_id'=>'0'
+            'Coupon_id'=>'0',
+             'number'=>'1'
         ]);
         return view('sale.productcreate')->with('salelist',$salelist)->with('Member_id',$request['Member_id']);
     }
@@ -50,8 +51,10 @@ class TransactionsController extends Controller
     public function checkout(Request $request){
         $pirce=$request['price']*$request['discount']-$request['point'];
         $member=User::find($request['Member']);
-        if(!$member==null){
-            $member->update(['point'=>$member['point']-$request['point']+($pirce*0.01)]);
+        $re=$member['point']-$request['point']+($pirce*0.01);
+        if($member!=null){
+            $member->point=$re;
+            $member->save();
         }
         return view('sale.endprice')->with('price',$pirce);
     }

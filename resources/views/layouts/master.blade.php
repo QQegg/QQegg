@@ -37,19 +37,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <ul class="topleft-info">
-                            <li><i class="fa fa-phone"></i> +62 088 999 123</li>
+
                         </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <div id="sb-search" class="sb-search">
-                            <form>
-                                <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
-                                <input class="sb-search-submit" type="submit" value="">
-                                <span class="sb-icon-search" title="Click to start searching"></span>
-                            </form>
-                        </div>
-
-
                     </div>
                 </div>
             </div>
@@ -58,23 +47,41 @@
         <div class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="" width="199" height="52" /></a>
+                    <a  href="{{route('index')}}" align="top">
+                        <nobr>
+                            <img src="img/logo2.png" alt="" width="150" height="150" style="float:left;margin:5pt"  />
+                            <h1 style="position: absolute; left:400pt ;top:20pt">資訊推播商圈</h1>
+                        </nobr>
+                    </a>
                 </div>
+                @if(Auth::guard('store')->check())
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <li><a href="{{route('prolist')}}">商品管理</a></li>
+                        <li font-size="15"><a href="{{route('prolist')}}">商品管理</a></li>
                         <li><a href="{{route('pushlist')}}">促銷訊息管理</a></li>
                         <li><a href="{{route('coulist')}}">折價券</a></li>
                         <li><a href="#">交易紀錄</a></li>
-                        <li><a href="{{route('store.login')}}">店家登入</a></li>
-                        <li><a href="{{route('admin.login')}}">管理者登入</a></li>
+                        <li><a href="{{route('store_change_password')}}">修改密碼</a></li>
+                        <li><a href="{{route('store_change_profile')}}">修改基本資料</a></li>
+                        <li><a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            登出
+                        </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
                     </ul>
                 </div>
+                @else
+                    <div class="navbar-collapse collapse ">
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{route('store.login')}}">店家登入</a></li>
+                            <li><a href="{{route('admin.login')}}">管理者登入</a></li>
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </header>

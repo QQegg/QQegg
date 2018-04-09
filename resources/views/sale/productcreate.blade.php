@@ -43,8 +43,8 @@
                     ID:
                     <input  class="form-control"  name="proid" />
                     數量:
-                    <input class="form-control"  name="number" />
-                </div>
+                <input class="form-control"  name="number" value="1"/>
+                    </div>
                 <div hidden>
                     <input  class="form-control"  name="Member_id" value={{$Member_id}} />
                 </div>

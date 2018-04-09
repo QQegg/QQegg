@@ -20,7 +20,7 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                      產品管理後台
+                      商品管理
                     </a>
                 </li>
                 <li>
@@ -40,7 +40,7 @@
                 </li>
 
                 <li>
-                    <a href="/">回到前台</a>
+                    <a href="{{route('index')}}">回到首頁</a>
                 </li>
             </ul>
         </div>

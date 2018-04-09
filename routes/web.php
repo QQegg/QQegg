@@ -15,11 +15,25 @@ Auth::routes();
 Route::get('/test',function ()
 {
     \App\Store::create([
-        'name' => 'fuck',
-        'email' => 'fuck@gmail.com',
-        'password'=>Hash::make('ffffffff'),
+        'name' => '文具店',
+        'email' => 'www@gmail.com',
+        'contact' => '小王',
+        'phone' => '0988045436',
+        'address' => '台中市',
+        'password'=>Hash::make('wwwwww'),
         'title'=>'fuck',
     ]
+    );
+}
+);
+
+Route::get('/xd',function ()
+{
+    \App\Admin::create([
+            'account' => 'www',
+            'email' => 'www@gmail.com',
+            'password'=>Hash::make('wwwwww'),
+        ]
     );
 }
 );
@@ -27,8 +41,8 @@ Route::get('/test',function ()
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
-    return view('no use.index');
-});
+    return view('index.index');
+})->name('index');
 
 Route::prefix('user')->group(function () {
     Route::get('change/profile', ['as' => 'user_change_profile', 'uses' => 'UserChangeMemberController@profile']);
@@ -60,12 +74,26 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/search/{id}',['as' => 'admin.status', 'uses' => 'AdminController@update']);
     Route::get('/search', ['as' => 'admin.index', 'uses' => 'AdminController@Show']);
+    Route::get('/view/{id}',['as'=>'admin.admin-store-view','uses'=>'AdminController@view']);
+    Route::patch('/update/{id}',['as'=>'admin_store_change_password','uses'=>'AdminController@change_password']);
 });
 
 Route::get('/appconnecttest','NotificationsController@test');
 
 //auth認證登入
 Route::group(['middleware'=>'auth:store'], function() {
+
+    Route::group(['prefix' => 'product'], function() {
+        Route::get('/',['as'=>'prolist','uses'=>'ProductsController@index']);
+        Route::get('/create',['as'=>'procreate','uses'=>'ProductsController@create']);
+        Route::post('/store',['as' => 'prostore' ,'uses'=>'ProductsController@store']);
+        Route::get('/detail/{id}',['as'=>'prodetail','uses'=>'ProductsController@detail']);
+        Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
+        Route::patch('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
+        Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
+    });
+
+
 
 });
 
@@ -87,15 +115,6 @@ Route::group(['prefix' => 'costomer'], function() {
     Route::get('/edit/{id}',['as'=>'cosedit','uses'=>'CostomersController@edit']);
     Route::put('/update/{id}',['as'=>'cosupdate','uses'=>'CostomersController@update']);
     Route::delete('/destroy/{id}',['as'=>'cosdestroy','uses'=>'CostomerController@destroy']);
-});
-Route::group(['prefix' => 'product'], function() {
-    Route::get('/',['as'=>'prolist','uses'=>'ProductsController@index']);
-    Route::get('/create',['as'=>'procreate','uses'=>'ProductsController@create']);
-    Route::post('/store',['as' => 'prostore' ,'uses'=>'ProductsController@store']);
-    Route::get('/detail/{id}',['as'=>'prodetail','uses'=>'ProductsController@detail']);
-    Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
-    Route::patch('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
-    Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
 });
 
 Route::group(['prefix' => 'category'], function() {
