@@ -32,7 +32,6 @@ class StoreLoginController extends Controller
         }
         //if unsuccessfull redirect back to the login for with form data
         return redirect()->back()->withInput($request->only('email','remember'))->with('error','無此帳號或此帳號已被停權！若有任何問題，請與您的管理員聯絡！');
-
     }
 
     public function logout()

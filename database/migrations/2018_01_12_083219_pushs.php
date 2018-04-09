@@ -19,7 +19,7 @@ class Pushs extends Migration
             $table->string('title');
             $table->string('content');
             $table->string('picture');
-//            $table->binary('P_picture')->nullable();
+//          $table->binary('P_picture')->nullable();
             $table->dateTime('datetime');
             $table->timestamps();
             $table->rememberToken();

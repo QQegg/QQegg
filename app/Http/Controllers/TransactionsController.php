@@ -63,7 +63,7 @@ class TransactionsController extends Controller
         $salelist=Dealmatch::all()->where('Tran_id',Transaction::all()->pluck('id')->last());
         foreach ($salelist as $info)
         {
-            $saleinfo=$saleinfo['price']+(($info['number'])*(Product::all()->where('id',$info['Commodity_id'])->pluck('price')->last()));
+            $saleinfo=$saleinfo+(($info['number'])*(Product::all()->where('id',$info['Commodity_id'])->pluck('price')->last()));
         }
         $copon=Coupon_statu::all()->where('Member_id',$request['Member_id']);
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
