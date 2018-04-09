@@ -41,7 +41,7 @@
                 商品輸入:
                 <div class="form-group">
                     ID:
-                    <input  class="form-control"  name="proid" />
+                    <input  class="form-control"  name="proid" autofocus/>
                     數量:
                 <input class="form-control"  name="number" value="1"/>
                     </div>
