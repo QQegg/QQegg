@@ -48,7 +48,11 @@ return [
         'store'=>[
             'driver'=>'session',
             'provider'=>'stores',
-        ]
+        ],
+        'admin'=>[
+            'driver'=>'session',
+            'provider'=>'admins',
+        ],
     ],
 
     /*
@@ -76,6 +80,10 @@ return [
         'stores'=>[
             'driver' => 'eloquent',
             'model' => App\Store::class,
+        ],
+        'admins'=>[
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
@@ -106,6 +114,11 @@ return [
         ],
         'stores' => [
             'provider' => 'stores',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
         ],

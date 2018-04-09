@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 
-class StoreLoginController extends Controller
+class AdminLoginController extends Controller
 {
     public function __construct()
     {
         //defining our middleware for this controller
-        $this->middleware('guest:store',['except' => ['logout']]);
+        $this->middleware('guest:admin',['except' => ['logout']]);
     }
 
     //function to show store login form
     public function showLoginForm() {
-        return view('auth.store-login');
+        return view('admin.admin-login');
     }
     //function to login stores
     public function login(Request $request) {
@@ -26,22 +26,18 @@ class StoreLoginController extends Controller
             'password' => 'required|min:6'
         ]);
         //attempt to login the stores in 判斷店家是否有使用權(0=false)，1=true
-        if (Auth::guard('store')->attempt(['email' => $request->email, 'password' => $request->password ,'right'=>'1'], $request->remember)){
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password ], $request->remember)){
             //if successful redirect to stores dashboard
-            return redirect()->intended(route('store.dashboard'));
+            return redirect()->intended(route('admin.dashboard'));
         }
         //if unsuccessfull redirect back to the login for with form data
-<<<<<<< HEAD
-        return redirect()->back()->withInput($request->only('email','password'));
-=======
         return redirect()->back()->withInput($request->only('email','remember'))->with('error','無此帳號或此帳號已被停權！若有任何問題，請與您的管理員聯絡！');
 
->>>>>>> 290dcd7c1661722c7f59f0d1efda22316d91fcc1
     }
 
     public function logout()
     {
-        Auth::guard('store')->logout();
+        Auth::guard('admin')->logout();
 
         return redirect('/');
     }

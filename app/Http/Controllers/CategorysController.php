@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Store;
 use App\Category;
+use App\Admin;
 use update;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;

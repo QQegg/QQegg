@@ -15,13 +15,34 @@ Auth::routes();
 Route::get('/test',function ()
 {
     \App\Store::create([
+<<<<<<< HEAD
         'name' => 'test',
         'email' => 'test@gmail.com',
         'password'=>Hash::make('ffffffff'),
             'contact'=>'test',
             'phone'=>'000',
             'address'=>'test'
+=======
+        'name' => '文具店',
+        'email' => 'www@gmail.com',
+        'contact' => '小王',
+        'phone' => '0988045436',
+        'address' => '台中市',
+        'password'=>Hash::make('wwwwww'),
+        'title'=>'fuck',
+>>>>>>> 290dcd7c1661722c7f59f0d1efda22316d91fcc1
     ]
+    );
+}
+);
+
+Route::get('/xd',function ()
+{
+    \App\Admin::create([
+            'account' => 'www',
+            'email' => 'www@gmail.com',
+            'password'=>Hash::make('wwwwww'),
+        ]
     );
 }
 );
@@ -29,8 +50,8 @@ Route::get('/test',function ()
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
-    return view('no use.index');
-});
+    return view('index.index');
+})->name('index');
 
 Route::prefix('user')->group(function () {
     Route::get('change/profile', ['as' => 'user_change_profile', 'uses' => 'UserChangeMemberController@profile']);
@@ -55,10 +76,35 @@ Route::prefix('store')->group(function () {
     Route::post('change/password', ['as' => 'store_change_password', 'uses' => 'StoreChangeMemberController@change_password']);
 });
 
+//Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/search/{id}',['as' => 'admin.status', 'uses' => 'AdminController@update']);
+    Route::get('/search', ['as' => 'admin.index', 'uses' => 'AdminController@Show']);
+    Route::get('/view/{id}',['as'=>'admin.admin-store-view','uses'=>'AdminController@view']);
+    Route::patch('/update/{id}',['as'=>'admin_store_change_password','uses'=>'AdminController@change_password']);
+});
 
 Route::get('/appconnecttest','NotificationsController@test');
 
+//auth認證登入
+Route::group(['middleware'=>'auth:store'], function() {
 
+    Route::group(['prefix' => 'product'], function() {
+        Route::get('/',['as'=>'prolist','uses'=>'ProductsController@index']);
+        Route::get('/create',['as'=>'procreate','uses'=>'ProductsController@create']);
+        Route::post('/store',['as' => 'prostore' ,'uses'=>'ProductsController@store']);
+        Route::get('/detail/{id}',['as'=>'prodetail','uses'=>'ProductsController@detail']);
+        Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
+        Route::patch('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
+        Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
+    });
+
+
+
+});
 
 Route::group(['prefix' => 'sale'], function() {
     Route::get('/creat',['as'=>'salecreat','uses'=>'TransactionsController@readycheck']);
@@ -68,12 +114,8 @@ Route::group(['prefix' => 'sale'], function() {
     Route::post('/checkout',['as'=>'checkout','uses'=>'TransactionsController@checkout']);
 });
 
-
-
-
 Route::get('/appconnecttest','NotificationsController@test');
 
-Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
 
 Route::group(['prefix' => 'costomer'], function() {
     Route::get('/',['as'=>'coslist','uses'=>'CostomersController@index']);
@@ -82,15 +124,6 @@ Route::group(['prefix' => 'costomer'], function() {
     Route::get('/edit/{id}',['as'=>'cosedit','uses'=>'CostomersController@edit']);
     Route::put('/update/{id}',['as'=>'cosupdate','uses'=>'CostomersController@update']);
     Route::delete('/destroy/{id}',['as'=>'cosdestroy','uses'=>'CostomerController@destroy']);
-});
-Route::group(['prefix' => 'product'], function() {
-    Route::get('/',['as'=>'prolist','uses'=>'ProductsController@index']);
-    Route::get('/create',['as'=>'procreate','uses'=>'ProductsController@create']);
-    Route::post('/store',['as' => 'prostore' ,'uses'=>'ProductsController@store']);
-    Route::get('/detail/{id}',['as'=>'prodetail','uses'=>'ProductsController@detail']);
-    Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
-    Route::patch('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
-    Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
 });
 
 Route::group(['prefix' => 'category'], function() {

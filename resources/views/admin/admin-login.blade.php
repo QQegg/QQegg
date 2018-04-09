@@ -1,19 +1,13 @@
-@extends('layouts.store_app')
+@extends('layouts.admin_app')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                @if(session('success'))
-                    <div class="alert alert-success">{{session('success')}}</div>
-                @elseif(session('error'))
-                    <div class="alert alert-danger">{{session('error')}}</div>
-                @endif
                 <div class="panel panel-default">
-                    <div class="panel-heading">店家登入</div>
-
+                    <div class="panel-heading">Admin Login</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('store.login.submit') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.login.submit') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

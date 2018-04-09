@@ -27,12 +27,21 @@ class StoreChangeMemberController extends Controller
     }
     public function profile()
     {
-        return view('store.store_change_profile');
+        $store_picture = Store::all()->where('name',Auth::guard('store')->user()->name);
+        return view('store.store_change_profile',compact('store_picture'));
     }
     public function update(Request $request)
     {
         $Store=Store::find(Auth::guard('store')->user()->id);
+        if ($request->hasFile('picture')) {
+            $file_name = $request->file('picture')->getClientOriginalName();
+            $destinationPath = '/public/store';
+            $request->file('picture')->storeAs($destinationPath, $file_name);
+        }
         $Store->update($request->all());
+        $Store->update([
+            'picture' => $file_name,
+            ]);
         return back()->with('success','修改成功');
     }
 }
