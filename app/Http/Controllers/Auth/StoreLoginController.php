@@ -31,12 +31,7 @@ class StoreLoginController extends Controller
             return redirect()->intended(route('store.dashboard'));
         }
         //if unsuccessfull redirect back to the login for with form data
-<<<<<<< HEAD
-        return redirect()->back()->withInput($request->only('email','password'));
-=======
         return redirect()->back()->withInput($request->only('email','remember'))->with('error','無此帳號或此帳號已被停權！若有任何問題，請與您的管理員聯絡！');
-
->>>>>>> 290dcd7c1661722c7f59f0d1efda22316d91fcc1
     }
 
     public function logout()

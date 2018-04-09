@@ -15,22 +15,13 @@ Auth::routes();
 Route::get('/test',function ()
 {
     \App\Store::create([
-<<<<<<< HEAD
-        'name' => 'test',
         'email' => 'test@gmail.com',
-        'password'=>Hash::make('ffffffff'),
-            'contact'=>'test',
-            'phone'=>'000',
-            'address'=>'test'
-=======
         'name' => '文具店',
-        'email' => 'www@gmail.com',
         'contact' => '小王',
         'phone' => '0988045436',
         'address' => '台中市',
         'password'=>Hash::make('wwwwww'),
         'title'=>'fuck',
->>>>>>> 290dcd7c1661722c7f59f0d1efda22316d91fcc1
     ]
     );
 }
