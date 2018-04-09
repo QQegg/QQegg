@@ -15,10 +15,12 @@ Auth::routes();
 Route::get('/test',function ()
 {
     \App\Store::create([
-        'name' => 'fuck',
-        'email' => 'fuck@gmail.com',
+        'name' => 'test',
+        'email' => 'test@gmail.com',
         'password'=>Hash::make('ffffffff'),
-        'title'=>'fuck',
+            'contact'=>'test',
+            'phone'=>'000',
+            'address'=>'test'
     ]
     );
 }

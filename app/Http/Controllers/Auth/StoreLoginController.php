@@ -31,7 +31,7 @@ class StoreLoginController extends Controller
             return redirect()->intended(route('store.dashboard'));
         }
         //if unsuccessfull redirect back to the login for with form data
-        return redirect()->back()->withInput($request->only('email','remember'));
+        return redirect()->back()->withInput($request->only('email','password'));
     }
 
     public function logout()
