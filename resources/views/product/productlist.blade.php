@@ -15,7 +15,7 @@
                     <h1 style="margin-top:0;"></h1>
                 </div>
             </div>
-            <img src="{{url('../storage/product/'. $product->picture)}}" width="300px" height="200px" style="border:2px green dashed;">
+            <img src="{{url('../storage/product/'. $product->picture)}}" style="border:2px green dashed;">
             <div class="row">
                 <div class="col-md-12">
                     <font size=5>商品名稱:{{$product->name}}</font>
