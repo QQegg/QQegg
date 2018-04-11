@@ -40,9 +40,7 @@ Route::get('/xd',function ()
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', function () {
-    return view('index.index');
-})->name('index');
+Route::get('/','PostsController@showindex')->name('index');
 
 Route::prefix('user')->group(function () {
     Route::get('change/profile', ['as' => 'user_change_profile', 'uses' => 'UserChangeMemberController@profile']);
