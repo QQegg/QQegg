@@ -56,6 +56,11 @@ class AdminController extends Controller
         $data=['stores'=>$accounts];
         return view('admin.admin-store-view',$data,compact('accounts'));
     }
+    public function destroy($id)
+    {
+        Store::destroy($id);
+        return redirect()->route('admin.index');
+    }
     public function change_password($id)
     {
         $Store=Store::find($id);

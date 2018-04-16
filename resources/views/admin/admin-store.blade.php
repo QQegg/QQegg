@@ -44,9 +44,12 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="{{ route('admin.status', $account->id) }}" method="POST">
+                                    <form action="{{ route('admin.destroy', $account->id) }}" method="POST">
                                         <a href="{{route('admin.admin-store-view',$account->id)}}" class="text-success"><strong>詳細</strong></a>
+                                        /
                                         {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button class=" btn-link"><strong>刪除</strong></button>
                                     </form>
                                 </td>
                             </tr>
