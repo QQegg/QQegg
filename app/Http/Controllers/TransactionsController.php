@@ -34,6 +34,7 @@ class TransactionsController extends Controller
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
         return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist);
     }
+
     public function prestore(Request $request){
         Dealmatch::create(
             [
@@ -52,11 +53,13 @@ class TransactionsController extends Controller
         {
             $item['name']=Product::all()->where('id',$item['Commodity_id'])->pluck('name')->last();
             $item['price']=Product::all()->where('id',$item['Commodity_id'])->pluck('price')->last();
+            $item['total']=$item['price']*$item['number'];
         }
         $copon=Coupon_statu::all()->where('Member_id',$request['Member_id']);
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
         return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist);
     }
+
     public function checkout(Request $request){
         $pirce=$request['price']*$request['discount']-$request['point'];
         $member=User::find($request['Member']);
