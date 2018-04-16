@@ -11,31 +11,59 @@
                 </ul>
             </div>
         @endif
+
+            <div class="container">
+                <h2  class="text-center & text-primary" ><strong>購買商品</strong></h2>
+                <hr class="colorgraph">
+                <table class="table">
+                    <thead>
+                    <tr>
+
+                        <th>名稱</th>
+                        <th>單價</th>
+                        <th>數量</th>
+                        <th>金額</th>
+                    </tr>
+                    </thead>
+                    <tbody>
             @if($salelist!=null)
                 @foreach($salelist as $list)
-                    <div class="row">
-                    <div class="col-md-12">
-                        商品名稱:{{$list->name}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        商品單價:
-                        {{$list->price}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        商品數量:
-                        {{$list->number}}
-                    </div>
-                </div>
+                    {{--<div class="column">--}}
+                    {{--<div class="col-md-12">--}}
+                        {{--商品名稱:{{$list->name}}--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="column">--}}
+                    {{--<div class="col-md-12">--}}
+                        {{--商品單價:--}}
+                        {{--{{$list->price}}--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="column">--}}
+                    {{--<div class="col-md-12">--}}
+                        {{--商品數量:--}}
+                        {{--{{$list->number}}--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                    <tr>
+                        <td>{{$list->name}}</td>
+                        <td>{{$list->price}}</td>
+                        <td>{{$list->number}}</td>
+                        <td>{{$list->total}}</td>
+                    </tr>
                 @endforeach
             @else
                 <div class="col-md-12">
                     目前無商品列表
                 </div>
             @endif
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
             <form action="{{route('prestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
                 {{ csrf_field() }}
                 商品輸入:
