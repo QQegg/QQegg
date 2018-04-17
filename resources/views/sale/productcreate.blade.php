@@ -12,8 +12,9 @@
             </div>
         @endif
 
+
             <div class="container">
-                <h2  class="text-center & text-primary" ><strong>購買商品</strong></h2>
+                <h2  class="text-center & text-primary" style="font-family:標楷體" ><strong>購買商品</strong></h2>
                 <hr class="colorgraph">
                 <table class="table">
                     <thead>
@@ -60,16 +61,21 @@
                     </tbody>
                 </table>
             </div>
+            <div class="progress-bar & bg-warning " style="width:100%;height:1px"></div>
 
 
+                <h2 class=" text-right & text-danger "  style="font-family:標楷體 ;position: absolute; right:200pt "><strong>合計:{{$saleinfo}}元</strong> </h2>
 
 
             <form action="{{route('prestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
                 {{ csrf_field() }}
+
+                <br>
+                <br>
                 商品輸入:
                 <div class="form-group">
                     ID:
-                    <input  class="form-control"  name="proid" autofocus />
+                    <input  class="form-control "  name="proid" autofocus />
                     數量:
                 <input class="form-control"  name="number" value="1"/>
                     </div>
@@ -78,9 +84,6 @@
                 </div>
                 <button type="submit" class="btn btn-success">新增</button>
             </form>
-            <div class="col-md-12">
-                <h1> 結帳總金額:{{$saleinfo}}</h1>
-            </div>
             <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
                 {{ csrf_field() }}
                 <div hidden>
