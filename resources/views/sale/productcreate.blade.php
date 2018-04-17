@@ -74,7 +74,8 @@
 
 
                 <div class="container ">
-                    <h3    style="font-family:標楷體  "><strong>商品輸入</strong></h3>
+                    <h3 class="bg-info"   style="font-family:標楷體  "><strong>商品輸入</strong></h3>
+                    
                     ID :
                     <input  class="form-horizontal "  name="proid" autofocus />
                     數量 :
@@ -98,7 +99,7 @@
                 </div>
                 <br>
                 <div class="container ">
-                    <h3   style="font-family:標楷體  "><strong>使用折價券折扣或積點折抵</strong></h3>
+                    <h3   class="bg-info" style="font-family:標楷體  "><strong>使用折價券折扣或積點折抵</strong></h3>
                     折價券 :
                     <select name="discount" class="form-horizontal ">
                         <option value="1" selected="selected">請選擇要用的折價券</option>
