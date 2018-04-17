@@ -101,7 +101,7 @@ Route::group(['prefix' => 'sale'], function() {
     Route::get('/creat',['as'=>'salecreat','uses'=>'TransactionsController@readycheck']);
     Route::post('/costomer',['as' => 'costomersave' ,'uses'=>'TransactionsController@cotomer']);
     Route::post('/per',['as' => 'prestore' ,'uses'=>'TransactionsController@prestore']);
-    Route::post('/checkout',['as'=>'checkout','uses'=>'TransactionsController@checkout']);
+    Route::post('/checkout',['as'=>'checkout','uses'=>'TransactionsController@checkout']);//好像用不到
     Route::post('/store',['as' => 'salestore' ,'uses'=>'TransactionsController@store']);
 });
 
