@@ -11,7 +11,23 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<marquee bgcolor="#CCCCFF"><font style="font-family:" size="+3">這裡是公告區喔!!</font></marquee>
+						<marquee bgcolor="#CCCCFF"><font style="font-family:標楷體" size="+3">這裡是公告區喔!!</font></marquee>
+						<div class="list-group flexslider">
+							@if(count($posts) == 0)
+								<p class="text-center">
+									沒有任何公告
+								</p>
+							@endif
+							@foreach($posts as $posts)
+								<a href="#"
+								   class="list-group-item">{{$posts->title}}
+                                    <?php
+                                     $str_sec = explode(" ",$posts->created_at);
+                                    ?>
+                                    <div class="floatright">{{$str_sec['0']}}</div>
+                                </a>
+							@endforeach
+						</div>
 						<!-- Slider -->
 						<div id="main-slider" class="main-slider flexslider">
 							<ul class="slides">

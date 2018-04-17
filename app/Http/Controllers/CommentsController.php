@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -9,8 +10,7 @@ class CommentsController extends Controller
     public function index()
     {
         $com=Comment::all();
-        $data=['com'=>$com];
-        return view('comment.comment',$data);
+        return view('comment.comment',compact('com'));
     }
     public function store(Request $request)
     {

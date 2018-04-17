@@ -2,22 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
 class PostsController extends Controller //公告管理
 {
     public function index()
     {
-        $post=Post::all();
-        $data=['posts'=>$post];
-        return view('admin.postlist',$data);
+        $posts=Post::all();
+        return view('admin.postlist',compact('posts'));
     }
     public function store(Request $request)
     {
-        Post::create($request->all());
-        $post=Post::all();
-        $data=['posts'=>$post];
-        return view('admin.postlist',$data);
+        $management_id = Admin::all()->where('account', Auth::guard('admin')->user()->account)->pluck('id');
+        Post::create([
+            'Admin_id' => $management_id->first(),
+            'title' => $request['title'],
+            'content' => $request['content'],
+        ]);
+        $posts = Post::all();
+        return view('admin.postlist',compact('posts'));
     }
     public function edit($id)
     {
@@ -35,6 +40,12 @@ class PostsController extends Controller //公告管理
     {
         Post::destroy($id);
         return redirect()->route('postlist');
+    }
+
+    public function showindex()
+    {
+        $posts = Post::all();
+        return view('index.index',compact('posts'));
     }
 
 }

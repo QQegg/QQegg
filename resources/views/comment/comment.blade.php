@@ -70,7 +70,7 @@
             </div>
         </div>
     @endforeach
-        @if(Auth::check()){
+        @if(Auth::guard('store')->check())
         <form action="/post/store" method="POST" role="form">
             {{ csrf_field()}}
             <div class="form-group">
@@ -91,12 +91,12 @@
             <button type="submit" class="btn btn-success">新增</button>
         </div>
         </form>
-    }
-    @else {
+
+    @else
     <p class="text-center">
         請先登入才能留言
     </p>
-    }
+
     @endif
 
 </div>

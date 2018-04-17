@@ -40,9 +40,7 @@ Route::get('/xd',function ()
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', function () {
-    return view('index.index');
-})->name('index');
+Route::get('/','PostsController@showindex')->name('index');
 
 Route::prefix('user')->group(function () {
     Route::get('change/profile', ['as' => 'user_change_profile', 'uses' => 'UserChangeMemberController@profile']);
@@ -76,6 +74,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/search', ['as' => 'admin.index', 'uses' => 'AdminController@Show']);
     Route::get('/view/{id}',['as'=>'admin.admin-store-view','uses'=>'AdminController@view']);
     Route::patch('/update/{id}',['as'=>'admin_store_change_password','uses'=>'AdminController@change_password']);
+    Route::delete('/delete/{id}',['as'=>'admin.destroy','uses'=>'AdminController@destroy']);
 });
 
 Route::get('/appconnecttest','NotificationsController@test');

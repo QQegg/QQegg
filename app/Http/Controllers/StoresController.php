@@ -23,7 +23,7 @@ class StoresController extends Controller
      */
     public function index()
     {
-        return view('index.index');
+        return redirect(route('index'));
     }
     public function create()
     {
