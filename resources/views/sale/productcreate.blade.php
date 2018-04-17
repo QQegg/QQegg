@@ -12,7 +12,6 @@
             </div>
         @endif
 
-
             <div class="container">
                 <h2  class="text-center & text-primary" style="font-family:標楷體" ><strong>購買商品</strong></h2>
                 <hr class="colorgraph">
@@ -72,17 +71,22 @@
 
                 <br>
                 <br>
-                商品輸入:
-                <div class="form-group">
-                    ID:
-                    <input  class="form-control "  name="proid" autofocus />
-                    數量:
-                <input class="form-control"  name="number" value="1"/>
-                    </div>
+
+
+                <div class="container ">
+                    <h3    style="font-family:標楷體  "><strong>商品輸入</strong></h3>
+                    ID :
+                    <input  class="form-horizontal "  name="proid" autofocus />
+                    數量 :
+                <input class="form-horizontal"  name="number" value="1"/>
+
                 <div hidden>
                     <input  class="form-control"  name="Member_id" value={{$Member_id}} />
                 </div>
-                <button type="submit" class="btn btn-success">新增</button>
+                <button type="submit" class="btn btn-primary & form-horizontal">新增</button>
+    </div>
+
+
             </form>
             <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
                 {{ csrf_field() }}
@@ -92,19 +96,27 @@
                 <div hidden>
                     <input class="form-control"  name="Member" value="{{$Member_id}}" />
                 </div>
-                <div class="form-group">
-                    <select name="discount" class="form-control">
+                <br>
+                <div class="container ">
+                    <h3   style="font-family:標楷體  "><strong>使用折價券折扣或積點折抵</strong></h3>
+                    折價券 :
+                    <select name="discount" class="form-horizontal ">
                         <option value="1" selected="selected">請選擇要用的折價券</option>
                         @foreach($copon as $copon)
                             <option value="{{$copon->discount}}">{{$copon->title}}</option>
                         @endforeach
                     </select>
+                    積點 :
+                    <input class="form-horizontal "  name="point"  placeholder="此會員可用積點:{{$point}}"/>
+                    <button type="submit" class="btn btn-primary  & form-horizontal">結帳</button>
                 </div>
-                <div class="form-group">
-                    請輸入要使用的積點數量:(此會員可用積點:{{$point}})
-                    <input class="form-control"  name="point" value=0 />
+                <br>
+                <div class="container ">
+
+
+<br>
+
                 </div>
-                <button type="submit" class="btn btn-success">結帳</button>
             </form>
 
 
