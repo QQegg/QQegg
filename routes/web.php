@@ -74,6 +74,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/search', ['as' => 'admin.index', 'uses' => 'AdminController@Show']);
     Route::get('/view/{id}',['as'=>'admin.admin-store-view','uses'=>'AdminController@view']);
     Route::patch('/update/{id}',['as'=>'admin_store_change_password','uses'=>'AdminController@change_password']);
+    Route::delete('/delete/{id}',['as'=>'admin.destroy','uses'=>'AdminController@destroy']);
 });
 
 Route::get('/appconnecttest','NotificationsController@test');
