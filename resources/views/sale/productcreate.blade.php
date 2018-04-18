@@ -11,14 +11,12 @@
                 </ul>
             </div>
         @endif
-
             <div class="container">
                 <h2  class="text-center & text-primary" style="font-family:標楷體" ><strong>購買商品</strong></h2>
                 <hr class="colorgraph">
                 <table class="table">
                     <thead>
                     <tr>
-
                         <th>名稱</th>
                         <th>單價</th>
                         <th>數量</th>
@@ -61,18 +59,11 @@
                 </table>
             </div>
             <div class="progress-bar & bg-warning " style="width:100%;height:1px"></div>
-
-
                 <h2 class=" text-right & text-danger "  style="font-family:標楷體 ;position: absolute; right:200pt "><strong>合計:{{$saleinfo}}元</strong> </h2>
-
-
             <form action="{{route('prestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
                 {{ csrf_field() }}
-
                 <br>
                 <br>
-
-
                 <div class="container ">
                     <h3 class="bg-info"   style="font-family:標楷體  "><strong>商品輸入</strong></h3>
                     ID :
@@ -85,8 +76,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary & form-horizontal">新增</button>
     </div>
-
-
             </form>
             <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
                 {{ csrf_field() }}
@@ -112,9 +101,11 @@
                 </div>
                 <br>
                 <div class="container ">
-
-
-<br>
+                    <br>
+                    <div class="col-md-12">
+                        <h1> 結帳總金額:{{$price}}</h1>
+                    </div>
+                    <a href="{{route('salecreat')}}"><button type="submit" class="btn btn-success">下一筆</button></a>
 
                 </div>
             </form>

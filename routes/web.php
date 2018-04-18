@@ -67,7 +67,8 @@ Route::prefix('store')->group(function () {
 
 //Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
 Route::prefix('admin')->group(function () {
-    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+//    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/', 'AdminController@index')->name('admin.index');
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/search/{id}',['as' => 'admin.status', 'uses' => 'AdminController@update']);
@@ -100,7 +101,7 @@ Route::group(['prefix' => 'sale'], function() {
     Route::get('/creat',['as'=>'salecreat','uses'=>'TransactionsController@readycheck']);
     Route::post('/costomer',['as' => 'costomersave' ,'uses'=>'TransactionsController@cotomer']);
     Route::post('/per',['as' => 'prestore' ,'uses'=>'TransactionsController@prestore']);
-    Route::post('/checkout',['as'=>'checkout','uses'=>'TransactionsController@checkout']);
+    Route::post('/checkout',['as'=>'checkout','uses'=>'TransactionsController@checkout']);//好像用不到
     Route::post('/store',['as' => 'salestore' ,'uses'=>'TransactionsController@store']);
 });
 
