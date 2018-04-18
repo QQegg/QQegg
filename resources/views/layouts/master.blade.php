@@ -52,6 +52,7 @@
                             <img src="img/logo2.png" alt="" width="150" height="150" style="float:left;margin:5pt"  />
                             <h1 style="position: absolute; left:400pt ;top:20pt">資訊推播商圈</h1>
                         </nobr>
+
                     </a>
                 </div>
                 @if(Auth::guard('store')->check())
@@ -61,16 +62,26 @@
                         <li><a href="{{route('pushlist')}}">促銷訊息管理</a></li>
                         <li><a href="{{route('coulist')}}">折價券</a></li>
                         <li><a href="#">交易紀錄</a></li>
-                        <li><a href="{{route('store_change_password')}}">修改密碼</a></li>
-                        <li><a href="{{route('store_change_profile')}}">修改基本資料</a></li>
-                        <li><a href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                您好 !  <strong>{{ Auth::guard('store')->user()->name}}</strong> 店家   <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{route('store_change_password')}}">修改密碼</a>
+                                    <a href="{{route('store_change_profile')}}">修改基本資料</a>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            登出
-                        </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
+                                        登出
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
