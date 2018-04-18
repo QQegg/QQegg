@@ -69,13 +69,14 @@
                     ID :
                     <input  class="form-horizontal "  name="proid" autofocus />
                     數量 :
-                <input class="form-horizontal"  name="number" value="1"/>
+                <input class="form-horizontal"  name="number" value="1" />
 
                 <div hidden>
                     <input  class="form-control"  name="Member_id" value={{$Member_id}} />
                 </div>
                 <button type="submit" class="btn btn-primary & form-horizontal">新增</button>
     </div>
+
             </form>
             <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
                 {{ csrf_field() }}
@@ -97,19 +98,20 @@
                     </select>
                     積點 :
                     <input class="form-horizontal "  name="point"  placeholder="此會員可用積點:{{$point}}"/>
-                    <button type="submit" class="btn btn-primary  & form-horizontal">結帳</button>
+                    <button type="submit" class="btn btn-primary  & form-horizontal">結算</button>
                 </div>
                 <br>
                 <div class="container ">
                     <br>
                     <div class="col-md-12">
-                        <h1> 結帳總金額:{{$price}}</h1>
+                        {{--<h2 class=" text-right & text-danger "  style="font-family:標楷體 ;position: absolute; right:5pt "><strong>結算總金額:{{$price}}</strong> </h2>--}}
                     </div>
-                    <a href="{{route('salecreat')}}"><button type="submit" class="btn btn-success">下一筆</button></a>
+
 
                 </div>
             </form>
 
+            {{--<a href="{{route('salecreat')}}"><button type="submit" class="btn btn-success">下一筆</button></a>--}}
 
     </div>
 @endsection
