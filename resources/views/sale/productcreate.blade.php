@@ -190,7 +190,7 @@
                 /* Modal Body */
                 .modal-body {padding: 2px 16px;}
                     <input class="form-horizontal "  name="point"  placeholder="此會員可用積點:{{$point}}"/>
-                    <button type="submit" class="btn btn-primary  & form-horizontal">結算</button>
+                    <button type="submit" class="btn btn-primary  & form-horizontal">結算 </button>
                 </div>
                 <br>
                 <div class="container ">
