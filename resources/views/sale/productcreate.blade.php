@@ -1,4 +1,4 @@
-@extends('product.layout.master')
+﻿@extends('product.layout.master')
 @section('title','結帳')
 @section('content')
     <div class='container-fluid'>
@@ -90,7 +90,6 @@
                         @endforeach
                     </select>
                     積點 :
-<<<<<<< HEAD
                     <input class="form-horizontal "  name="point" id="poi"  placeholder="此會員可用積點:{{$point}}"/>
                     <button  id="myBtn" type="submit" class="btn btn-primary">結帳</button>
                 </div>
@@ -191,7 +190,6 @@
                 }
                 /* Modal Body */
                 .modal-body {padding: 2px 16px;}
-=======
                     <input class="form-horizontal "  name="point"  placeholder="此會員可用積點:{{$point}}"/>
                     <button type="submit" class="btn btn-primary  & form-horizontal">結算</button>
                 </div>
@@ -207,7 +205,6 @@
             </form>
 
             {{--<a href="{{route('salecreat')}}"><button type="submit" class="btn btn-success">下一筆</button></a>--}}
->>>>>>> 2fa358ce50dda1ff7bad815727b06696cc2aea49
 
                 /* Modal Footer */
                 .modal-footer {
