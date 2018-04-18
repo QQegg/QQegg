@@ -32,7 +32,7 @@
 <div id="wrapper">
     <!-- start header -->
     <header>
-        <div class="top">
+        <div class="top" style="background-color:white">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -104,7 +104,7 @@
 <!--footer-->
 @include('layouts.partials.footer')
 
-<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+<a href="#" class="scrollup" style="background-color:white"><i class="fa fa-angle-up active"></i></a>
 
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
