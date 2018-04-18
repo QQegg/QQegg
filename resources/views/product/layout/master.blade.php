@@ -57,8 +57,8 @@
     </div>
     <!-- /#wrapper -->
     <!-- Bootstrap core JavaScript -->
-    <script src="{{asset('js/jquery.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.bumdle.min.js')}}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="{{asset('js/jquery.min.js')}}"></script>
     <!-- Menu Toggle Script -->
     <script>
     $("#menu-toggle").click(function(e) {

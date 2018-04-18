@@ -32,7 +32,8 @@ class TransactionsController extends Controller
         $salelist=Dealmatch::all()->where('Tran_id',Transaction::all()->pluck('id')->last());
         $copon=Coupon_statu::all()->where('Member_id',$request['Member_id']);
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
-        return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo);
+        $re=0;
+        return view('sale.productcreate')->with('re',$re)->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo);
     }
 
     public function prestore(Request $request){
@@ -57,7 +58,14 @@ class TransactionsController extends Controller
         }
         $copon=Coupon_statu::all()->where('Member_id',$request['Member_id']);
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
-        return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo);
+        $pirce=$request['price']*$request['discount']-$request['point'];
+        $member=User::find($request['Member']);
+        $re=$member['point']-$request['point']+($pirce*0.01);
+        if($member!=null){
+            $member->point=$re;
+            $member->save();
+        }
+        return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('re',$re)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo);
     }
 
     public function checkout(Request $request){
@@ -83,7 +91,6 @@ class TransactionsController extends Controller
             $item['price']=Product::all()->where('id',$item['Commodity_id'])->pluck('price')->last();
             $item['total']=$item['price']*$item['number'];
         }
-
         $copon=Coupon_statu::all()->where('Member_id',$request['Member_id']);
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
         $pirce=$request['price']*$request['discount']-$request['point'];
@@ -93,7 +100,7 @@ class TransactionsController extends Controller
             $member->point=$re;
             $member->save();
         }
-        return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$pirce);
+        return view('sale.productcostomer');
     }
 }
 //$parent = Parent::create(['name' => 'Bob']);
