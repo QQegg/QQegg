@@ -1,17 +1,16 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container">
+    <div class="container "  >
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-2 ">
                 @if(session('success'))
                     <div class="alert alert-success">{{session('success')}}</div>
                 @elseif(session('error'))
                     <div class="alert alert-danger">{{session('error')}}</div>
                 @endif
-                <div class="panel panel-default">
-                    <div class="panel-heading" ><h2>店家登入 <small>Store Login</small></h2></div>
-
+                <div  class="panel panel-warning" >
+                    <div class="panel-heading" style="text-align:center;color: white;" ><h2>店 家 登 入<br><small>Store Login</small></h2></div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('store.login.submit') }}">
                             {{ csrf_field() }}
@@ -20,7 +19,7 @@
                                 <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Email Address">
+                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="example@gmail.com">
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -53,14 +52,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr class="colorgraph">
+
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Login
+                                    <button type="submit" class="btn btn-warning" style="font-weight:bold;color:black;">
+                                        登 入
                                     </button>
 
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link-danger & text-danger" href="{{ route('password.request') }}">
                                         Forgot Your Password?
                                     </a>
                                 </div>
