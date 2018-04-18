@@ -1,16 +1,22 @@
-@extends('layouts.admin_app')
+@extends('layouts.master')
 
 @section('content')
     <div class="container">
+        <ol class="breadcrumb breadco">
+            <li class="fa fa-home"><a href="{{route('index')}}"> Home</a></li>
+            <li class="active">管理店家</li>
+        </ol>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+
                 @if(session('success'))
                     <div class="alert alert-success">{{session('success')}}</div>
                 @elseif(session('error'))
                     <div class="alert alert-danger">{{session('error')}}</div>
                 @endif
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ Auth::guard('admin')->user()->account}}管理者，您正在管理頁面</div>
+                    <div class="panel-heading" style="text-align:center;color: white;" ><h3>店家詳細列表<br><small>Detailed list of stores</small></h3></div>
+                    {{--<div class="panel-heading">{{ Auth::guard('admin')->user()->account}}管理者，您正在管理頁面</div>--}}
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                         <tr>
@@ -39,17 +45,16 @@
                                 <td align="center">{{($account->right)?'正常使用中':'停權'}}</td>
                                 <td>
                                     <form action="{{ route('admin.status', $account->id) }}" method="POST">
-                                        <a href ="{{route('admin.status', ['id'=>$account->id])}}" class="btn btn-success " type="submit" role="button" >{{($account->right)?'停權':'開啟'}}</a>
+                                        <a href ="{{route('admin.status', ['id'=>$account->id])}}" class="btn btn-success " type="submit" role="button">{{($account->right)?'停權':'開啟'}}</a>
                                         {{ csrf_field() }}
                                     </form>
                                 </td>
                                 <td>
                                     <form action="{{ route('admin.destroy', $account->id) }}" method="POST">
-                                        <a href="{{route('admin.admin-store-view',$account->id)}}" class="text-success"><strong>詳細</strong></a>
-                                        /
-                                        {{ csrf_field() }}
+                                        <a href="{{route('admin.admin-store-view',$account->id)}}" class="text-success"><strong>修改密碼</strong></a>
+                                        /{{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button class=" btn-link"><strong>刪除</strong></button>
+                                        <button class=" btn-link" style="color:red;"><strong>刪除帳號</strong></button>
                                     </form>
                                 </td>
                             </tr>

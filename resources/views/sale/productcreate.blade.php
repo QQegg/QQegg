@@ -69,7 +69,6 @@
                 <br>
                 <div class="container ">
                     <h3 class="bg-info"   style="font-family:標楷體  "><strong>商品輸入</strong></h3>
-                    
                     ID :
                     <input  class="form-horizontal "  name="proid" autofocus />
                     數量 :
