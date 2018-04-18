@@ -60,11 +60,7 @@ class TransactionsController extends Controller
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
         $pirce=$request['price']*$request['discount']-$request['point'];
         $member=User::find($request['Member']);
-        $re=$member['point']-$request['point']+($pirce*0.01);
-        if($member!=null){
-            $member->point=$re;
-            $member->save();
-        }
+        $re=$member['point'];
         return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('re',$re)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo);
     }
 
