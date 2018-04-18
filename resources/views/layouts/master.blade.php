@@ -92,7 +92,7 @@
                             <li><a href="{{route('admin.index')}}">管理店家</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    您好 !  <strong>{{ Auth::guard('admin')->user()->account}}</strong> 管理者   <span class="caret"></span>
+                                   您好！ <strong>{{ Auth::guard('admin')->user()->account}}</strong> 管理者   <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
