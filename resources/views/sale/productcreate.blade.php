@@ -71,13 +71,14 @@
                     ID :
                     <input  class="form-horizontal "  name="proid" autofocus />
                     數量 :
-                <input class="form-horizontal"  name="number" value="1"/>
+                <input class="form-horizontal"  name="number" value="1" />
 
                 <div hidden>
                     <input  class="form-control"  name="Member_id" value={{$Member_id}} />
                 </div>
                 <button type="submit" class="btn btn-primary & form-horizontal">新增</button>
     </div>
+
             </form>
                 <div class="container ">
                     <h3   class="bg-info" style="font-family:標楷體  "><strong>使用折價券折扣或積點折抵</strong></h3>
@@ -89,6 +90,7 @@
                         @endforeach
                     </select>
                     積點 :
+<<<<<<< HEAD
                     <input class="form-horizontal "  name="point" id="poi"  placeholder="此會員可用積點:{{$point}}"/>
                     <button  id="myBtn" type="submit" class="btn btn-primary">結帳</button>
                 </div>
@@ -189,6 +191,23 @@
                 }
                 /* Modal Body */
                 .modal-body {padding: 2px 16px;}
+=======
+                    <input class="form-horizontal "  name="point"  placeholder="此會員可用積點:{{$point}}"/>
+                    <button type="submit" class="btn btn-primary  & form-horizontal">結算</button>
+                </div>
+                <br>
+                <div class="container ">
+                    <br>
+                    <div class="col-md-12">
+                        {{--<h2 class=" text-right & text-danger "  style="font-family:標楷體 ;position: absolute; right:5pt "><strong>結算總金額:{{$price}}</strong> </h2>--}}
+                    </div>
+
+
+                </div>
+            </form>
+
+            {{--<a href="{{route('salecreat')}}"><button type="submit" class="btn btn-success">下一筆</button></a>--}}
+>>>>>>> 2fa358ce50dda1ff7bad815727b06696cc2aea49
 
                 /* Modal Footer */
                 .modal-footer {
