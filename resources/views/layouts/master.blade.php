@@ -85,6 +85,33 @@
                         </li>
                     </ul>
                 </div>
+                @elseif(Auth::guard('admin')->check())
+                    <div class="navbar-collapse collapse ">
+                        <ul class="nav navbar-nav">
+                            <li font-size="15"><a href="{{route('postlist')}}">公告</a></li>
+                            <li><a href="{{route('admin.index')}}">管理店家</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    您好 !  <strong>{{ Auth::guard('admin')->user()->account}}</strong> 管理者   <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        {{--<a href="{{route('store_change_password')}}">修改密碼</a>--}}
+                                        {{--<a href="{{route('store_change_profile')}}">修改基本資料</a>--}}
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            登出
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 @else
                     <div class="navbar-collapse collapse ">
                         <ul class="nav navbar-nav">
