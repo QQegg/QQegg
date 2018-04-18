@@ -3,6 +3,8 @@
 @section('content')
     <div class='container-fluid'>
     <input style="display:none" id="val" value=<?php echo $saleinfo?>>
+        <input style="display:none" id="memp" value={{$re}}>
+
     @if(count($errors)>0)
             <div class="alert alert-danger">
                 <ul>
@@ -154,7 +156,7 @@
                             至目前為止點數:{{$point}}<br>
                             本次新增:<span id="add"></span><br>
                             本次折抵:<span id="min"></span><br>
-                            累計點數:{{$re}}
+                            累計點數:<span id="fin"></span><br>
                         </div>
                         <div class="modal-footer">
                             <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
@@ -180,57 +182,43 @@
                     </div>
                 </div>
             </div>
-            <style>
-                body {font-family: Arial, Helvetica, sans-serif;}
-                /* Modal Header */
-                .modal-header {
-                    padding: 2px 16px;
-                    background-color: #5cb85c;
-                    color: white;
-                }
-                /* Modal Body */
-                .modal-body {padding: 2px 16px;}
-                    <input class="form-horizontal "  name="point"  placeholder="此會員可用積點:{{$point}}"/>
-                    <button type="submit" class="btn btn-primary  & form-horizontal">結算</button>
-                </div>
-                <br>
-                <div class="container ">
-                    <br>
-                    <div class="col-md-12">
-                        {{--<h2 class=" text-right & text-danger "  style="font-family:標楷體 ;position: absolute; right:5pt "><strong>結算總金額:{{$price}}</strong> </h2>--}}
-                    </div>
-
-
-                </div>
-            </form>
-
-            {{--<a href="{{route('salecreat')}}"><button type="submit" class="btn btn-success">下一筆</button></a>--}}
-
-                /* Modal Footer */
-                .modal-footer {
-                    padding: 2px 16px;
-                    background-color: #5cb85c;
-                    color: white;
-                }
-                /* Modal Content */
-                .modal-content {
-                    position: relative;
-                    background-color: #fefefe;
-                    margin: auto;
-                    padding: 0;
-                    border: 1px solid #888;
-                    width: 80%;
-                    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-                    animation-name: animatetop;
-                    animation-duration: 0.4s
-                }
-                /* Add Animation */
-                @keyframes animatetop {
-                    from {top: -300px; opacity: 0}
-                    to {top: 0; opacity: 1}
-                }
-            </style>
     </div>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        /* Modal Header */
+        .modal-header {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+        /* Modal Body */
+        .modal-body {padding: 2px 16px;}
+        {{--<a href="{{route('salecreat')}}"><button type="submit" class="btn btn-success">下一筆</button></a>--}}
+
+/* Modal Footer */
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+        /* Add Animation */
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+    </style>
     <script>
         // Get the modal
         var modal = document.getElementById('myModal');
@@ -248,6 +236,7 @@
             document.getElementById("inner").textContent=(parseInt(document.getElementById('val').value)*parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value);
             document.getElementById("add").textContent=((parseInt(document.getElementById('val').value)*parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value))*0.01;
             document.getElementById("min").textContent=document.getElementById("point").value;
+            document.getElementById("fin").textContent={{$point}}+parseInt(document.getElementById("add").textContent)-parseInt(document.getElementById("min").textContent);
             modal.style.display = "block";
         }
         // When the user clicks on <span> (x), close the modal
