@@ -274,7 +274,7 @@
             document.getElementById("inner").textContent=(parseInt(document.getElementById('val').value)*parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value);
             document.getElementById("add").textContent=((parseInt(document.getElementById('val').value)*parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value))*0.01;
             document.getElementById("min").textContent=document.getElementById("point").value;
-            document.getElementById("fin").textContent={{$point}}+parseInt(document.getElementById("add").textContent)-parseInt(document.getElementById("min").textContent);
+            document.getElementById("fin").textContent=parseInt({{$point}})+parseInt(document.getElementById("add").textContent)-parseInt(document.getElementById("min").textContent);
             modal.style.display = "block";
         }
         // When the user clicks on <span> (x), close the modal
