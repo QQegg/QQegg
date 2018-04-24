@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\User;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -10,7 +11,13 @@ class CommentsController extends Controller
     public function index()
     {
         $com=Comment::all();
-        return view('comment.comment',compact('com'));
+        $cc = 0;
+        foreach ($com as $count){
+            $member = User::all()->where('id',$count['Member_id']);
+            $member_name[$cc] = $member->first();
+            $cc++;
+        }
+        return view('comment.comment',compact('com','member_name'));
     }
     public function store(Request $request)
     {
