@@ -41,14 +41,18 @@
                 <div class="container-fluid" style="padding:0;">
                     <div class="row">
                         <div class="col-md-12">
-                                <h1 style="margin-top:0;">編號{{$com->Member_id}}消費者留的言</h1>
+                                <h1 style="margin-top:0;">{{$com->member_name}}留的言</h1>
                         </div>
                     </div>
                     <hr style="margin:10px 0;" />
                     <div class="row">
-                        <div class="col-md-12">
-                            {{ $com->content}}
-                        </div>
+                        <ul>
+                            <li>{{ $com->content}}
+                                <ul>
+                                    <li>你的回應：{{ $com->Store_comment}}</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                     <div class="row" style="margin-top:10px;">
                         <div class="col-md-12">
@@ -57,7 +61,7 @@
                     </div>
                     <div class="row" style="margin-top:10px;">
                         <div class="col-md-12">
-                            <a href="#" class="btn btn-xs btn-danger">刪除</a>
+                            <a href="{{route('comdestroy',$com->Member_id)}}" class="btn btn-xs btn-danger">刪除</a>
                         </div>
                     </div>
                 </div>
@@ -65,19 +69,16 @@
         </div>
         @endforeach
         @if(Auth::guard('store')->check())
-        <form action="/post/store" method="POST" role="form">
+        <form action="{{route('comstore')}}" method="POST" role="form">
             {{ csrf_field()}}
             <div class="form-group">
                 <label>內容</label>
-                <textarea name="Cmt_content" class="form-control" rows="5"></textarea>
-            </div>
-            <div class="form-group" style= display:none >
-                <textarea name="M_id" class="form-control" rows="0" value=Auth::user()->id></textarea>
+                <textarea name="content" class="form-control" rows="5"></textarea>
             </div>
             <label>請選擇要回復的消費者</label>
             <select name="Member_id">
-                @foreach($member_name as $member_name)
-                　<option value="{{$member_name->id}}">{{$member_name->name}}</option>
+                @foreach($iscomment as $iscomment)
+                　<option value="{{$iscomment->id}}">{{$iscomment->name}}</option>
                 @endforeach
             </select>
             <div class="text-right">
