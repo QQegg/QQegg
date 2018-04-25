@@ -149,13 +149,13 @@
                                 </tbody>
                             </table>
                             <nobr>
-                                <h2 class=" text-right & text-danger "><strong>合計:<span id="inner"></span> 元</strong></h2>
+                                <h2 class=" text-right & text-danger"  style="font-family:標楷體"><strong>總計:<span id="inner"></span></strong></h2>
                             </nobr>
-                            會員:{{$Member_id}}<br>
-                            至目前為止點數:{{$point}}<br>
-                            本次新增:<span id="add"></span><br>
-                            本次折抵:<span id="min"></span><br>
-                            累計點數:<span id="fin"></span><br>
+                            <h4   style="font-family:標楷體" >會員ID:{{$Member_id}}</h4>
+                            <h4   style="font-family:標楷體" >至目前為止點數:{{$point}}</h4>
+                            <h4   style="font-family:標楷體" > 本次新增:<span id="add"></span></h4>
+                            <h4   style="font-family:標楷體" > 本次折抵:<span id="min"></span></h4>
+                            <h4   style="font-family:標楷體" >累計點數:<span id="fin"></span></h4>
                         </div>
                         <div class="modal-footer">
                             <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
@@ -170,24 +170,59 @@
                                     <input style="display:none" class="form-control" id="disc" name="discount"/>
                                     <input class="form-horizontal" id="point" name="point" style="display:none"/>
                                 </div>
-                                <div class="container ">
-                                    <div class="col-md-12">
-                                        <h1> 結帳總金額:{{$price}}</h1>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary  & form-horizontal">下一筆</button>
+
+                                <button type="submit" class=" btn btn-info & center-block">列印明細</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <style>
+                body {font-family: Arial, Helvetica, sans-serif;}
+                /* Modal Header */
+                .modal-header {
+                    padding: 2px 16px;
+                    background-color: #5cb85c;
+                    color: white;
+                }
+
+
+            {{--<a href="{{route('salecreat')}}"><button type="submit" class="btn btn-success">下一筆</button></a>--}}
+
+                /* Modal Footer */
+                .modal-footer {
+                    padding: 2px 16px;
+                    background-color: #5cb85c;
+                    color: white;
+                }
+                /* Modal Content */
+                .modal-content {
+                    position: relative;
+                    background-color: #fefefe;
+                    margin: auto;
+                    padding: 0;
+                    border: 1px solid #888;
+                    width: 80%;
+                    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+                    animation-name: animatetop;
+                    animation-duration: 0.4s
+                }
+                /* Add Animation */
+                @keyframes animatetop {
+                    from {top: -300px; opacity: 0}
+                    to {top: 0; opacity: 1}
+                }
+            </style>
+
+
     </div>
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
         /* Modal Header */
         .modal-header {
             padding: 2px 16px;
-            background-color: #5cb85c;
+            background-color: #5bc0de;
             color: white;
         }
         /* Modal Body */
@@ -197,7 +232,7 @@
 /* Modal Footer */
         .modal-footer {
             padding: 2px 16px;
-            background-color: #5cb85c;
+            background-color: #FFFFFF;
             color: white;
         }
         /* Modal Content */
