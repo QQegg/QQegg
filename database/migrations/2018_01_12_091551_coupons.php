@@ -18,11 +18,11 @@ class Coupons extends Migration
             $table->integer('Store_id');
             $table->string('title');
             $table->string('content');
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
             $table->string('discount');
-            $table->string('lowestprice');
-            $table->string('picture');
+            $table->string('lowestprice')->nullable();
+            $table->string('picture')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
