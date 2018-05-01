@@ -93,7 +93,10 @@
                     積點 :
                     <input class="form-horizontal "  name="point" id="poi"  placeholder="此會員可用積點:{{$point}}"/>
                     <button  id="myBtn" type="submit" class="btn btn-primary">結帳</button>
+
+
                 </div>
+
             <!-- Trigger/Open The Modal -->
             <!-- The Modal -->
             <div id="myModal" class="modal">
