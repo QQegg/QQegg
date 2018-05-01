@@ -29,23 +29,6 @@
                     <tbody>
             @if($salelist!=null)
                 @foreach($salelist as $list)
-                    {{--<div class="column">--}}
-                    {{--<div class="col-md-12">--}}
-                        {{--商品名稱:{{$list->name}}--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="column">--}}
-                    {{--<div class="col-md-12">--}}
-                        {{--商品單價:--}}
-                        {{--{{$list->price}}--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="column">--}}
-                    {{--<div class="col-md-12">--}}
-                        {{--商品數量:--}}
-                        {{--{{$list->number}}--}}
-                    {{--</div>--}}
-                {{--</div>--}}
                     <tr>
                         <td>{{$list->name}}</td>
                         <td>{{$list->price}}</td>
@@ -79,7 +62,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary & form-horizontal">新增</button>
     </div>
-
             </form>
                 <div class="container ">
                     <h3   class="bg-info" style="font-family:標楷體  "><strong>使用折價券折扣或積點折抵</strong></h3>
@@ -94,89 +76,88 @@
                     <input class="form-horizontal "  name="point" id="poi"  placeholder="此會員可用積點:{{$point}}"/>
                     <button  id="myBtn" type="submit" class="btn btn-primary">結帳</button>
                 </div>
-            <!-- Trigger/Open The Modal -->
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <span class="close">&times;</span>
-                            <h2>交易明細</h2>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>名稱</th>
-                                    <th>單價</th>
-                                    <th>數量</th>
-                                    <th>金額</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if($salelist!=null)
-                                    @foreach($salelist as $list)
-                                        {{--<div class="column">--}}
-                                        {{--<div class="col-md-12">--}}
-                                        {{--商品名稱:{{$list->name}}--}}
-                                        {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="column">--}}
-                                        {{--<div class="col-md-12">--}}
-                                        {{--商品單價:--}}
-                                        {{--{{$list->price}}--}}
-                                        {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="column">--}}
-                                        {{--<div class="col-md-12">--}}
-                                        {{--商品數量:--}}
-                                        {{--{{$list->number}}--}}
-                                        {{--</div>--}}
-                                        {{--</div>--}}
-                                        <tr>
-                                            <td>{{$list->name}}</td>
-                                            <td>{{$list->price}}</td>
-                                            <td>{{$list->number}}</td>
-                                            <td>{{$list->total}}</td>
-                                        </tr>
-                                    @endforeach
-                                @else
-                                    <div class="col-md-12">
-                                        目前無商品列表
-                                    </div>
-                                @endif
-                                </tbody>
-                            </table>
-                            <nobr>
-                                <h2 class=" text-right & text-danger"  style="font-family:標楷體"><strong>總計:<span id="inner"></span></strong></h2>
-                            </nobr>
-                            <h4   style="font-family:標楷體" >會員ID:{{$Member_id}}</h4>
-                            <h4   style="font-family:標楷體" >至目前為止點數:{{$point}}</h4>
-                            <h4   style="font-family:標楷體" > 本次新增:<span id="add"></span></h4>
-                            <h4   style="font-family:標楷體" > 本次折抵:<span id="min"></span></h4>
-                            <h4   style="font-family:標楷體" >累計點數:<span id="fin"></span></h4>
-                        </div>
-                        <div class="modal-footer">
-                            <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
-                                {{ csrf_field() }}
-                                <div style="display:none">
-                                    <input class="form-control"  name="price" value="{{$saleinfo}}" />
-                                </div>
-                                <div style="display:none" >
-                                    <input class="form-control"  name="Member" value="{{$Member_id}}" />
-                                </div>
-                                <div class="container ">
-                                    <input style="display:none" class="form-control" id="disc" name="discount"/>
-                                    <input class="form-horizontal" id="point" name="point" style="display:none"/>
-                                </div>
+        <script type="text/javascript">
 
-                                <button type="submit" class=" btn btn-info & center-block">列印明細</button>
-                            </form>
+            function printDiv(divName) {
+
+                var printContents = document.getElementById(divName).innerHTML;
+                w=window.open();
+                w.document.write(printContents);
+                w.print();
+                w.close();
+            }</script>
+        <div id="print-content">
+            <form>
+                <div id="myModal" class="modal" >
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="close">&times;</span>
+                                <h2>交易明細</h2>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>名稱</th>
+                                        <th>單價</th>
+                                        <th>數量</th>
+                                        <th>金額</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if($salelist!=null)
+                                        @foreach($salelist as $list)
+                                            <tr>
+                                                <td>{{$list->name}}</td>
+                                                <td>{{$list->price}}</td>
+                                                <td>{{$list->number}}</td>
+                                                <td>{{$list->total}}</td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <div class="col-md-12">
+                                            目前無商品列表
+                                        </div>
+                                    @endif
+                                    </tbody>
+                                </table>
+                                <nobr>
+                                    <h2 class=" text-right & text-danger"  style="font-family:標楷體"><strong>總計:<span id="inner"></span></strong></h2>
+                                </nobr>
+                                <h4   style="font-family:標楷體" >會員ID:{{$Member_id}}</h4>
+                                <h4   style="font-family:標楷體" >至目前為止點數:{{$point}}</h4>
+                                <h4   style="font-family:標楷體" > 本次新增:<span id="add"></span></h4>
+                                <h4   style="font-family:標楷體" > 本次折抵:<span id="min"></span></h4>
+                                <h4   style="font-family:標楷體" >累計點數:<span id="fin"></span></h4>
+                            </div>
+                            <div class="modal-footer">
+                                <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
+                                    {{ csrf_field() }}
+                                    <div style="display:none">
+                                        <input class="form-control"  name="price" value="{{$saleinfo}}" />
+                                    </div>
+                                    <div style="display:none" >
+                                        <input class="form-control"  name="Member" value="{{$Member_id}}" />
+                                    </div>
+                                    <div class="container ">
+                                        <input style="display:none" class="form-control" id="disc" name="discount"/>
+                                        <input class="form-horizontal" id="point" name="point" style="display:none"/>
+                                    </div>
+                                    <button  type="submit" class=" btn btn-info & center-block" onclick="printDiv('print-content')">列印明細</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+            </form>
+        </div>
+
+            <!-- Trigger/Open The Modal -->
+            <!-- The Modal -->
+
 
             <style>
                 body {font-family: Arial, Helvetica, sans-serif;}

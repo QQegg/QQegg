@@ -14,6 +14,7 @@ Auth::routes();
 
 Route::get('/test','DATA@create');
 
+    Route::get('a/b', ['as' => 'user_change_profile', 'uses' => 'StoresController@a']);
 
 
 Route::get('/home', 'HomeController@index')->name('home');
