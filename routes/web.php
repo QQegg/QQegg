@@ -14,7 +14,9 @@ Auth::routes();
 
 Route::get('/test','DATA@create');
 
-
+Route::get('/999', function () {
+    return view('welcome');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','PostsController@showindex')->name('index');
