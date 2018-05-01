@@ -86,14 +86,15 @@
                 w.print();
                 w.close();
             }</script>
-        <div id="print-content">
-            <form>
+
                 <div id="myModal" class="modal" >
+
                     <!-- Modal content -->
                     <div class="modal-content">
                         <div class="modal-content">
+                            <div id="printModal"  >
                             <div class="modal-header">
-                                <span class="close">&times;</span>
+                                {{--<span class="close">x</span>--}}
                                 <h2>交易明細</h2>
                             </div>
                             <div class="modal-body">
@@ -132,6 +133,7 @@
                                 <h4   style="font-family:標楷體" > 本次折抵:<span id="min"></span></h4>
                                 <h4   style="font-family:標楷體" >累計點數:<span id="fin"></span></h4>
                             </div>
+                            </div>
                             <div class="modal-footer">
                                 <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
                                     {{ csrf_field() }}
@@ -144,16 +146,17 @@
                                     <div class="container ">
                                         <input style="display:none" class="form-control" id="disc" name="discount"/>
                                         <input class="form-horizontal" id="point" name="point" style="display:none"/>
+                                        <button  type="submit" class=" btn btn-info & center-block" onclick="printDiv('printModal')">列印明細</button>
                                     </div>
-                                    <button  type="submit" class=" btn btn-info & center-block" onclick="printDiv('print-content')">列印明細</button>
                                 </form>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
 
-            </form>
-        </div>
+
 
             <!-- Trigger/Open The Modal -->
             <!-- The Modal -->
