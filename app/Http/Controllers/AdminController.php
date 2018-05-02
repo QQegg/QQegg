@@ -32,6 +32,21 @@ class AdminController extends Controller
         $accounts=Store::all();
         return view('admin.admin-store',compact('accounts'));
     }
+    public function create(){
+        return view('admin.admin-store-account');
+    }
+    public function store(Request $request)
+    {
+        Store::create([
+            'name' => $request['name'],
+            'contact' => $request['contact'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+            'phone' => $request['phone'],
+            'address' => $request['address'],
+        ]);
+        return back()->with('success','新增成功 !');
+    }
     public function update($id)
     {
         $fix = Store::find($id);

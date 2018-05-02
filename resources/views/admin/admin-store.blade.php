@@ -14,6 +14,13 @@
                 @elseif(session('error'))
                     <div class="alert alert-danger">{{session('error')}}</div>
                 @endif
+
+                <form action="{{route('admin.create')}}">
+                    <div style="position: relative;" >
+                        <button style="float: right" class="btn btn-info" >+新增店家</button>
+                    </div>
+                </form>
+
                 <div class="panel panel-default">
                     <div class="panel-heading" style="text-align:center;color: white;" ><h3>店家詳細列表<br><small>Detailed list of stores</small></h3></div>
                     {{--<div class="panel-heading">{{ Auth::guard('admin')->user()->account}}管理者，您正在管理頁面</div>--}}
