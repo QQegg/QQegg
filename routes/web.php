@@ -14,6 +14,7 @@ Auth::routes();
 
 Route::get('/test','DATA@create');
 
+    Route::get('a/b', ['as' => 'user_change_profile', 'uses' => 'StoresController@a']);
 
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -53,6 +54,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/view/{id}',['as'=>'admin.admin-store-view','uses'=>'AdminController@view']);
     Route::patch('/update/{id}',['as'=>'admin_store_change_password','uses'=>'AdminController@change_password']);
     Route::delete('/delete/{id}',['as'=>'admin.destroy','uses'=>'AdminController@destroy']);
+    Route::get('/create',['as'=>'admin.create','uses'=>'AdminController@create']);
+    Route::post('/store',['as'=>'admin_store_account','uses'=>'AdminController@store']);
+
 });
 
 Route::get('/appconnecttest','NotificationsController@test');

@@ -11,12 +11,13 @@ use App\Coupon;
 use App\User;
 class DATA extends Controller
 {
+
     public function create()
     {
         Admin::create([
-            'account' => "skill573",
-            'email'=>'skill573@gmail.com',
-            'password'=>Hash::make('skill573')
+            'account' => "sh980932",
+            'email'=>'mimi@gmail.com',
+            'password'=>Hash::make('123456')
             ]);
         Store::create([
                 'email' =>'test1@gmail.com',
@@ -24,7 +25,7 @@ class DATA extends Controller
                 'contact' => '小王',
                 'phone' => '0988045436',
                 'address' => '台中市',
-                'password'=>Hash::make('wwwwww'),
+                'password'=>Hash::make('123456'),
                 'title'=>'test1',
             ]);
         Store::create([
@@ -33,9 +34,39 @@ class DATA extends Controller
                 'contact' => '小李',
                 'phone' => '0785155622',
                 'address' => '台中市',
-                'password'=>Hash::make('wwwwww'),
+                'password'=>Hash::make('123456'),
                 'title'=>'test2',
             ]);
+        User::create([
+        'name' => '我愛貓咪',
+        'account' => 'sh980932',
+        'email' =>'mimi@gmail.com',
+        'password'=>Hash::make('123456'),
+        'point' => '500',
+        'birthday' => '19970730',
+        'phone' => '0988045436',
+
+    ]);
+        User::create([
+            'name' => '貓咪好可愛',
+            'account' => 'sh980933',
+            'email' =>'gigi@gmail.com',
+            'password'=>Hash::make('123456'),
+            'point' => '500',
+            'birthday' => '19970730',
+            'phone' => '0988045436',
+
+        ]);
+        User::create([
+            'name' => '貓咪咪咪',
+            'account' => 'sh980934',
+            'email' =>'nini@gmail.com',
+            'password'=>Hash::make('123456'),
+            'point' => '500',
+            'birthday' => '19970730',
+            'phone' => '0988045436',
+
+        ]);
         Category::create([
            'store_id'=>'1',
            'name'=>'筆'
