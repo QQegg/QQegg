@@ -1,7 +1,7 @@
 {{--@include('layouts.store_app')--}}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
     <meta charset="utf-8">
     <title>Sailor - Bootstrap 3 corporate template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,9 +25,9 @@
     Author URL: https://bootstrapmade.com
     ======================================================= -->
 
-</head>
 
-<body>
+
+<body style="background: #FFFFFF">
 
 <div id="wrapper">
     <!-- start header -->
@@ -52,7 +52,6 @@
                             <img src="img/logo2.png" alt="" width="150" height="150" style="float:left;margin:5pt"  />
                             <h1 style="position: absolute; left:400pt ;top:20pt">資訊推播商圈</h1>
                         </nobr>
-
                     </a>
                 </div>
                 @if(Auth::guard('store')->check())

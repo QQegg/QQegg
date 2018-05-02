@@ -74,6 +74,17 @@ Route::group(['middleware'=>'auth:store'], function() {
 
 });
 
+Route::group(['middleware'=>'auth:admin'], function() {
+    Route::group(['prefix' => 'post'], function() {
+        Route::get('/',['as'=>'postlist','uses'=>'PostsController@index']);
+        Route::post('/store',['as' => 'poststore' ,'uses'=>'PostsController@store']);
+        Route::get('/edit/{id}',['as'=>'postedit','uses'=>'PostsController@edit']);
+        Route::post('/update/{id}',['as'=>'postupdate','uses'=>'PostsController@update']);
+        Route::get('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
+    }
+    );
+});
+
 Route::group(['prefix' => 'sale'], function() {
     Route::get('/creat',['as'=>'salecreat','uses'=>'TransactionsController@readycheck']);
     Route::post('/costomer',['as' => 'costomersave' ,'uses'=>'TransactionsController@cotomer']);
@@ -154,11 +165,3 @@ Route::group(['prefix' => 'comment'], function() {
     Route::get('/destroy/{id}',['as'=>'comdestroy','uses'=>'CommentsController@destroy']);
 });
 /*完工*/
-Route::group(['prefix' => 'post'], function() {
-    Route::get('/',['as'=>'postlist','uses'=>'PostsController@index']);
-    Route::post('/store',['as' => 'poststore' ,'uses'=>'PostsController@store']);
-    Route::get('/edit/{id}',['as'=>'postedit','uses'=>'PostsController@edit']);
-    Route::post('/update/{id}',['as'=>'postupdate','uses'=>'PostsController@update']);
-    Route::get('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
-}
-);
