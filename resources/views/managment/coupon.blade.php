@@ -17,6 +17,7 @@
 </div>
 
 <div class="container">
+
     <h2  class="text-center & text-success" ><strong>折價券管理</strong></h2>
     <hr class="colorgraph">
     <table class="table">
@@ -57,6 +58,8 @@
         </tbody>
     </table>
 </div>
+
+
 
 </body>
 </html>
