@@ -14,26 +14,26 @@ class DATA extends Controller
     public function create()
     {
         Admin::create([
-            'account' => "skill573",
-            'email'=>'skill573@gmail.com',
-            'password'=>Hash::make('skill573')
+            'account' => "sh980932",
+            'email'=>'mimi@gmail.com',
+            'password'=>Hash::make('123456')
             ]);
         Store::create([
-                'email' =>'test1@gmail.com',
-                'name' => '文具店',
+                'email' =>'mimi@gmail.com',
+                'name' => '咪咪寵物店',
                 'contact' => '小王',
                 'phone' => '0988045436',
                 'address' => '台中市',
-                'password'=>Hash::make('wwwwww'),
+                'password'=>Hash::make('123456'),
                 'title'=>'test1',
             ]);
         Store::create([
-                'email' =>'test2@gmail.com',
+                'email' =>'gigi@gmail.com',
                 'name' => '零食店',
                 'contact' => '小李',
                 'phone' => '0785155622',
                 'address' => '台中市',
-                'password'=>Hash::make('wwwwww'),
+                'password'=>Hash::make('123456'),
                 'title'=>'test2',
             ]);
         Category::create([
@@ -97,28 +97,28 @@ class DATA extends Controller
             'discount'=>'0.75',
         ]);
         User::create([
-            'name'=>'user1',
+            'name'=>'咪咪',
             'account'=>'test1',
-            'password'=>Hash::make('skill573'),
+            'password'=>Hash::make('123456'),
             'point'=>'500',
             'phone'=>'012345679',
-            'email'=>'test1@gmail.com',
+            'email'=>'mimi@gmail.com',
         ]);
         User::create([
-            'name'=>'user2',
+            'name'=>'多多',
             'account'=>'test2',
-            'password'=>Hash::make('skill573'),
+            'password'=>Hash::make('123456'),
             'point'=>'500',
             'phone'=>'012345679',
-            'email'=>'test2@gmail.com',
+            'email'=>'gigi@gmail.com',
         ]);
         User::create([
-            'name'=>'user3',
+            'name'=>'胖子',
             'account'=>'test3',
-            'password'=>Hash::make('skill573'),
+            'password'=>Hash::make('123456'),
             'point'=>'500',
             'phone'=>'012345679',
-            'email'=>'test3@gmail.com',
+            'email'=>'nini@gmail.com',
         ]);
         User::create([
             'name'=>'user4',
