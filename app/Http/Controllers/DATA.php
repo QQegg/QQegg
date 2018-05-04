@@ -11,6 +11,7 @@ use App\Coupon;
 use App\User;
 class DATA extends Controller
 {
+
     public function create()
     {
         Admin::create([
@@ -36,6 +37,36 @@ class DATA extends Controller
                 'password'=>Hash::make('123456'),
                 'title'=>'test2',
             ]);
+        User::create([
+        'name' => '我愛貓咪',
+        'account' => 'sh980932',
+        'email' =>'mimi@gmail.com',
+        'password'=>Hash::make('123456'),
+        'point' => '500',
+        'birthday' => '19970730',
+        'phone' => '0988045436',
+
+    ]);
+        User::create([
+            'name' => '貓咪好可愛',
+            'account' => 'sh980933',
+            'email' =>'gigi@gmail.com',
+            'password'=>Hash::make('123456'),
+            'point' => '500',
+            'birthday' => '19970730',
+            'phone' => '0988045436',
+
+        ]);
+        User::create([
+            'name' => '貓咪咪咪',
+            'account' => 'sh980934',
+            'email' =>'nini@gmail.com',
+            'password'=>Hash::make('123456'),
+            'point' => '500',
+            'birthday' => '19970730',
+            'phone' => '0988045436',
+
+        ]);
         Category::create([
            'store_id'=>'1',
            'name'=>'筆'

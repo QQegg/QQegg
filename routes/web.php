@@ -14,9 +14,14 @@ Auth::routes();
 
 Route::get('/test','DATA@create');
 
+<<<<<<< HEAD
 Route::get('/999', function () {
     return view('welcome');
 });
+=======
+    Route::get('a/b', ['as' => 'user_change_profile', 'uses' => 'StoresController@a']);
+
+>>>>>>> origin/master
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','PostsController@showindex')->name('index');
@@ -55,6 +60,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/view/{id}',['as'=>'admin.admin-store-view','uses'=>'AdminController@view']);
     Route::patch('/update/{id}',['as'=>'admin_store_change_password','uses'=>'AdminController@change_password']);
     Route::delete('/delete/{id}',['as'=>'admin.destroy','uses'=>'AdminController@destroy']);
+    Route::get('/create',['as'=>'admin.create','uses'=>'AdminController@create']);
+    Route::post('/store',['as'=>'admin_store_account','uses'=>'AdminController@store']);
+
 });
 
 Route::get('/appconnecttest','NotificationsController@test');
@@ -74,6 +82,17 @@ Route::group(['middleware'=>'auth:store'], function() {
 
 
 
+});
+
+Route::group(['middleware'=>'auth:admin'], function() {
+    Route::group(['prefix' => 'post'], function() {
+        Route::get('/',['as'=>'postlist','uses'=>'PostsController@index']);
+        Route::post('/store',['as' => 'poststore' ,'uses'=>'PostsController@store']);
+        Route::get('/edit/{id}',['as'=>'postedit','uses'=>'PostsController@edit']);
+        Route::post('/update/{id}',['as'=>'postupdate','uses'=>'PostsController@update']);
+        Route::get('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
+    }
+    );
 });
 
 Route::group(['prefix' => 'sale'], function() {
@@ -156,11 +175,3 @@ Route::group(['prefix' => 'comment'], function() {
     Route::get('/destroy/{id}',['as'=>'comdestroy','uses'=>'CommentsController@destroy']);
 });
 /*完工*/
-Route::group(['prefix' => 'post'], function() {
-    Route::get('/',['as'=>'postlist','uses'=>'PostsController@index']);
-    Route::post('/store',['as' => 'poststore' ,'uses'=>'PostsController@store']);
-    Route::get('/edit/{id}',['as'=>'postedit','uses'=>'PostsController@edit']);
-    Route::post('/update/{id}',['as'=>'postupdate','uses'=>'PostsController@update']);
-    Route::get('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
-}
-);

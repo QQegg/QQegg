@@ -8,6 +8,7 @@
             @foreach($product as $product)
             <div class="col-lg-3">
                 <h1 class="my-4">商品資訊</h1>
+                <h2 class="my-4">{{$product->name}}</h2>
                 <img src="{{url('../storage/product/'. $product->picture)}}"  style="border:2px green dashed;">
                 <div class="list-group">
                     <h3 class="my-4">商品類別：

@@ -19,14 +19,13 @@ class ProductsController extends Controller
     {
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
         $product = Product::all()->where('store_id', $store['0']);
-        return view('product.productlist', compact('product'));
+        $category = Category::all()->where('Store_id',$store['0']);
+        return view('product.productlist', compact('product','category'));
     }
 
     public function create()
     {
-        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
-        $category = Category::all()->where('Store_id',$store['0']);
-        return view('product.productcreate',compact('category'));
+
     }
 
 
@@ -76,7 +75,7 @@ class ProductsController extends Controller
                 'picture' => $file_name,
             ]);
         }
-        return redirect()->route('procreate');
+        return redirect()->route('prolist');
     }
 
     public function edit($id)

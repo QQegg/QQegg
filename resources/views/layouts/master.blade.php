@@ -1,7 +1,7 @@
 {{--@include('layouts.store_app')--}}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
     <meta charset="utf-8">
     <title>Sailor - Bootstrap 3 corporate template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,9 +25,9 @@
     Author URL: https://bootstrapmade.com
     ======================================================= -->
 
-</head>
 
-<body>
+
+<body style="background: #FFFFFF">
 
 <div id="wrapper">
     <!-- start header -->
@@ -52,7 +52,6 @@
                             <img src="img/logo2.png" alt="" width="150" height="150" style="float:left;margin:5pt"  />
                             <h1 style="position: absolute; left:400pt ;top:20pt">資訊推播商圈</h1>
                         </nobr>
-
                     </a>
                 </div>
                 @if(Auth::guard('store')->check())
@@ -89,7 +88,19 @@
                     <div class="navbar-collapse collapse ">
                         <ul class="nav navbar-nav">
                             <li font-size="15"><a href="{{route('postlist')}}">公告</a></li>
-                            <li><a href="{{route('admin.index')}}">管理店家</a></li>
+                            <li class="dropdown">
+                                <a href="{{route('admin.index')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">管理店家</a>
+                                <span class="caret"></span>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{route('admin.index')}}">店家詳細列表</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('admin.create')}}">新增店家</a>
+                                    </li>
+
+                                </ul>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                    您好！ <strong>{{ Auth::guard('admin')->user()->account}}</strong> 管理者   <span class="caret"></span>

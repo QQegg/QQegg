@@ -15,12 +15,12 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('contact');
+            $table->string('name')->nullable();
+            $table->string('contact')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('phone');
-            $table->string('address');
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
             $table->string('picture')->nullable();
             $table->boolean('right')->default(0);
 
