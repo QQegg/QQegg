@@ -23,6 +23,7 @@ class Coupons extends Migration
             $table->string('discount');
             $table->string('lowestprice')->nullable();
             $table->string('picture')->nullable();
+            $table->integer('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
