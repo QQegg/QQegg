@@ -120,7 +120,7 @@ Route::group(['prefix' => 'push'], function() {
     Route::get('/edit/{id}',['as'=>'pushedit','uses'=>'PushsController@edit']);
     Route::get('/view/{id}',['as'=>'pushview','uses'=>'PushsController@view']);
     Route::patch('/update/{id}',['as'=>'pushupdate','uses'=>'PushsController@update']);
-    Route::delete('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
+    Route::get('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
     Route::get('/change/{id}',['as'=>'pushchange','uses'=>'PushsController@changestatue']);
 });
 Route::group(['prefix' => 'coupon'], function() {
