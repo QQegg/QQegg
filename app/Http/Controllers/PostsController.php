@@ -48,5 +48,10 @@ class PostsController extends Controller //公告管理
         return view('index.index',compact('posts'));
     }
 
+    public function showpost($id)
+    {
+        $posts = Post::all()->where('id',$id);
+        return view('postcontent',compact('posts'));
+    }
     
 }

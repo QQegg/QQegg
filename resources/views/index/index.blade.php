@@ -19,8 +19,8 @@
 								</p>
 							@endif
 							@foreach($posts as $posts)
-								<a href="#"
-								   class="list-group-item">{{$posts->title}}
+								<a href="{{route('postcontent',$posts->id)}}" class="list-group-item">
+									{{$posts->title}}
                                     <?php
                                      $str_sec = explode(" ",$posts->created_at);
                                     ?>

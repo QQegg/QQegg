@@ -19,6 +19,7 @@ Route::get('/test','DATA@create');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','PostsController@showindex')->name('index');
+Route::get('/postcontent/{id}',['as' => 'postcontent', 'uses' => 'PostsController@showpost']);
 
 Route::prefix('user')->group(function () {
     Route::get('change/profile', ['as' => 'user_change_profile', 'uses' => 'UserChangeMemberController@profile']);
