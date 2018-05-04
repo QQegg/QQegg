@@ -159,6 +159,7 @@
                             <h4   style="font-family:標楷體" > 本次新增:<span id="add"></span></h4>
                             <h4   style="font-family:標楷體" > 本次折抵:<span id="min"></span></h4>
                             <h4   style="font-family:標楷體" >累計點數:<span id="fin"></span></h4>
+
                         </div>
                         <div class="modal-footer">
                             <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >

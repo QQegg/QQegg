@@ -23,7 +23,9 @@
             <th>選項</th>
             <th>日期及時間</th>
             <th>推播訊息名稱</th>
+            <th>狀態</th>
             <th>功能</th>
+            <th>推播</th>
         </tr>
         </thead>
         <tbody>
@@ -32,20 +34,17 @@
                 <td><input type="checkbox" name="option" ></td>
                 <td>{{$push->datetime}}</td>
                 <td>{{$push->title}}</td>
-                <td>
-                    <form action="{{ route('pushdestroy', $push->id) }}" method="POST">
-                        <a>{{$push->statue}}</a>
-                        <a href="{{route('pushchange',$push->id)}}" class="text-success"><strong>更改推播狀態</strong></a>
-                        /
-                        <a href="{{route('pushview',$push->id)}}" class="text-success"><strong>詳細</strong></a>
-                        /
-                        <a href="{{route('pushedit',$push->id)}}"  class="text-warning"><strong>編輯</strong></a>
-                        /
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <button class=" btn-link"><strong>刪除</strong></button>
-                    </form>
+                <td><a class="text-danger"><strong>{{$push->statue}}</strong></a></td>
+                <td >
+                    <button class="btn btn-success "><a href="{{route('pushview',$push->id)}}" style="color: white" ><strong>詳細</strong></a></button>
+                    <button class="btn btn-warning "><a href="{{route('pushedit',$push->id)}}" style="color: white" ><strong>編輯</strong></a></button>
+                        {{--<form action="{{ route('pushdestroy', $push->id) }}" method="POST">--}}
+                            {{--{{ csrf_field() }}--}}
+                            {{--{{ method_field('DELETE') }}--}}
+                    <button  class=" btn btn-danger "><a href="{{route('pushdestroy',$push->id)}}" style="color: white"><strong>刪除</strong></a></button>
+                        {{--</form>--}}
                 </td>
+                <td><button class="btn btn-primary "><a href="{{route('pushchange',$push->id)}}" style="color:white" ><strong>更改推播狀態</strong></a></button></td>
             </tr>
         @endforeach
         </tbody>

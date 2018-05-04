@@ -78,7 +78,11 @@
             @endif
 
 
-           
+                <div class="visible-print text-center">
+                    {!! QrCode::size(100)->geo(37.822214, -122.481769); !!}
+
+                    <p>Scan me to return to the original page.</p>
+                </div>
 
             <div class="content">
                 <div class="title m-b-md">
