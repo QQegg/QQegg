@@ -9,11 +9,57 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="navbar-collapse collapse ">
-    <ul class="nav navbar-nav">
-        <li><a href='{{ route('pushcreate') }}' >新增推播訊息</a></li>
-    </ul>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="container-fluid" style="padding:0;">
+            <div style="position: relative;">
+                <button style="float: right" class="btn btn-info" data-toggle="modal" data-target="#createproduct">+新增推播訊息</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="modal fade" id="createproduct" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">×</button>
+                <h2 class="modal-title & text-center & text-info"><strong>新增推播訊息</strong></h2>
+
+            </div>
+            <form action="{{route('pushstore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()">
+                {{ csrf_field() }}
+                <div class="modal-body">
+
+
+                <div class="form-group">
+                    <label>標題</label>
+                    <textarea name="title" class="form-control" rows="1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>內容</label>
+                    <textarea name="content" class="form-control" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>日期及時間</label>
+                    <input type="datetime-local" name="datetime" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label>上傳圖片</label>
+                    <input type="file"  class="form-control " name="picture" id="picture" >
+                </div>
+                </div>
+                <div class="modal-footer">
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary ">新增</button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <h2  class="text-center & text-success" ><strong>推播訊息管理</strong></h2>
     <hr class="colorgraph">
