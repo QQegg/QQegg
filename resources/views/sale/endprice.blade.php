@@ -1,4 +1,4 @@
-@extends('product.layout.master')
+@extends('layouts.master')
 @section('title','結算')
 @section('content')
     <div class="col-md-12">

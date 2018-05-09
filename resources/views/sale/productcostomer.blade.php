@@ -1,4 +1,4 @@
-@extends('product.layout.master')
+@extends('layouts.master')
 @section('title','消費者ID')
 @section('content')
 
