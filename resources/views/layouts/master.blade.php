@@ -57,9 +57,24 @@
                 @if(Auth::guard('store')->check())
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <li font-size="15"><a href="{{route('prolist')}}">商品管理</a></li>
+                        {{--<li font-size="15"><a href="{{route('prolist')}}">商品管理</a></li>--}}
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                             商品管理  <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{route('prolist')}}">商品管理</a>
+                                    <a href="{{route('catelist')}}">商品類別管理</a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li><a href="{{route('pushlist')}}">促銷訊息管理</a></li>
-                        <li><a href="{{route('coulist')}}">折價券</a></li>
+                        <li><a href="{{route('coulist')}}">折價券管理</a></li>
+                        <li><a href="{{route('salecreat')}}">結帳</a></li>
                         <li><a href="#">交易紀錄</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
