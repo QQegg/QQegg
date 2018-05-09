@@ -78,14 +78,7 @@
 
 
                 </div>
-<<<<<<< HEAD
 
-            <!-- Trigger/Open The Modal -->
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-=======
         <script type="text/javascript">
 
             function printDiv(divName) {
@@ -100,7 +93,7 @@
                 <div id="myModal" class="modal" >
 
                     <!-- Modal content -->
->>>>>>> origin/master
+
                     <div class="modal-content">
                         <div class="modal-content">
                             <div id="printModal"  >
@@ -151,37 +144,7 @@
                                     <div style="display:none">
                                         <input class="form-control"  name="price" value="{{$saleinfo}}" />
                                     </div>
-<<<<<<< HEAD
-                                @endif
-                                </tbody>
-                            </table>
-                            <nobr>
-                                <h2 class=" text-right & text-danger"  style="font-family:標楷體"><strong>總計:<span id="inner"></span></strong></h2>
-                            </nobr>
-                            <h4   style="font-family:標楷體" >會員ID:{{$Member_id}}</h4>
-                            <h4   style="font-family:標楷體" >至目前為止點數:{{$point}}</h4>
-                            <h4   style="font-family:標楷體" > 本次新增:<span id="add"></span></h4>
-                            <h4   style="font-family:標楷體" > 本次折抵:<span id="min"></span></h4>
-                            <h4   style="font-family:標楷體" >累計點數:<span id="fin"></span></h4>
 
-                        </div>
-                        <div class="modal-footer">
-                            <form action="{{route('salestore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
-                                {{ csrf_field() }}
-                                <div style="display:none">
-                                    <input class="form-control"  name="price" value="{{$saleinfo}}" />
-                                </div>
-                                <div style="display:none" >
-                                    <input class="form-control"  name="Member" value="{{$Member_id}}" />
-                                </div>
-                                <div class="container ">
-                                    <input style="display:none" class="form-control" id="disc" name="discount"/>
-                                    <input class="form-horizontal" id="point" name="point" style="display:none"/>
-                                </div>
-
-                                <button type="submit" class=" btn btn-info & center-block">列印明細</button>
-                            </form>
-=======
                                     <div style="display:none" >
                                         <input class="form-control"  name="Member" value="{{$Member_id}}" />
                                     </div>
@@ -192,7 +155,7 @@
                                     </div>
                                 </form>
                             </div>
->>>>>>> origin/master
+
                         </div>
                     </div>
 
