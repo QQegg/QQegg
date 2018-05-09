@@ -13,6 +13,7 @@ class CouponsController extends Controller
     {
         $store = Store::all()->where('email' ,  Auth::guard('store')->user()->email)->pluck('id');
         $coupons=Coupon::all()->where('Store_id', $store['0']);
+
         return view('managment.coupon',compact('coupons'));
     }
 
@@ -108,4 +109,21 @@ class CouponsController extends Controller
         Coupon::destroy($id);
         return redirect()->route('coulist');
     }
+
+    public function changestatus($id){
+        $coupon=Coupon::all()->where('id',$id)->first();
+        if($coupon['status']==0){
+            $coupon->update([
+                'status'=>1
+            ]);
+
+        }
+        else{
+            $coupon->update([
+                'status'=>0
+            ]);
+        }
+        return redirect()->route('coulist');
+    }
+
 }
