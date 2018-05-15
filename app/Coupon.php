@@ -17,6 +17,6 @@ class Coupon extends Model
         'end',
         'discount',
         'lowestprice',
-        'picture'
-
+        'picture',
+        'status'
     ];}

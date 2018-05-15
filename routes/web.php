@@ -14,6 +14,9 @@ Auth::routes();
 
 Route::get('/test','DATA@create');
 
+Route::get('/999', function () {
+    return view('welcome');
+});
     Route::get('a/b', ['as' => 'user_change_profile', 'uses' => 'StoresController@a']);
 
 
@@ -134,7 +137,7 @@ Route::group(['prefix' => 'push'], function() {
     Route::get('/edit/{id}',['as'=>'pushedit','uses'=>'PushsController@edit']);
     Route::get('/view/{id}',['as'=>'pushview','uses'=>'PushsController@view']);
     Route::patch('/update/{id}',['as'=>'pushupdate','uses'=>'PushsController@update']);
-    Route::delete('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
+    Route::get('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
     Route::get('/change/{id}',['as'=>'pushchange','uses'=>'PushsController@changestatue']);
 });
 Route::group(['prefix' => 'coupon'], function() {
@@ -144,7 +147,8 @@ Route::group(['prefix' => 'coupon'], function() {
     Route::get('/edit/{id}',['as'=>'couedit','uses'=>'CouponsController@edit']);
     Route::get('/view/{id}',['as'=>'couview','uses'=>'CouponsController@view']);
     Route::patch('/update/{id}',['as'=>'couupdate','uses'=>'CouponsController@update']);
-    Route::delete('/destroy/{id}',['as'=>'coudestroy','uses'=>'CouponsController@destroy']);
+    Route::get('/destroy/{id}',['as'=>'coudestroy','uses'=>'CouponsController@destroy']);
+    Route::get('/change/{id}',['as'=>'couponchange','uses'=>'CouponsController@changestatus']);
 });
 Route::group(['prefix' => 'evaluation'], function() {
     Route::get('/',['as'=>'evalist','uses'=>'EvaluationsController@index']);

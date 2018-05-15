@@ -8,8 +8,10 @@
         <h3 class="bg-info"   style="font-family:標楷體  "><strong>會員輸入</strong></h3>
         <input name="Member_id" class="form-horizontal" placeholder="請輸入會員" autofocus>
         <button type="submit" class="btn btn-primary &  form-horizontal">確認</button>
+
     </div>
 
 
     </form>
+
 @endsection

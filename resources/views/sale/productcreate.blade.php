@@ -75,7 +75,10 @@
                     積點 :
                     <input class="form-horizontal "  name="point" id="poi"  placeholder="此會員可用積點:{{$point}}"/>
                     <button  id="myBtn" type="submit" class="btn btn-primary">結帳</button>
+
+
                 </div>
+
         <script type="text/javascript">
 
             function printDiv(divName) {
@@ -90,6 +93,7 @@
                 <div id="myModal" class="modal" >
 
                     <!-- Modal content -->
+
                     <div class="modal-content">
                         <div class="modal-content">
                             <div id="printModal"  >
@@ -140,6 +144,7 @@
                                     <div style="display:none">
                                         <input class="form-control"  name="price" value="{{$saleinfo}}" />
                                     </div>
+
                                     <div style="display:none" >
                                         <input class="form-control"  name="Member" value="{{$Member_id}}" />
                                     </div>
@@ -150,6 +155,7 @@
                                     </div>
                                 </form>
                             </div>
+
                         </div>
                     </div>
 

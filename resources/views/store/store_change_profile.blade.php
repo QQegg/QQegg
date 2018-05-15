@@ -89,6 +89,7 @@
                                 <img src="{{url('../storage/store/'. $store_picture->picture)}}" width="300px" height="200px" style="border:2px green dashed;">
                             @endforeach
                             </div>
+
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
