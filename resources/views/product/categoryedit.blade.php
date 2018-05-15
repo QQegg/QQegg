@@ -1,7 +1,9 @@
 @extends('layouts.master')
 @section('title','書籍觀看')
 @section('content')
-    <div class='container-fluid'>
+    <div class="container">
+        <h2  class="text-center & text-success" ><strong>商品類別修改</strong></h2>
+        <hr class="colorgraph">
         <script>
             function ConfirmCreate()
             {

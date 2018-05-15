@@ -2,12 +2,11 @@
 @section('title','書籍觀看')
 @section('content')
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="container-fluid" style="padding:0;">
+    <div class="container">
+        <h2  class="text-center & text-success" ><strong>商品詳細資訊</strong></h2>
+        <hr class="colorgraph">
             @foreach($product as $product)
             <div class="col-lg-3">
-                <h1 class="my-4">商品資訊</h1>
                 <h2 class="my-4">{{$product->name}}</h2>
                 <img src="{{url('../storage/product/'. $product->picture)}}"  style="border:2px green dashed;">
                 <div class="list-group">
@@ -27,8 +26,6 @@
                 </div>
             </div>
             @endforeach
-        </div>
     </div>
-</div>
 
 @endsection

@@ -1,12 +1,15 @@
 @extends('layouts.master')
 @section('title','書籍觀看')
 @section('content')
-    @if(count($product) == 0)
-        <p class="text-center">
-            沒有任何商品
-        </p>
-    @endif
-
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="container-fluid" style="padding:0;">
@@ -76,31 +79,33 @@
         </div>
     </div>
 
-    @foreach($product as $product)
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="container-fluid" style="padding:0;">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 style="margin-top:0;"></h1>
-                </div>
-            </div>
-            <img src="{{url('../storage/product/'. $product->picture)}}" style="border:2px green dashed;">
-            <div class="row">
-                <div class="col-md-12">
-                    <font size=5>商品名稱:{{$product->name}}</font>
-                </div>
-            </div>
-            <hr style="margin:10px 0;" />
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <form class="delete" action="{{ route('prodestroy', $product->id) }}"method="POST" onsubmit="return ConfirmDelete()">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                    <input type="submit" class="btn btn-xs btn-danger" value="產品下架">
-                    <a href="{{route('prodetail',$product->id)}}" class="btn btn-xs btn-danger">觀看產品詳細資訊</a>
-                </form>
-            </div>
-            <hr style="margin:10px 0;" />
+    <div class="container">
+        <h2  class="text-center & text-success" ><strong>商品管理</strong></h2>
+        <hr class="colorgraph">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>圖片</th>
+                <th>商品名稱</th>
+                <th>管理</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($product as $product)
+                <tr>
+                    <td><img src="{{url('../storage/product/'. $product->picture)}}" width="200" height="200" style="border:2px green dashed;"></td>
+                    <td><h4>{{$product->name}}</h4></td>
+                    <td>
+                        <form class="delete" action="{{ route('prodestroy', $product->id) }}"method="POST" onsubmit="return ConfirmDelete()">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                            <input type="submit" class="btn btn-danger" value="產品下架">
+                            <a href="{{route('prodetail',$product->id)}}" class="btn btn-success">觀看產品詳細資訊</a>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
             <script>
                 function ConfirmDelete()
                 {
@@ -122,8 +127,12 @@
                         return false;
                 }
             </script>
-        </div>
+        </table>
+        @if(count($product) == 0)
+            <p class="text-center">
+                沒有任何商品
+            </p>
+        @endif
     </div>
-</div>
-    @endforeach
+    </body>
 @endsection
