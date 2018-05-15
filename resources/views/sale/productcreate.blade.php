@@ -1,4 +1,4 @@
-﻿@extends('product.layout.master')
+﻿@extends('layouts.master')
 @section('title','結帳')
 @section('content')
     <div class='container-fluid'>

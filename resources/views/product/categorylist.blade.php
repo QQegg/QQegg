@@ -1,4 +1,4 @@
-@extends('product.layout.master')
+@extends('layouts.master')
 @section('title','書籍觀看')
 @section('content')
     @if(count($category) == 0)
