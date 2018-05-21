@@ -35,9 +35,6 @@
             <form action="{{route('coustore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()">
                 {{ csrf_field() }}
                 <div class="modal-body">
-
-
-
                 <div class="form-group">
                     <label>標題</label>
                     <textarea name="title" class="form-control" rows="1"></textarea>
