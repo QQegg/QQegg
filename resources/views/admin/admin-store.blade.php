@@ -1,6 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
     <div class="container">
         <ol class="breadcrumb breadco">
             <li class="fa fa-home"><a href="{{route('index')}}"> Home</a></li>
@@ -15,14 +24,80 @@
                     <div class="alert alert-danger">{{session('error')}}</div>
                 @endif
 
-                <form action="{{route('admin.create')}}">
-                    <div style="position: relative;" >
-                        <button style="float: right" class="btn btn-info" >+新增店家</button>
+                    <div style="position: relative;">
+                        <button style="float: right" class="btn btn-info" data-toggle="modal" data-target="#CreateAccount">+新增店家帳號</button>
                     </div>
-                </form>
 
+                    <div class="modal fade" id="CreateAccount" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title & text-center & text-info">新增店家帳號</h4>
+                                    <button class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <form action="{{route('admin_store_account')}}" id="form" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
+                                    {{ csrf_field() }}
+                                    <div class="modal-body">
+                                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                            <label for="name" class="col-md-4 control-label">店家名稱</label>
+
+                                            <div class="col-md-6">
+                                                <input id="name" type="name" class="form-control" name="name" value="{{ old('name') }}" required>
+
+                                                @if ($errors->has('name'))
+                                                <span class="help-block">
+                                                  <strong>{{ $errors->first('name') }}</strong>
+                                                </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                                            <div class="col-md-6">
+                                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                                                @if ($errors->has('email'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                            <label for="password" class="col-md-4 control-label">密碼</label>
+
+                                            <div class="col-md-6">
+                                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                                @if ($errors->has('password'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password-confirm" class="col-md-4 control-label">請再次確認密碼</label>
+
+                                            <div class="col-md-6">
+                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="col-md-6 col-md-offset-4 & text-center">
+                                            <button type="submit" class="btn btn-danger">
+                                                確認新增
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="text-align:center;color: white;" ><h3>店家詳細列表<br><small>Detailed list of stores</small></h3></div>
+                    <div class="panel-heading & text-center" style="text-align:center;" ><br><h3>店家詳細列表<br><small>Detailed list of stores</small></h3></div>
                     {{--<div class="panel-heading">{{ Auth::guard('admin')->user()->account}}管理者，您正在管理頁面</div>--}}
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
@@ -69,8 +144,18 @@
                         </tbody>
                     </table>
                 </div>
-
+                    <script>
+                        function ConfirmCreate()
+                        {
+                            var x = confirm("你確定要新增此帳號嗎?");
+                            if (x)
+                                return true;
+                            else
+                                return false;
+                        }
+                    </script>
             </div>
         </div>
     </div>
+    </body>
 @endsection

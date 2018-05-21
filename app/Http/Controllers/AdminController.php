@@ -28,12 +28,10 @@ class AdminController extends Controller
     {
         return view('admin.admin');
     }
-    public function Show(){
+    public function Show()
+    {
         $accounts=Store::all();
         return view('admin.admin-store',compact('accounts'));
-    }
-    public function create(){
-        return view('admin.admin-store-account');
     }
     public function store(Request $request)
     {
