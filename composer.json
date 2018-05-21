@@ -9,7 +9,7 @@
         "filp/whoops": "^2.1",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "simplesoftwareio/simple-qrcode": "~2"
+        "simplesoftwareio/simple-qrcode": "1.3.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

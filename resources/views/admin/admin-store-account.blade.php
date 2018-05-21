@@ -14,8 +14,8 @@
                 <div class="panel-body">
 
                     <form action="{{route('admin_store_account')}}" method="POST" role="form" >
-                        {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                               {{ csrf_field() }}
+                                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">店家名稱</label>
 
                             <div class="col-md-6">
@@ -51,7 +51,7 @@
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                  </span>
                                 @endif
                             </div>
                         </div>
