@@ -41,62 +41,56 @@
                 <div class="container-fluid" style="padding:0;">
                     <div class="row">
                         <div class="col-md-12">
-                            @if($com->M_id==null)
-                                <h1 style="margin-top:0;">{{ $com->S_id}}</h1>
-                            @else
-                                <h1 style="margin-top:0;">{{ $com->M_id}}</h1>
-                            @endif
+                                <h1 style="margin-top:0;">{{$com->member_name}}留的言</h1>
                         </div>
                     </div>
                     <hr style="margin:10px 0;" />
                     <div class="row">
-                        <div class="col-md-12">
-                            {{ $com->Cmt_content}}
-                        </div>
-                    </div>
-                    @if(Auth::user()->id == $com->M_id)
-                    <div class="row" style="margin-top:10px;">
-                        <div class="col-md-12">
-                            <a href="{{route('postedit',['id'=>$posts->id]) }}" class="btn btn-xs btn-danger">修改</a>
-                        </div>
+                        <ul>
+                            <li>{{ $com->content}}
+                                <ul>
+                                    <li>你的回應：{{ $com->Store_comment}}</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                     <div class="row" style="margin-top:10px;">
                         <div class="col-md-12">
-                            <a href="{{route('postdestroy',['id'=>$posts->id]) }}" class="btn btn-xs btn-danger">刪除</a>
+                            <a href="#" class="btn btn-xs btn-danger">修改</a>
                         </div>
                     </div>
-                    @endif
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-12">
+                            <a href="{{route('comdestroy',$com->Member_id)}}" class="btn btn-xs btn-danger">刪除</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    @endforeach
-        @if(Auth::check()){
-        <form action="/post/store" method="POST" role="form">
+        @endforeach
+        @if(Auth::guard('store')->check())
+        <form action="{{route('comstore')}}" method="POST" role="form">
             {{ csrf_field()}}
             <div class="form-group">
                 <label>內容</label>
-                <textarea name="Cmt_content" class="form-control" rows="5"></textarea>
+                <textarea name="content" class="form-control" rows="5"></textarea>
             </div>
-            <div class="form-group" style= display:none >
-                <textarea name="M_id" class="form-control" rows="0" value=Auth::user()->id></textarea>
-            </div>
-            <select name="Cmt_rating">
-                　<option value="1">1</option>
-                　<option value="2">2</option>
-                　<option value="3">3</option>
-                　<option value="4">4</option>
-                　<option value="5">5</option>
+            <label>請選擇要回復的消費者</label>
+            <select name="Member_id">
+                @foreach($iscomment as $iscomment)
+                　<option value="{{$iscomment->id}}">{{$iscomment->name}}</option>
+                @endforeach
             </select>
             <div class="text-right">
             <button type="submit" class="btn btn-success">新增</button>
         </div>
         </form>
-    }
-    @else {
+
+    @else
     <p class="text-center">
         請先登入才能留言
     </p>
-    }
+
     @endif
 
 </div>

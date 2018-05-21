@@ -1,3 +1,6 @@
+@extends('layouts.master')
+@section('title','書籍觀看')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,3 +46,4 @@
 </div>
 </div>
 </html>
+@endsection

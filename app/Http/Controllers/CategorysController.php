@@ -42,7 +42,7 @@ class CategorysController extends Controller
             ]);
         }
 
-        return redirect()->route('catecreate');
+        return redirect()->route('catelist');
     }
 
     public function edit($id)

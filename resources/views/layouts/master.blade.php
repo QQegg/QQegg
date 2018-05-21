@@ -1,7 +1,7 @@
 {{--@include('layouts.store_app')--}}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
     <meta charset="utf-8">
     <title>Sailor - Bootstrap 3 corporate template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,14 +25,14 @@
     Author URL: https://bootstrapmade.com
     ======================================================= -->
 
-</head>
 
-<body>
+
+<body style="background: #FFFFFF">
 
 <div id="wrapper">
     <!-- start header -->
     <header>
-        <div class="top">
+        <div class="top" style="background-color:white">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -57,23 +57,87 @@
                 @if(Auth::guard('store')->check())
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <li font-size="15"><a href="{{route('prolist')}}">商品管理</a></li>
+                        {{--<li font-size="15"><a href="{{route('prolist')}}">商品管理</a></li>--}}
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                             商品管理  <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{route('prolist')}}">商品管理</a>
+                                    <a href="{{route('catelist')}}">商品類別管理</a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li><a href="{{route('pushlist')}}">促銷訊息管理</a></li>
-                        <li><a href="{{route('coulist')}}">折價券</a></li>
+                        <li><a href="{{route('coulist')}}">折價券管理</a></li>
+                        <li><a href="{{route('salecreat')}}">結帳</a></li>
                         <li><a href="#">交易紀錄</a></li>
-                        <li><a href="{{route('store_change_password')}}">修改密碼</a></li>
-                        <li><a href="{{route('store_change_profile')}}">修改基本資料</a></li>
-                        <li><a href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                您好 !  <strong>{{ Auth::guard('store')->user()->name}}</strong> 店家   <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{route('store_change_password')}}">修改密碼</a>
+                                    <a href="{{route('store_change_profile')}}">修改基本資料</a>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            登出
-                        </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
+                                        登出
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
+                @elseif(Auth::guard('admin')->check())
+                    <div class="navbar-collapse collapse ">
+                        <ul class="nav navbar-nav">
+                            <li font-size="15"><a href="{{route('postlist')}}">公告</a></li>
+                            <li class="dropdown">
+                                <a href="{{route('admin.index')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">管理店家</a>
+                                <span class="caret"></span>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{route('admin.index')}}">店家詳細列表</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('admin.create')}}">新增店家</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                   您好！ <strong>{{ Auth::guard('admin')->user()->account}}</strong> 管理者   <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        {{--<a href="{{route('store_change_password')}}">修改密碼</a>--}}
+                                        {{--<a href="{{route('store_change_profile')}}">修改基本資料</a>--}}
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            登出
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 @else
                     <div class="navbar-collapse collapse ">
                         <ul class="nav navbar-nav">
@@ -93,7 +157,7 @@
 <!--footer-->
 @include('layouts.partials.footer')
 
-<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+<a href="#" class="scrollup" style="background-color:white"><i class="fa fa-angle-up active"></i></a>
 
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{asset('js/jquery.min.js')}}"></script>

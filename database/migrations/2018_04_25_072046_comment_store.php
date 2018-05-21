@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Pushs extends Migration
+class CommentStore extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class Pushs extends Migration
      */
     public function up()
     {
-        Schema::create('pushs', function (Blueprint $table) {
+        Schema::create('comment_store', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('Store_id');
-            $table->string('title');
+            $table->integer('Member_id')->nullable();
+            $table->integer('Store_id')->nullable();
             $table->string('content');
-            $table->integer('statue')->default(0);
-            $table->string('picture');
-            $table->dateTime('datetime');
-            $table->timestamps();
             $table->rememberToken();
+            $table->timestamps();
         });
     }
 
@@ -33,6 +30,6 @@ class Pushs extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pushs');
+        Schema::dropIfExists('comment_store');
     }
 }

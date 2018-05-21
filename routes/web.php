@@ -12,37 +12,17 @@
 */
 Auth::routes();
 
-Route::get('/test',function ()
-{
-    \App\Store::create([
-        'name' => '文具店',
-        'email' => 'www@gmail.com',
-        'contact' => '小王',
-        'phone' => '0988045436',
-        'address' => '台中市',
-        'password'=>Hash::make('wwwwww'),
-        'title'=>'fuck',
-    ]
-    );
-}
-);
+Route::get('/test','DATA@create');
 
-Route::get('/xd',function ()
-{
-    \App\Admin::create([
-            'account' => 'www',
-            'email' => 'www@gmail.com',
-            'password'=>Hash::make('wwwwww'),
-        ]
-    );
-}
-);
+Route::get('/999', function () {
+    return view('welcome');
+});
+    Route::get('a/b', ['as' => 'user_change_profile', 'uses' => 'StoresController@a']);
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', function () {
-    return view('index.index');
-})->name('index');
+Route::get('/','PostsController@showindex')->name('index');
+Route::get('/postcontent/{id}',['as' => 'postcontent', 'uses' => 'PostsController@showpost']);
 
 Route::prefix('user')->group(function () {
     Route::get('change/profile', ['as' => 'user_change_profile', 'uses' => 'UserChangeMemberController@profile']);
@@ -69,13 +49,18 @@ Route::prefix('store')->group(function () {
 
 //Route::get('/admin',['uses'=>'PostsController@index'])->middleware('admin');
 Route::prefix('admin')->group(function () {
-    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+//    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/', 'AdminController@index')->name('admin.index');
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/search/{id}',['as' => 'admin.status', 'uses' => 'AdminController@update']);
     Route::get('/search', ['as' => 'admin.index', 'uses' => 'AdminController@Show']);
     Route::get('/view/{id}',['as'=>'admin.admin-store-view','uses'=>'AdminController@view']);
     Route::patch('/update/{id}',['as'=>'admin_store_change_password','uses'=>'AdminController@change_password']);
+    Route::delete('/delete/{id}',['as'=>'admin.destroy','uses'=>'AdminController@destroy']);
+    Route::get('/create',['as'=>'admin.create','uses'=>'AdminController@create']);
+    Route::post('/store',['as'=>'admin_store_account','uses'=>'AdminController@store']);
+
 });
 
 Route::get('/appconnecttest','NotificationsController@test');
@@ -97,12 +82,23 @@ Route::group(['middleware'=>'auth:store'], function() {
 
 });
 
+Route::group(['middleware'=>'auth:admin'], function() {
+    Route::group(['prefix' => 'post'], function() {
+        Route::get('/',['as'=>'postlist','uses'=>'PostsController@index']);
+        Route::post('/store',['as' => 'poststore' ,'uses'=>'PostsController@store']);
+        Route::get('/edit/{id}',['as'=>'postedit','uses'=>'PostsController@edit']);
+        Route::post('/update/{id}',['as'=>'postupdate','uses'=>'PostsController@update']);
+        Route::get('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
+    }
+    );
+});
+
 Route::group(['prefix' => 'sale'], function() {
     Route::get('/creat',['as'=>'salecreat','uses'=>'TransactionsController@readycheck']);
     Route::post('/costomer',['as' => 'costomersave' ,'uses'=>'TransactionsController@cotomer']);
     Route::post('/per',['as' => 'prestore' ,'uses'=>'TransactionsController@prestore']);
+    Route::post('/checkout',['as'=>'checkout','uses'=>'TransactionsController@checkout']);//好像用不到
     Route::post('/store',['as' => 'salestore' ,'uses'=>'TransactionsController@store']);
-    Route::post('/checkout',['as'=>'checkout','uses'=>'TransactionsController@checkout']);
 });
 
 Route::get('/appconnecttest','NotificationsController@test');
@@ -141,7 +137,8 @@ Route::group(['prefix' => 'push'], function() {
     Route::get('/edit/{id}',['as'=>'pushedit','uses'=>'PushsController@edit']);
     Route::get('/view/{id}',['as'=>'pushview','uses'=>'PushsController@view']);
     Route::patch('/update/{id}',['as'=>'pushupdate','uses'=>'PushsController@update']);
-    Route::delete('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
+    Route::get('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
+    Route::get('/change/{id}',['as'=>'pushchange','uses'=>'PushsController@changestatue']);
 });
 Route::group(['prefix' => 'coupon'], function() {
     Route::get('/',['as'=>'coulist','uses'=>'CouponsController@index']);
@@ -150,7 +147,8 @@ Route::group(['prefix' => 'coupon'], function() {
     Route::get('/edit/{id}',['as'=>'couedit','uses'=>'CouponsController@edit']);
     Route::get('/view/{id}',['as'=>'couview','uses'=>'CouponsController@view']);
     Route::patch('/update/{id}',['as'=>'couupdate','uses'=>'CouponsController@update']);
-    Route::delete('/destroy/{id}',['as'=>'coudestroy','uses'=>'CouponsController@destroy']);
+    Route::get('/destroy/{id}',['as'=>'coudestroy','uses'=>'CouponsController@destroy']);
+    Route::get('/change/{id}',['as'=>'couponchange','uses'=>'CouponsController@changestatus']);
 });
 Route::group(['prefix' => 'evaluation'], function() {
     Route::get('/',['as'=>'evalist','uses'=>'EvaluationsController@index']);
@@ -176,11 +174,3 @@ Route::group(['prefix' => 'comment'], function() {
     Route::get('/destroy/{id}',['as'=>'comdestroy','uses'=>'CommentsController@destroy']);
 });
 /*完工*/
-Route::group(['prefix' => 'post'], function() {
-    Route::get('/',['as'=>'postlist','uses'=>'PostsController@index']);
-    Route::post('/store',['as' => 'poststore' ,'uses'=>'PostsController@store']);
-    Route::get('/edit/{id}',['as'=>'postedit','uses'=>'PostsController@edit']);
-    Route::post('/update/{id}',['as'=>'postupdate','uses'=>'PostsController@update']);
-    Route::get('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
-});
-

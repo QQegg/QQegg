@@ -1,7 +1,6 @@
-@extends('product.layout.master')
+@extends('layouts.master')
 @section('title','書籍觀看')
 @section('content')
-    <div class='container-fluid'>
         <script>
             function ConfirmEdit()
             {
@@ -21,49 +20,52 @@
                 </ul>
             </div>
         @endif
-        @foreach($product as $product)
-        <form action="{{route('proupdate', ['id'=>$product->id])}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmEdit()">
-            {{ csrf_field() }}
-            {{ method_field('PATCH') }}
-            <div class="form-group">
-                <label>產品名稱</label>
-                <input name="name" class="form-control" placeholder="請輸入產品名稱" value="{{$product->name}}">
-            </div>
-            <div class="form-group">
-                <label>產品類別</label>
-                <select name="C_name" class="form-control">
-                    @if($product->Category_id == 0)
-                        <option value="{{$product->Category_id}}" selected="selected">未分類</option>
-                        @else
-                        <option value="{{$product->Category_id}}" selected="selected">{{$product->C_name}}</option>
-                    @endif
-                    @foreach($category as $category)
-                        <option value="{{$category->id}}" @if(old('C_name') == $category->id) selected="selected" @endif>{{$category->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label>產品規格</label>
-                <textarea name="specification" class="form-control" placeholder="請輸入產品規格" rows="5">{{$product->specification}}</textarea>
-            </div>
-            <div class="form-group">
-                <label>單價</label>
-                <textarea name="price" class="form-control" placeholder="請輸入產品單價" rows="1">{{$product->price}}</textarea>
-            </div>
-            <div class="form-group">
-                <label>單位</label>
-                <textarea name="unit" class="form-control" placeholder="請輸入產品單位" rows="1">{{$product->unit}}</textarea>
-            </div>
-            <div class="form-group">
-                <label>上傳產品照片</label>
-                <input type="file" class="form-control" name="picture" placeholder="上傳圖片">
-            </div>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="submit" class="btn btn-success">修改</button>
-            <a href="{{route('prodetail',$product->id)}}" class="btn btn-success">返回</a>
-            </div>
-        </form>
-            @endforeach
 
-    </div>
+        <div class="container">
+            <h2  class="text-center & text-success" ><strong>修改商品</strong></h2>
+            <hr class="colorgraph">
+            @foreach($product as $product)
+                <form action="{{route('proupdate', ['id'=>$product->id])}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmEdit()">
+                    {{ csrf_field() }}
+                    {{ method_field('PATCH') }}
+                    <div class="form-group">
+                        <label>產品名稱</label>
+                        <input name="name" class="form-control" placeholder="請輸入產品名稱" value="{{$product->name}}">
+                    </div>
+                    <div class="form-group">
+                        <label>產品類別</label>
+                        <select name="C_name" class="form-control">
+                            @if($product->Category_id == 0)
+                                <option value="{{$product->Category_id}}" selected="selected">未分類</option>
+                            @else
+                                <option value="{{$product->Category_id}}" selected="selected">{{$product->C_name}}</option>
+                            @endif
+                            @foreach($category as $category)
+                                <option value="{{$category->id}}" @if(old('C_name') == $category->id) selected="selected" @endif>{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>產品規格</label>
+                        <textarea name="specification" class="form-control" placeholder="請輸入產品規格" rows="5">{{$product->specification}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>單價</label>
+                        <textarea name="price" class="form-control" placeholder="請輸入產品單價" rows="1">{{$product->price}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>單位</label>
+                        <textarea name="unit" class="form-control" placeholder="請輸入產品單位" rows="1">{{$product->unit}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>上傳產品照片</label>
+                        <input type="file" class="form-control" name="picture" placeholder="上傳圖片">
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="submit" class="btn btn-success">修改</button>
+                        <a href="{{route('prodetail',$product->id)}}" class="btn btn-success">返回</a>
+                    </div>
+                </form>
+            @endforeach
+        </div>
 @endsection

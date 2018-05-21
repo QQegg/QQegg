@@ -32,6 +32,21 @@ class AdminController extends Controller
         $accounts=Store::all();
         return view('admin.admin-store',compact('accounts'));
     }
+    public function create(){
+        return view('admin.admin-store-account');
+    }
+    public function store(Request $request)
+    {
+        Store::create([
+            'name' => $request['name'],
+            'contact' => $request['contact'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+            'phone' => $request['phone'],
+            'address' => $request['address'],
+        ]);
+        return back()->with('success','新增成功 !');
+    }
     public function update($id)
     {
         $fix = Store::find($id);
@@ -55,6 +70,11 @@ class AdminController extends Controller
         $accounts=Store::all()->where('id',$id);
         $data=['stores'=>$accounts];
         return view('admin.admin-store-view',$data,compact('accounts'));
+    }
+    public function destroy($id)
+    {
+        Store::destroy($id);
+        return redirect()->route('admin.index');
     }
     public function change_password($id)
     {

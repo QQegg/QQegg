@@ -11,6 +11,9 @@ class StoresController extends Controller
      *
      * @return void
      */
+
+
+
     public function __construct()
     {
         $this->middleware('auth:store');
@@ -23,7 +26,7 @@ class StoresController extends Controller
      */
     public function index()
     {
-        return view('index.index');
+        return redirect(route('index'));
     }
     public function create()
     {
