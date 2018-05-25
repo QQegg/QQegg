@@ -87,7 +87,7 @@ Route::group(['middleware'=>'auth:admin'], function() {
         Route::post('/store',['as' => 'poststore' ,'uses'=>'PostsController@store']);
         Route::get('/edit/{id}',['as'=>'postedit','uses'=>'PostsController@edit']);
         Route::post('/update/{id}',['as'=>'postupdate','uses'=>'PostsController@update']);
-        Route::get('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
+        Route::delete('/destroy/{id}',['as'=>'postdestroy','uses'=>'PostsController@destroy']);
     }
     );
 });

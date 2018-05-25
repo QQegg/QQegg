@@ -32,20 +32,23 @@
                                         <div class="row" style="margin-top:10px;">
                                             <div class="col-md-12">
                                                 <a href="{{route('postedit',['id'=>$posts->id]) }}"
-                                                   class="btn btn-xs btn-danger">修改</a>
+                                                   class="btn btn-danger">修改</a>
                                             </div>
                                         </div>
                                         <div class="row" style="margin-top:10px;">
                                             <div class="col-md-12">
-                                                <a href="{{route('postdestroy',['id'=>$posts->id]) }}"
-                                                   class="btn btn-xs btn-danger">刪除</a>
+                                                <form class="delete" action="{{route('postdestroy',['id'=>$posts->id]) }}" method="POST" onsubmit="return ConfirmDelete()">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                    <input type="submit" class="btn btn-danger" value="刪除">
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-                        <form action="/post/store" method="POST" role="form">
+                        <form action="/post/store" method="POST" role="form" onsubmit="return Confirmsubmit()">
                             {{ csrf_field()}}
                             <div class="form-group">
                                 <label>標題</label>
@@ -65,6 +68,27 @@
         </div>
     </div>
 
+    <script>
+        function ConfirmDelete()
+        {
+            var x = confirm("你確定要刪除此公告嗎?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+    </script>
+
+    <script>
+        function Confirmsubmit()
+        {
+            var y = confirm("你確定要新增此公告嗎?");
+            if (y)
+                return true;
+            else
+                return false;
+        }
+    </script>
 
     <!-- /#page-content-wrapper -->
 
