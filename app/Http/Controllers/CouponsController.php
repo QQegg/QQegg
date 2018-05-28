@@ -114,13 +114,20 @@ class CouponsController extends Controller
 
     public function changestatus($id){
         $coupon=Coupon::all()->where('id',$id)->first();
-        if($coupon['status']==0){
+        if($coupon['status']==0) {
             $coupon->update([
-                'status'=>1
+                'status' => 1
             ]);
-
         }
-      
+//            else{
+//                $coupon->update([
+//                    'status'=>0
+//
+//                ]);
+//
+//
+//        }
+
 
         //send
         $user_id = User::all()->pluck('id');
@@ -137,7 +144,7 @@ foreach ($user_id as $user_id)
         'use_status'=>'0'
     ]);
 }
-        return redirect()->route('coulist');
+        return redirect()->route('coulist')->with('response', '已成功發送折價券 !');
     }
 
 }

@@ -23,13 +23,17 @@
     </div>
 </div>
 
+<div class="container">
+@if(session('response'))
+    <div class="alert alert-success" >{{session('response')}}</div>
+@endif
+</div>
+
 <div class="modal fade" id="createproduct" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <div class="modal-header">
-                <button class="close" data-dismiss="modal">×</button>
-                <h2 class="modal-title & text-center & text-info"><strong>新增折價券</strong></h2>
+
 
             </div>
             <form action="{{route('coustore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()">
