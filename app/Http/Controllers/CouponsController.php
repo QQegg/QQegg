@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User_coupon;
 use Illuminate\Http\Request;
 use App\Coupon;
 use App\Store;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 class CouponsController extends Controller
@@ -118,11 +120,23 @@ class CouponsController extends Controller
             ]);
 
         }
-        else{
-            $coupon->update([
-                'status'=>0
-            ]);
-        }
+      
+
+        //send
+        $user_id = User::all()->pluck('id');
+        $store_id = Store::all()->where('email' ,  Auth::guard('store')->user()->email)->pluck('id');
+        $name=Coupon::where('id', $id)->pluck('title');
+
+
+foreach ($user_id as $user_id)
+{
+    User_coupon::create([
+        'User_id'=>$user_id,
+        'Store_id'=>$store_id[0],
+        'name'=>$name[0],
+        'use_status'=>'0'
+    ]);
+}
         return redirect()->route('coulist');
     }
 
