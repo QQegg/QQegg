@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title','消費者ID')
 @section('content')
-
+    <div class="container">
     <form action="{{route('costomersave')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()" >
     {{ csrf_field() }}
     <div class="form-group">
@@ -13,5 +13,5 @@
 
 
     </form>
-
+    </div>
 @endsection
