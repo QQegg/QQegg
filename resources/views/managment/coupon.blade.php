@@ -88,7 +88,7 @@
             <th>結束時間</th>
             <th>折扣金額</th>
             <th>至少購物金額</th>
-            <th>推播</th>
+            <th>發送狀態</th>
             <th>功能</th>
         </tr>
         </thead>
@@ -102,9 +102,9 @@
                 <td>{{$coupon->discount}}元</td>
                 <td>{{$coupon->lowestprice}}元</td>
                 <td>@if($coupon->status ==0)
-                        <a class="text-danger"><strong>未推播</strong></a>
+                        <a class="text-danger"><strong>未發送</strong></a>
                     @elseif(($coupon->status==1))
-                        <a class="text-danger"><strong>已推播</strong></a>
+                        <a class="text-danger"><strong>已發送</strong></a>
                     @endif</td>
                 <td>
                     <button class="btn btn-success "><a href="{{route('couview',$coupon->id)}}" style="color: white" ><strong>詳細</strong></a></button>
@@ -116,7 +116,7 @@
 
 
                 </td>
-                <td><button class="btn btn-primary "><a href="{{route('couponchange',$coupon->id)}}" style="color:white" ><strong>更改推播狀態</strong></a></button></td>
+                <td><button class="btn btn-primary "><a href="{{route('couponchange',$coupon->id)}}" style="color:white" ><strong>發送</strong></a></button></td>
             </tr>
         @endforeach
         </tbody>
