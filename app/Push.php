@@ -14,5 +14,8 @@ class Push extends Model
         'content',
         'statue',
         'picture',
-        'datetime'
+        'date_start',
+        'date_end',
+        'time_start',
+        'time_end',
     ];}

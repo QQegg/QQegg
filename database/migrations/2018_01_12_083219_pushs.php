@@ -20,7 +20,10 @@ class Pushs extends Migration
             $table->string('content');
             $table->integer('statue')->default(0);
             $table->string('picture');
-            $table->dateTime('datetime');
+            $table->dateTime('date_start');
+            $table->dateTime('date_end');
+            $table->dateTime('time_start');
+            $table->dateTime('time_end');
             $table->timestamps();
             $table->rememberToken();
         });
