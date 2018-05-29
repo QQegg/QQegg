@@ -35,10 +35,25 @@
             <textarea name="content" class="form-control" rows="5" >{{$push->content}}</textarea>
         </div>
         <div class="form-group">
-            <label>日期及時間</label>
+            <label>起始日期</label>
             {{--<input type="datetime-local" name="P_timestamp" class="form-control" value="{{$push->P_timestamp}}">--}}
-            <textarea name="datetime" class="form-control" rows="1" >{{$push->datetime}}</textarea>
+            <textarea name="date_start" class="form-control" rows="1" >{{$push->date_start}}</textarea>
         </div>
+        <div class="form-group">
+         <label>結束日期</label>
+                    {{--<input type="datetime-local" name="P_timestamp" class="form-control" value="{{$push->P_timestamp}}">--}}
+                    <textarea name="date_end" class="form-control" rows="1" >{{$push->date_end}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>起始時間</label>
+                    {{--<input type="datetime-local" name="P_timestamp" class="form-control" value="{{$push->P_timestamp}}">--}}
+                    <textarea name="time_start" class="form-control" rows="1" >{{$push->time_start}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>結束時間</label>
+                    {{--<input type="datetime-local" name="P_timestamp" class="form-control" value="{{$push->P_timestamp}}">--}}
+                    <textarea name="time_end" class="form-control" rows="1" >{{$push->time_end}}</textarea>
+                </div>
         <div class="form-group">
             <label>上傳圖片</label>
             <input type="file"  class="form-control " name="picture" id="picture" >

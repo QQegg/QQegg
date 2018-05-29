@@ -53,8 +53,20 @@
             <textarea name="content" class="form-control" rows="5"></textarea>
         </div>
         <div class="form-group">
-            <label>日期及時間</label>
-            <input type="datetime-local" name="datetime" class="form-control" >
+            <label>起始日期</label>
+            <input type="datetime-local" name="date_start" class="form-control" >
+        </div>
+        <div class="form-group">
+            <label>結束日期</label>
+            <input type="datetime-local" name="date_end" class="form-control" >
+        </div>
+        <div class="form-group">
+            <label>起始時間</label>
+            <input type="datetime-local" name="time_start" class="form-control" >
+        </div>
+        <div class="form-group">
+            <label>結束時間</label>
+            <input type="datetime-local" name="time_end" class="form-control" >
         </div>
         <div class="form-group">
             <label>上傳圖片</label>

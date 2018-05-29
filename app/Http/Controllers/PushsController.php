@@ -42,13 +42,19 @@ class PushsController extends Controller
             'title.required'=>'你必須輸入促銷訊息名稱',
             'content.required'=>'你必須輸入促銷訊息內容',
             'picture.required'=>'你必須上傳圖片',
-            'datetime.required'=>'你必須輸入日期及時間',
+            'date_start.required'=>'你必須輸入起始日期',
+            'date_end.required'=>'你必須輸入結束日期',
+            'time_start.required'=>'你必須輸入起始時間',
+            'time_end.required'=>'你必須輸入時間',
         );
         $rules = array(
             'title' => 'required',
             'content' => 'required',
             'picture' => 'required',
-            'datetime' => 'required',
+            'date_start' => 'required',
+            'date_end' => 'required',
+            'time_start' => 'required',
+            'time_end' => 'required',
 
         );
 
@@ -74,7 +80,10 @@ class PushsController extends Controller
                 'title' => $request['title'],
                 'content' => $request['content'],
                 'picture' => $file_name,
-                'datetime' => $request['datetime'],
+                'date_start' => $request['date_start'],
+                'date_end' => $request['date_end'],
+                'time_start' => $request['time_start'],
+                'time_end' => $request['time_end'],
             ]);
         }
         return redirect()->route('pushlist');

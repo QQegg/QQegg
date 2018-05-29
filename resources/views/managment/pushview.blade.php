@@ -32,10 +32,21 @@
                     <p >{{$push->content}}</p>
                 </div>
                 <div class="form-group">
-                    <label>日期及時間</label>
-                    {{--<input type="datetime-local" name="P_timestamp" class="form-control" value="{{$push->P_timestamp}}">--}}
-                    <p>{{$push->datetime}}</p>
+                    <label>起始日期</label>
+                    <p>{{$push->date_start}}</p>
                 </div>
+            <div class="form-group">
+                <label>結束日期</label>
+                <p>{{$push->date_end}}</p>
+            </div>
+            <div class="form-group">
+                <label>起始時間</label>
+                <p>{{$push->time_start}}</p>
+            </div>
+            <div class="form-group">
+                <label>結束時間</label>
+                <p>{{$push->time_end}}</p>
+            </div>
                 <div class="form-group">
                     <img src="{{url('../storage/push/'. $push->picture)}}" >
                 {{--<div class="text-right">--}}

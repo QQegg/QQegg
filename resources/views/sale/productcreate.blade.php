@@ -110,7 +110,7 @@
                         <div class="modal-content">
                             <div id="printModal"  >
                             <div class="modal-header">
-                                {{--<span class="close">x</span>--}}
+                                <span class="close">x</span>
                                 <h2>交易明細</h2>
                             </div>
                             <div class="modal-body">
