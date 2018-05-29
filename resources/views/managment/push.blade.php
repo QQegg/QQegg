@@ -44,10 +44,22 @@
                     <label>內容</label>
                     <textarea name="content" class="form-control" rows="5"></textarea>
                 </div>
-                <div class="form-group">
-                    <label>日期及時間</label>
-                    <input type="datetime-local" name="datetime" class="form-control" >
-                </div>
+                    <div class="form-group">
+                        <label>起始日期</label>
+                        <input type="date" name="date_start" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label>結束日期</label>
+                        <input type="date" name="date_end" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label>起始時間</label>
+                        <input type="time" name="time_start" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label>結束時間</label>
+                        <input type="time" name="time_end" class="form-control" >
+                    </div>
                 <div class="form-group">
                     <label>上傳圖片</label>
                     <input type="file"  class="form-control " name="picture" id="picture" >
@@ -70,7 +82,8 @@
         <thead>
         <tr>
             <th>選項</th>
-            <th>日期及時間</th>
+            <th>起始日期~結束日期</th>
+            <th>起始時間~結束時間</th>
             <th>推播訊息名稱</th>
             <th>狀態</th>
             <th>功能</th>
@@ -81,7 +94,8 @@
         @foreach($pushs as $push)
             <tr>
                 <td><input type="checkbox" name="option" ></td>
-                <td>{{$push->datetime}}</td>
+                <td>{{$push->date_start}}~{{$push->date_end}}</td>
+                <td>{{$push->time_start}}~{{$push->time_end}}</td>
                 <td>{{$push->title}}</td>
                 <td><a class="text-danger"><strong>{{$push->statue}}</strong></a></td>
                 <td >

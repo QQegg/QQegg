@@ -75,6 +75,28 @@ Route::group(['middleware'=>'auth:store'], function() {
         Route::get('/edit/{id}',['as'=>'proedit','uses'=>'ProductsController@edit']);
         Route::patch('/update/{id}',['as'=>'proupdate','uses'=>'ProductsController@update']);
         Route::delete('/destroy/{id}',['as'=>'prodestroy','uses'=>'ProductsController@destroy']);
+
+        Route::group(['prefix' => 'push'], function() {
+            Route::get('/',['as'=>'pushlist','uses'=>'PushsController@index']);
+            Route::get('/create',['as'=>'pushcreate','uses'=>'PushsController@create']);
+            Route::post('/store',['as' => 'pushstore' ,'uses'=>'PushsController@store']);
+            Route::get('/edit/{id}',['as'=>'pushedit','uses'=>'PushsController@edit']);
+            Route::get('/view/{id}',['as'=>'pushview','uses'=>'PushsController@view']);
+            Route::patch('/update/{id}',['as'=>'pushupdate','uses'=>'PushsController@update']);
+            Route::get('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
+            Route::get('/change/{id}',['as'=>'pushchange','uses'=>'PushsController@changestatue']);
+        });
+        Route::group(['prefix' => 'coupon'], function() {
+            Route::get('/',['as'=>'coulist','uses'=>'CouponsController@index']);
+            Route::get('/create',['as'=>'coucreate','uses'=>'CouponsController@create']);
+            Route::post('/store',['as' => 'coustore' ,'uses'=>'CouponsController@store']);
+            Route::get('/edit/{id}',['as'=>'couedit','uses'=>'CouponsController@edit']);
+            Route::get('/view/{id}',['as'=>'couview','uses'=>'CouponsController@view']);
+            Route::patch('/update/{id}',['as'=>'couupdate','uses'=>'CouponsController@update']);
+            Route::get('/destroy/{id}',['as'=>'coudestroy','uses'=>'CouponsController@destroy']);
+            Route::get('/change/{id}',['as'=>'couponchange','uses'=>'CouponsController@changestatus']);
+
+        });
     });
 
 
@@ -130,27 +152,7 @@ Route::group(['prefix' => 'notification'], function() {
     Route::put('/update/{id}',['as'=>'notiupdate','uses'=>'NotificationsController@update']);
     Route::delete('/destroy/{id}',['as'=>'notidestroy','uses'=>'NotificationsController@destroy']);
 });
-Route::group(['prefix' => 'push'], function() {
-    Route::get('/',['as'=>'pushlist','uses'=>'PushsController@index']);
-    Route::get('/create',['as'=>'pushcreate','uses'=>'PushsController@create']);
-    Route::post('/store',['as' => 'pushstore' ,'uses'=>'PushsController@store']);
-    Route::get('/edit/{id}',['as'=>'pushedit','uses'=>'PushsController@edit']);
-    Route::get('/view/{id}',['as'=>'pushview','uses'=>'PushsController@view']);
-    Route::patch('/update/{id}',['as'=>'pushupdate','uses'=>'PushsController@update']);
-    Route::get('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
-    Route::get('/change/{id}',['as'=>'pushchange','uses'=>'PushsController@changestatue']);
-});
-Route::group(['prefix' => 'coupon'], function() {
-    Route::get('/',['as'=>'coulist','uses'=>'CouponsController@index']);
-    Route::get('/create',['as'=>'coucreate','uses'=>'CouponsController@create']);
-    Route::post('/store',['as' => 'coustore' ,'uses'=>'CouponsController@store']);
-    Route::get('/edit/{id}',['as'=>'couedit','uses'=>'CouponsController@edit']);
-    Route::get('/view/{id}',['as'=>'couview','uses'=>'CouponsController@view']);
-    Route::patch('/update/{id}',['as'=>'couupdate','uses'=>'CouponsController@update']);
-    Route::get('/destroy/{id}',['as'=>'coudestroy','uses'=>'CouponsController@destroy']);
-    Route::get('/change/{id}',['as'=>'couponchange','uses'=>'CouponsController@changestatus']);
 
-});
 Route::group(['prefix' => 'evaluation'], function() {
     Route::get('/',['as'=>'evalist','uses'=>'EvaluationsController@index']);
     Route::get('/create',['as'=>'evacreate','uses'=>'EvaluationsController@create']);
