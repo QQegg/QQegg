@@ -148,6 +148,7 @@ Route::group(['prefix' => 'coupon'], function() {
     Route::patch('/update/{id}',['as'=>'couupdate','uses'=>'CouponsController@update']);
     Route::get('/destroy/{id}',['as'=>'coudestroy','uses'=>'CouponsController@destroy']);
     Route::get('/change/{id}',['as'=>'couponchange','uses'=>'CouponsController@changestatus']);
+
 });
 Route::group(['prefix' => 'evaluation'], function() {
     Route::get('/',['as'=>'evalist','uses'=>'EvaluationsController@index']);

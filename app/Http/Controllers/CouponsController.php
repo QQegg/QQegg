@@ -8,6 +8,7 @@ use App\Coupon;
 use App\Store;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 class CouponsController extends Controller
 {
@@ -15,6 +16,22 @@ class CouponsController extends Controller
     {
         $store = Store::all()->where('email' ,  Auth::guard('store')->user()->email)->pluck('id');
         $coupons=Coupon::all()->where('Store_id', $store['0']);
+
+        $count = DB::table('user_coupons')
+            ->select('Coupon_id', DB::raw('SUM(use_status) as total '))
+//        ->select('Coupon_id', DB::raw('empty(count(*),0) as total'))
+        ->groupBy('Coupon_id')
+        ->orderBy('Coupon_id','ASC')
+        ->get();
+
+       
+
+        $zz=0;
+       foreach ($count as $aa){
+
+           $coupons[$zz]['count']=$aa->total;
+           $zz++;
+       }
 
         return view('managment.coupon',compact('coupons'));
     }
@@ -132,7 +149,7 @@ class CouponsController extends Controller
         //send
         $user_id = User::all()->pluck('id');
         $store_id = Store::all()->where('email' ,  Auth::guard('store')->user()->email)->pluck('id');
-        $name=Coupon::where('id', $id)->pluck('title');
+        $coupon_id=Coupon::where('id', $id)->pluck('id');
 
 
 foreach ($user_id as $user_id)
@@ -140,11 +157,15 @@ foreach ($user_id as $user_id)
     User_coupon::create([
         'User_id'=>$user_id,
         'Store_id'=>$store_id[0],
-        'name'=>$name[0],
+        'Coupon_id'=>$coupon_id[0],
         'use_status'=>'0'
     ]);
 }
         return redirect()->route('coulist')->with('response', '已成功發送折價券 !');
     }
+
+
+
+
 
 }

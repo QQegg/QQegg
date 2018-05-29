@@ -109,24 +109,7 @@ class DATA extends Controller
             'content'=>'75折',
             'discount'=>'0.75',
         ]);
-        Coupon::create([
-            'Store_id'=>'2',
-            'title'=>'小折價券',
-            'content'=>'95折',
-            'discount'=>'0.95',
-        ]);
-        Coupon::create([
-            'Store_id'=>'2',
-            'title'=>'中折價券',
-            'content'=>'85折',
-            'discount'=>'0.85',
-        ]);
-        Coupon::create([
-            'Store_id'=>'2',
-            'title'=>'大折價券',
-            'content'=>'75折',
-            'discount'=>'0.75',
-        ]);
+
         User::create([
             'name'=>'咪咪',
             'account'=>'test1',

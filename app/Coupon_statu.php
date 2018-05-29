@@ -4,15 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User_coupon extends Model
+class Coupon_statu extends Model
 {
+    protected $table='coupon_status';
     protected $fillable=[
-        'id',
-        'Store_id',
-        'User_id',
-        'Coupon_id',
-        'use_status'
-    ];
 
-    protected $table="user_coupons";
+        'id',
+        'Coupon_id',
+        'Member_id',
+        'status',
+    ];
 }

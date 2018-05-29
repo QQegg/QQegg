@@ -17,7 +17,7 @@ class UserCoupons extends Migration
             $table->increments('id');
             $table->integer('User_id');
             $table->string('Store_id');
-            $table->string('name');
+            $table->string('Coupon_id');
             $table->string('use_status');
             $table->rememberToken();
             $table->timestamps();

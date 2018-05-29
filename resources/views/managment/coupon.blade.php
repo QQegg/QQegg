@@ -22,18 +22,18 @@
         </div>
     </div>
 </div>
-
 <div class="container">
 @if(session('response'))
     <div class="alert alert-success" >{{session('response')}}</div>
 @endif
 </div>
-
 <div class="modal fade" id="createproduct" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
 
-
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">×</button>
+                <h2 class="modal-title & text-center & text-info"><strong>新增折價券</strong></h2>
 
             </div>
             <form action="{{route('coustore')}}" method="POST" role="form" enctype="multipart/form-data" onsubmit="return ConfirmCreate()">
@@ -94,10 +94,12 @@
             <th>至少購物金額</th>
             <th>發送狀態</th>
             <th>功能</th>
+            <th>發送折價券</th>
+            <th>已兌換數量</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($coupons as $coupon)
+        @foreach($coupons as $coupon )
             <tr>
                 <td><input type="checkbox" name="option" ></td>
                 <td>{{$coupon->title}}</td>
@@ -117,11 +119,11 @@
                     {{--{{ csrf_field() }}--}}
                     {{--{{ method_field('DELETE') }}--}}
                     <button  class=" btn btn-danger "><a href="{{route('coudestroy',$coupon->id)}}" style="color: white"><strong>刪除</strong></a></button>
-
-
                 </td>
                 <td><button class="btn btn-primary "><a href="{{route('couponchange',$coupon->id)}}" style="color:white" ><strong>發送</strong></a></button></td>
+                <td>{{$coupon->count}}張</td>
             </tr>
+
         @endforeach
         </tbody>
     </table>
