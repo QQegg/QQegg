@@ -24,7 +24,7 @@ class CouponsController extends Controller
         ->orderBy('Coupon_id','ASC')
         ->get();
 
-       
+
 
         $zz=0;
        foreach ($count as $aa){

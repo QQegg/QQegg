@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Coupon;
 use App\Coupon_statu;
 use App\User;
+use App\User_coupon;
 use Illuminate\Support\Facades\Auth;
 use App\Store;
 use Illuminate\Http\Request;
@@ -30,10 +32,20 @@ class TransactionsController extends Controller
         ]);
         $saleinfo=0;
         $salelist=Dealmatch::all()->where('Tran_id',Transaction::all()->pluck('id')->last());
-        $copon=Coupon_statu::all()->where('Member_id',$request['Member_id']);
+        $copon=User_coupon::all()->where('User_id',$request['Member_id']);
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
         $re=0;
-        return view('sale.productcreate')->with('re',$re)->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo);
+//        dd($copon);
+
+        $cc = 0;
+        foreach ($copon as $qq){
+            $coupon=Coupon::all()->where('id',$qq['Coupon_id']);
+            $coupon_list[$cc] = $coupon;
+            $cc++;
+        }
+
+        return view('sale.productcreate')->with('re',$re)->with('saleinfo',$saleinfo)->with('copon',$copon)
+            ->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list);
     }
 
     public function prestore(Request $request){
@@ -56,16 +68,24 @@ class TransactionsController extends Controller
             $item['price']=Product::all()->where('id',$item['Commodity_id'])->pluck('price')->last();
             $item['total']=$item['price']*$item['number'];
         }
-        $copon=Coupon_statu::all()->where('Member_id',$request['Member_id']);
+        $copon=User_coupon::all()->where('User_id',$request['Member_id']);
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
-        $pirce=$request['price']*$request['discount']-$request['point'];
+        $pirce=$request['price']-$request['discount']-$request['point'];
         $member=User::find($request['Member']);
         $re=$member['point'];
-        return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('re',$re)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo);
+
+        $cc = 0;
+        foreach ($copon as $qq){
+            $coupon=Coupon::all()->where('id',$qq['Coupon_id']);
+            $coupon_list[$cc] = $coupon;
+            $cc++;
+        }
+        return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('re',$re)->with('Member_id',$request['Member_id'])
+            ->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list);
     }
 
     public function checkout(Request $request){
-        $pirce=$request['price']*$request['discount']-$request['point'];
+        $pirce=$request['price']-$request['discount']-$request['point'];
         $member=User::find($request['Member']);
         $re=$member['point']-$request['point']+($pirce*0.01);
         if($member!=null){
@@ -87,14 +107,21 @@ class TransactionsController extends Controller
             $item['price']=Product::all()->where('id',$item['Commodity_id'])->pluck('price')->last();
             $item['total']=$item['price']*$item['number'];
         }
-        $copon=Coupon_statu::all()->where('Member_id',$request['Member_id']);
+        $copon=User_coupon::all()->where('User_id',$request['Member_id']);
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
-        $pirce=$request['price']*$request['discount']-$request['point'];
+        $pirce=$request['price']-$request['discount']-$request['point'];
         $member=User::find($request['Member']);
         $re=$member['point']-$request['point']+($pirce*0.01);
         if($member!=null){
             $member->point=$re;
             $member->save();
+        }
+
+        $cc = 0;
+        foreach ($copon as $qq){
+            $coupon=Coupon::all()->where('id',$qq['Coupon_id']);
+            $coupon_list[$cc] = $coupon;
+            $cc++;
         }
         return view('sale.productcostomer');
     }

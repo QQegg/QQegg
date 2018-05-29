@@ -79,8 +79,9 @@
                     折價券 :
                     <select name="discount" id="dis">
                         <option value="1" selected="selected">請選擇要用的折價券</option>
-                        @foreach($copon as $copon)
-                            <option value="{{$copon->discount}}">{{$copon->title}}</option>
+                        @foreach($coupon_list as $coupon_list)
+                            <option value="{{$coupon_list->first()->discount}}">{{$coupon_list->first()->title}}</option>
+
                         @endforeach
                     </select>
                     積點 :
