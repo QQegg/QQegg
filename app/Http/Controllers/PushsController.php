@@ -28,14 +28,12 @@ class PushsController extends Controller
     {
         return view('managment.pushcreate');
     }
-
     public function view($id)
     {
         $push=Push::all()->where('id',$id);
         $data=['pushs'=>$push];
         return view('managment.pushview',$data);
     }
-
     public function store(Request $request)
     {
         $messsages = array(
@@ -88,7 +86,6 @@ class PushsController extends Controller
         }
         return redirect()->route('pushlist');
     }
-
     public function edit($id)
     {
         $push=Push::all()->where('id',$id);
@@ -128,5 +125,8 @@ class PushsController extends Controller
             ]);
         }
         return redirect()->route('pushlist');
+    }
+    public function push(){
+
     }
 }

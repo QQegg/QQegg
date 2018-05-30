@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        LaravelFCM\FCMServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -225,7 +226,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-        'FormBuilder' => 'Kris\LaravelFormBuilder\Facades\FormBuilder'
+        'FormBuilder' => 'Kris\LaravelFormBuilder\Facades\FormBuilder',
+	    'FCM'      => LaravelFCM\Facades\FCM::class,
+	    'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
 
     ],
 
