@@ -227,7 +227,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'FormBuilder' => 'Kris\LaravelFormBuilder\Facades\FormBuilder',
-	    'FCM'      =>LaravelFCM\Facades\FCM::class,
+	    'FCM'=> LaravelFCM\Facades\FCM::class,
+
     ],
 
 ];
