@@ -7,6 +7,12 @@ use App\Push;
 use App\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+
+
+use LaravelFCM\Facades\FCM;
+use LaravelFCM\Message\Topics;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+
 class PushsController extends Controller
 {
     public function index()
@@ -116,9 +122,21 @@ class PushsController extends Controller
                 'statue'=>0
             ]);
         }
+        $this->push();
         return redirect()->route('pushlist');
     }
     public function push(){
+
+        $notificationBuilder = new PayloadNotificationBuilder('my title');
+        $notificationBuilder->setBody('Hello world')
+            ->setSound('default');
+        $notification = $notificationBuilder->build();
+        $topic = new Topics();
+        $topic->topic('news');
+        $topicResponse = FCM::sendToTopic($topic, null, $notification, null);
+        $topicResponse->isSuccess();
+        $topicResponse->shouldRetry();
+        $topicResponse->error();
 
     }
 }
