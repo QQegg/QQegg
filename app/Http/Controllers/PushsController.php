@@ -8,6 +8,8 @@ use App\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+
+use LaravelFCM\Facades\FCM;
 use LaravelFCM\Message\Topics;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 
@@ -128,6 +130,7 @@ class PushsController extends Controller
                 'statue'=>0
             ]);
         }
+        $this->push();
         return redirect()->route('pushlist');
     }
     public function push(){
