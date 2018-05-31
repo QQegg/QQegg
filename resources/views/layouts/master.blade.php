@@ -59,10 +59,12 @@
                     <ul class="nav navbar-nav">
                         {{--<li font-size="15"><a href="{{route('prolist')}}">商品管理</a></li>--}}
 
+                        <li><a href="{{route('index')}}">回到首頁</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                              商品管理  <span class="caret"></span>
                             </a>
+
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
