@@ -36,14 +36,15 @@ class TransactionsController extends Controller
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
         $re=0;
 //        dd($copon);
-
+        $coupon_list=null;
         $cc = 0;
-        foreach ($copon as $qq){
-            $coupon=Coupon::all()->where('id',$qq['Coupon_id']);
-            $coupon_list[$cc] = $coupon;
-            $cc++;
+        if(count($copon)!=0){
+            foreach ($copon as $qq){
+                $coupon=Coupon::all()->where('id',$qq['Coupon_id']);
+                $coupon_list[$cc] = $coupon;
+                $cc++;
+            }
         }
-
         return view('sale.productcreate')->with('re',$re)->with('saleinfo',$saleinfo)->with('copon',$copon)
             ->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list);
     }
@@ -80,6 +81,7 @@ class TransactionsController extends Controller
             $coupon_list[$cc] = $coupon;
             $cc++;
         }
+        dd($coupon_list);
         return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('re',$re)->with('Member_id',$request['Member_id'])
             ->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list);
     }
