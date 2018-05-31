@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Validator;
 
 
 use LaravelFCM\Facades\FCM;
-use LaravelFCM\Message\Topics;
 use LaravelFCM\Message\PayloadNotificationBuilder;
+use LaravelFCM\Message\Topics;
 
 class PushsController extends Controller
 {
@@ -130,13 +130,17 @@ class PushsController extends Controller
                 'statue'=>0
             ]);
         }
-        $this->push();
+
+        $this->push($push);
         return redirect()->route('pushlist');
     }
-    public function push(){
 
-        $notificationBuilder = new PayloadNotificationBuilder('my title');
-        $notificationBuilder->setBody('Hello world')
+    /**
+     * @return mixed
+     */
+    public  function push($push){
+        $notificationBuilder = new PayloadNotificationBuilder($push->title);
+        $notificationBuilder->setBody($push->content)
             ->setSound('default');
         $notification = $notificationBuilder->build();
         $topic = new Topics();
@@ -145,6 +149,6 @@ class PushsController extends Controller
         $topicResponse->isSuccess();
         $topicResponse->shouldRetry();
         $topicResponse->error();
-
+        return null;
     }
 }

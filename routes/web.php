@@ -10,6 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+stream_context_set_default([
+    'ssl'=>[
+        'allow_self_signed'=>true,
+        'verify_peer'=>false,
+        'verify_peer_name'=>false
+    ]]
+);
+
 Auth::routes();
 
 Route::get('/test','DATA@create');
