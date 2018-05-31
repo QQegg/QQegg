@@ -46,20 +46,12 @@ class PushsController extends Controller
             'title.required'=>'你必須輸入促銷訊息名稱',
             'content.required'=>'你必須輸入促銷訊息內容',
             'picture.required'=>'你必須上傳圖片',
-            'date_start.required'=>'你必須輸入起始日期',
-            'date_end.required'=>'你必須輸入結束日期',
-            'time_start.required'=>'你必須輸入起始時間',
-            'time_end.required'=>'你必須輸入時間',
+
         );
         $rules = array(
             'title' => 'required',
             'content' => 'required',
             'picture' => 'required',
-            'date_start' => 'required',
-            'date_end' => 'required',
-            'time_start' => 'required',
-            'time_end' => 'required',
-
         );
 
         $validator = Validator::make($request->all(), $rules,$messsages);
