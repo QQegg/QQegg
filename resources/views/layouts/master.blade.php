@@ -50,7 +50,7 @@
                     <a  href="{{route('index')}}" align="top">
                         <nobr>
                             <img src="img/logo2.png" alt="" width="150" height="150" style="float:left;margin:5pt"  />
-                            <h1 style="position: absolute; left:400pt ;top:20pt">資訊推播商圈</h1>
+                            <h1 style="position: absolute; left:400pt ;top:20pt">雙魚商圈</h1>
                         </nobr>
                     </a>
                 </div>
