@@ -85,7 +85,6 @@
             <th>起始日期~結束日期</th>
             <th>起始時間~結束時間</th>
             <th>推播訊息名稱</th>
-            <th>狀態</th>
             <th>功能</th>
             <th>推播</th>
         </tr>
@@ -97,7 +96,6 @@
                 <td>{{$push->date_start}}~{{$push->date_end}}</td>
                 <td>{{$push->time_start}}~{{$push->time_end}}</td>
                 <td>{{$push->title}}</td>
-                <td><a class="text-danger"><strong>{{$push->statue}}</strong></a></td>
                 <td >
                     <button class="btn btn-success "><a href="{{route('pushview',$push->id)}}" style="color: white" ><strong>詳細</strong></a></button>
                     <button class="btn btn-warning "><a href="{{route('pushedit',$push->id)}}" style="color: white" ><strong>編輯</strong></a></button>
@@ -107,7 +105,7 @@
                     <button  class=" btn btn-danger "><a href="{{route('pushdestroy',$push->id)}}" style="color: white"><strong>刪除</strong></a></button>
                         {{--</form>--}}
                 </td>
-                <td><button class="btn btn-primary "><a href="{{route('pushchange',$push->id)}}" style="color:white" ><strong>更改推播狀態</strong></a></button></td>
+                <td><button class="btn btn-primary "><a href="{{route('pushchange',$push->id)}}" style="color:white" ><strong>發送推播訊息</strong></a></button></td>
             </tr>
         @endforeach
         </tbody>
