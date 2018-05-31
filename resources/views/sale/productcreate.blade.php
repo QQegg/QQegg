@@ -82,7 +82,7 @@
                         <option value="0" selected="selected">請選擇要用的折價券</option>
                         @if(count($coupon_list)!=0){
                         @foreach($coupon_list as $coupon_list)
-                            @if($coupon_list->first()->lowestprice>=$saleinfo)
+                            @if($coupon_list->first()->lowestprice<=$saleinfo)
                             <option value="{{$coupon_list->first()->discount}}">{{$coupon_list->first()->title}}</option>
                             @endif
                         @endforeach
