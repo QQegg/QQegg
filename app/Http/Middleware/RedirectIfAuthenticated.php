@@ -34,6 +34,9 @@ class RedirectIfAuthenticated
                 }
                 break;
         }
+        if($request->secure()) {
+            return redirect($request->path());
+        }
         return $next($request);
     }
 }
