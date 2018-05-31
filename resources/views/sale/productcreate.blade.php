@@ -77,12 +77,20 @@
                 <div class="container ">
                     <h3   class="bg-info" style="font-family:標楷體  "><strong>使用折價券折扣或積點折抵</strong></h3>
                     折價券 :
-                    <select name="discount" id="dis">
-                        <option value="1" selected="selected">請選擇要用的折價券</option>
-                        @foreach($coupon_list as $coupon_list)
-                            <option value="{{$coupon_list->first()->discount}}">{{$coupon_list->first()->title}}</option>
 
+                    <select name="discount" id="dis">
+                        <option value="0" selected="selected">請選擇要用的折價券</option>
+                        @if(count($coupon_list)!=0){
+                        @foreach($coupon_list as $coupon_list)
+                            @if($coupon_list->first()->lowestprice>=$saleinfo)
+                            <option value="{{$coupon_list->first()->discount}}">{{$coupon_list->first()->title}}</option>
+                            @endif
                         @endforeach
+                        }
+                        @else{
+                        <option value="0">無可用的折價券</option>
+                        }
+                        @endif
                     </select>
                     積點 :
                     <input class="form-horizontal "  name="point" id="poi"  placeholder="此會員可用積點:{{$point}}"/>
@@ -94,7 +102,6 @@
         <script type="text/javascript">
 
             function printDiv(divName) {
-
                 var printContents = document.getElementById(divName).innerHTML;
                 w=window.open();
                 w.document.write(printContents);
@@ -269,8 +276,8 @@
                 document.getElementById("point").value=0;
             else
                 document.getElementById("point").value =parseInt(document.getElementById("poi").value);
-            document.getElementById("inner").textContent=(parseInt(document.getElementById('val').value)*parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value);
-            document.getElementById("add").textContent=((parseInt(document.getElementById('val').value)*parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value))*0.01;
+            document.getElementById("inner").textContent=(parseInt(document.getElementById('val').value)-parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value);
+            document.getElementById("add").textContent=((parseInt(document.getElementById('val').value)-parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value))*0.01;
             document.getElementById("min").textContent=document.getElementById("point").value;
             document.getElementById("fin").textContent=parseInt({{$point}})+parseInt(document.getElementById("add").textContent)-parseInt(document.getElementById("min").textContent);
             modal.style.display = "block";
