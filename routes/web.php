@@ -107,7 +107,6 @@ Route::group(['middleware'=>'auth:store'], function() {
         Route::post('/per',['as' => 'prestore' ,'uses'=>'TransactionsController@prestore']);
         Route::post('/checkout',['as'=>'checkout','uses'=>'TransactionsController@checkout']);//好像用不到
         Route::post('/store',['as' => 'salestore' ,'uses'=>'TransactionsController@store']);
-        Route::get('/show',['as'=>'saleshow','uses'=>'TransactionsController@show']);
     });
 
 });
