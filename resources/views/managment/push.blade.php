@@ -107,11 +107,8 @@
                     <button  class=" btn btn-danger "><a href="{{route('pushdestroy',$push->id)}}" style="color: white"><strong>刪除</strong></a></button>
                         {{--</form>--}}
                 </td>
-                @if($push->first()->statue == 1)
-                    <td><button class="btn btn-primary " disabled><a href="{{route('pushchange',$push->id)}}" style="color:white" ><strong>此推播訊息已被送出</strong></a></button></td>
-                @else
+
                     <td><button class="btn btn-primary "><a href="{{route('pushchange',$push->id)}}" style="color:white" ><strong>發送推播訊息</strong></a></button></td>
-                @endif
             </tr>
         @endforeach
         </tbody>
