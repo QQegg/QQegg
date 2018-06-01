@@ -19,12 +19,9 @@ class CouponsController extends Controller
 
         $count = DB::table('user_coupons')
             ->select('Coupon_id', DB::raw('SUM(use_status) as total '))
-//        ->select('Coupon_id', DB::raw('empty(count(*),0) as total'))
-        ->groupBy('Coupon_id')
-        ->orderBy('Coupon_id','ASC')
-        ->get();
-
-
+            ->groupBy('Coupon_id')
+            ->orderBy('Coupon_id','ASC')
+            ->get();
 
         $zz=0;
        foreach ($count as $aa){

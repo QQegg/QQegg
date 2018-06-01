@@ -81,7 +81,9 @@ class TransactionsController extends Controller
             $coupon_list[$cc] = $coupon;
             $cc++;
         }
-        dd($coupon_list);
+
+
+//        dd($coupon_list);
         return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('re',$re)->with('Member_id',$request['Member_id'])
             ->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list);
     }
