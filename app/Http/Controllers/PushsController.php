@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 use App\Push;
 use App\Store;
@@ -32,7 +33,8 @@ class PushsController extends Controller
     }
     public function create()
     {
-        return view('managment.pushcreate');
+       $prod=Product::all()->where('store_id',Auth::guard('store')->user()->id);
+        return view('managment.pushcreate',$prod);
     }
     public function view($id)
     {
@@ -74,6 +76,8 @@ class PushsController extends Controller
             Push::create([
                 'Store_id' => $store['0'],
                 'title' => $request['title'],
+                'Product_id' => $request['product'],
+                'discount' => $request['discount'],
                 'content' => $request['content'],
                 'picture' => $file_name,
                 'date_start' => $request['date_start'],

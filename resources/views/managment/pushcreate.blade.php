@@ -48,6 +48,19 @@
             <label>標題</label>
             <textarea name="title" class="form-control" rows="1"></textarea>
         </div>
+
+        <select name="discount" id="dis">
+            <option value="0" selected="selected">請選擇商品</option>
+            @foreach($prod as $ev)
+                <option value={{$ev->id}} selected="selected">{{$ev->name}}</option>
+            @endforeach
+        </select>
+
+        <div class="form-group">
+            <label>標題</label>
+            <textarea name="discount" class="form-control" rows="1"></textarea>
+        </div>
+
         <div class="form-group">
             <label>內容</label>
             <textarea name="content" class="form-control" rows="5"></textarea>
