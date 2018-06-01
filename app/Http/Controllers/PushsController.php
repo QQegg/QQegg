@@ -34,7 +34,8 @@ class PushsController extends Controller
     }
     public function create()
     {
-        return view('managment.pushcreate');
+       $prod=Product::all()->where('store_id',Auth::guard('store')->user()->id);
+        return view('managment.pushcreate',$prod);
     }
     public function view($id)
     {
@@ -70,6 +71,8 @@ class PushsController extends Controller
                 'Store_id' => $store['0'],
                 'title' => $request['title'],
                 'Commodity_id' => $request['Commodity_id'],
+                'Product_id' => $request['product'],
+                'discount' => $request['discount'],
                 'content' => $request['content'],
                 'date_start' => $request['date_start'],
                 'date_end' => $request['date_end'],

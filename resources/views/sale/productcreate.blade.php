@@ -77,7 +77,6 @@
                 <div class="container ">
                     <h3   class="bg-info" style="font-family:標楷體  "><strong>使用折價券折扣或積點折抵</strong></h3>
                     折價券 :
-
                     <select name="discount" id="dis">
                         <option value="0" selected="selected">請選擇要用的折價券</option>
                         @if(count($coupon_list)!=0){
@@ -92,11 +91,23 @@
                         }
                         @endif
                     </select>
+                    促銷內容 :
+                    <select name="cosd" id="cosd">
+                        <option value="0" selected="selected">請選擇要用的促銷</option>
+                    @if(count($push)==0)
+                        <option value="0">無可用促銷</option>
+                    @else
+                        {@foreach($push as $qq)
+                                <option value={{$qq->discount}}>{{$qq->title}}</option>
+                            @endforeach
+                            }
+                        @endif
+
+                    </select>
+
                     積點 :
                     <input class="form-horizontal "  name="point" id="poi"  placeholder="此會員可用積點:{{$point}}"/>
                     <button  id="myBtn" type="submit" class="btn btn-primary">結帳</button>
-
-
                 </div>
 
         <script type="text/javascript">
@@ -108,7 +119,6 @@
                 w.print();
                 w.close();
             }</script>
-
                 <div id="myModal" class="modal" >
 
                     <!-- Modal content -->
@@ -169,6 +179,7 @@
                                     </div>
                                     <div class="container ">
                                         <input style="display:none" class="form-control" id="disc" name="discount"/>
+                                        <input class="form-horizontal" id="cosdd" name="cosdd" style="display:none"/>
                                         <input class="form-horizontal" id="point" name="point" style="display:none"/>
                                         <button  type="submit" class=" btn btn-info & center-block" onclick="printDiv('printModal')">列印明細</button>
                                     </div>
@@ -180,13 +191,8 @@
 
 
                 </div>
-
-
-
             <!-- Trigger/Open The Modal -->
             <!-- The Modal -->
-
-
             <style>
                 body {font-family: Arial, Helvetica, sans-serif;}
                 /* Modal Header */
@@ -223,8 +229,6 @@
                     to {top: 0; opacity: 1}
                 }
             </style>
-
-
     </div>
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
@@ -272,12 +276,13 @@
         // When the user clicks the button, open the modal
         btn.onclick = function() {
             document.getElementById("disc").value = document.getElementById("dis").value;
+            document.getElementById("cosdd").value = document.getElementById("cosd").value;
             if (isNaN(parseInt(document.getElementById("poi").value)))
                 document.getElementById("point").value=0;
             else
                 document.getElementById("point").value =parseInt(document.getElementById("poi").value);
-            document.getElementById("inner").textContent=(parseInt(document.getElementById('val').value)-parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value);
-            document.getElementById("add").textContent=((parseInt(document.getElementById('val').value)-parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value))*0.01;
+            document.getElementById("inner").textContent=(parseInt(document.getElementById('val').value)-parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value)-parseInt(document.getElementById("cosdd").value);
+            document.getElementById("add").textContent=((parseInt(document.getElementById('val').value)-parseInt(document.getElementById("dis").value))-parseInt(document.getElementById("point").value)-parseInt(document.getElementById("cosdd").value))*0.01;
             document.getElementById("min").textContent=document.getElementById("point").value;
             document.getElementById("fin").textContent=parseInt({{$point}})+parseInt(document.getElementById("add").textContent)-parseInt(document.getElementById("min").textContent);
             modal.style.display = "block";
