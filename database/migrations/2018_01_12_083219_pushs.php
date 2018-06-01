@@ -16,10 +16,10 @@ class Pushs extends Migration
         Schema::create('pushs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('Store_id');
+            $table->integer('Commodity_id');
             $table->string('title');
             $table->string('content');
             $table->integer('statue')->default(0);
-            $table->string('picture');
             $table->string('date_start')->nullable();
             $table->string('date_end')->nullable();
             $table->string('time_start')->nullable();

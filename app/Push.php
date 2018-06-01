@@ -10,10 +10,10 @@ class Push extends Model
     protected $fillable=[
         'id',
         'Store_id',
+        'Commodity_id',
         'title',
         'content',
         'statue',
-        'picture',
         'date_start',
         'date_end',
         'time_start',
