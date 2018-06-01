@@ -11,6 +11,8 @@ class Push extends Model
         'id',
         'Store_id',
         'title',
+        'Product_id',
+        'discount',
         'content',
         'statue',
         'picture',

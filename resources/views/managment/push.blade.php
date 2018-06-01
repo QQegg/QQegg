@@ -112,6 +112,7 @@
                     <td><button class="btn btn-primary " disabled><a href="{{route('pushchange',$push->id)}}" style="color:white" ><strong>此推播訊息已被送出
                 @else
                     <td><button class="btn btn-primary "><a href="{{route('pushchange',$push->id)}}" style="color:white" ><strong>發送推播訊息</strong></a></button></td>
+                @endif
             </tr>
         @endforeach
         </tbody>

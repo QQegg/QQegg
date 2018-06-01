@@ -17,6 +17,8 @@ class Pushs extends Migration
             $table->increments('id');
             $table->integer('Store_id');
             $table->string('title');
+            $table->string('Product_id');
+            $table->string('discount');
             $table->string('content');
             $table->integer('statue')->default(0);
             $table->string('picture');

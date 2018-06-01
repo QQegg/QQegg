@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Coupon;
+use App\Push;
 use App\User;
 use App\User_coupon;
 use Illuminate\Support\Facades\Auth;
@@ -44,9 +45,10 @@ class TransactionsController extends Controller
                 $cc++;
             }
         }
+        $push=Push::all()->where("Store_id",Auth::guard('store')->user()->id);
 
         return view('sale.productcreate')->with('re',$re)->with('saleinfo',$saleinfo)->with('copon',$copon)
-            ->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list);
+            ->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list)->with('push',$push);
     }
     public function prestore(Request $request){
         Dealmatch::create(
@@ -79,8 +81,9 @@ class TransactionsController extends Controller
             $coupon_list[$cc] = $coupon;
             $cc++;
         }
+        $push=Push::all()->where("Store_id",Auth::guard('store')->user()->id);
         return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('re',$re)->with('Member_id',$request['Member_id'])
-            ->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list);
+            ->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list)->with('push',$push);
     }
     public function checkout(Request $request){
         $pirce=$request['price']-$request['discount']-$request['point'];
@@ -123,7 +126,6 @@ class TransactionsController extends Controller
             $CS->use_status=1;
             $CS->save();
         }
-
         foreach ($copon as $qq){
             $coupon=Coupon::all()->where('id',$qq['Coupon_id']);
             $coupon_list[$cc] = $coupon;
