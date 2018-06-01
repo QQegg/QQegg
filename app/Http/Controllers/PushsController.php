@@ -115,14 +115,7 @@ class PushsController extends Controller
             $push->update([
                 'statue'=>1
             ]);
-
         }
-        else{
-            $push->update([
-                'statue'=>0
-            ]);
-        }
-
         $this->push($push);
         return redirect()->route('pushlist');
     }
@@ -131,6 +124,7 @@ class PushsController extends Controller
      * @return mixed
      */
     public  function push($push){
+
         $notificationBuilder = new PayloadNotificationBuilder($push->title);
         $notificationBuilder->setBody($push->content)
             ->setSound('default');
@@ -141,6 +135,7 @@ class PushsController extends Controller
         $topicResponse->isSuccess();
         $topicResponse->shouldRetry();
         $topicResponse->error();
+
         return null;
     }
 }
