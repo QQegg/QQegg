@@ -127,15 +127,6 @@ class TransactionsController extends Controller
         }
         return view('sale.productcostomer');
     }
-
-    public function show(){
-        $tran = Transaction::all()->where('Store_id',Auth::guard('store'));
-        dd($tran);
-        foreach($tran as $count){
-            $cus = User::all()->where('id',$count['']);
-        }
-        return view('sale.salelist');
-    }
 }
 //$parent = Parent::create(['name' => 'Bob']);
 //foreach($names as $name)

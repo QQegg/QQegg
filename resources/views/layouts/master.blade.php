@@ -50,7 +50,7 @@
                     <a  href="{{route('index')}}" align="top">
                         <nobr>
                             <img src="img/logo2.png" alt="" width="150" height="150" style="float:left;margin:5pt"  />
-                            <h1 style="position: absolute; left:400pt ;top:20pt">資訊推播商圈</h1>
+                            <h1 style="position: absolute; left:400pt ;top:20pt">雙魚商圈</h1>
                         </nobr>
                     </a>
                 </div>
@@ -59,10 +59,12 @@
                     <ul class="nav navbar-nav">
                         {{--<li font-size="15"><a href="{{route('prolist')}}">商品管理</a></li>--}}
 
+                        <li><a href="{{route('index')}}">回到首頁</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                              商品管理  <span class="caret"></span>
                             </a>
+
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
@@ -75,7 +77,6 @@
                         <li><a href="{{route('pushlist')}}">促銷訊息管理</a></li>
                         <li><a href="{{route('coulist')}}">折價券管理</a></li>
                         <li><a href="{{route('salecreat')}}">結帳</a></li>
-                        <li><a href="{{route('saleshow')}}">交易紀錄</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 您好 !  <strong>{{ Auth::guard('store')->user()->name}}</strong> 店家   <span class="caret"></span>
