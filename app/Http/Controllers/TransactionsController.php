@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Coupon;
-use App\Coupon_statu;
 use App\User;
 use App\User_coupon;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +34,7 @@ class TransactionsController extends Controller
         $copon=User_coupon::all()->where('User_id',$request['Member_id']);
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
         $re=0;
-//        dd($copon);
+        //dd($copon);
         $coupon_list=null;
         $cc = 0;
         if(count($copon)!=0){
@@ -45,10 +44,10 @@ class TransactionsController extends Controller
                 $cc++;
             }
         }
+
         return view('sale.productcreate')->with('re',$re)->with('saleinfo',$saleinfo)->with('copon',$copon)
             ->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list);
     }
-
     public function prestore(Request $request){
         Dealmatch::create(
             [
@@ -74,18 +73,15 @@ class TransactionsController extends Controller
         $pirce=$request['price']-$request['discount']-$request['point'];
         $member=User::find($request['Member']);
         $re=$member['point'];
-
         $cc = 0;
         foreach ($copon as $qq){
             $coupon=Coupon::all()->where('id',$qq['Coupon_id']);
             $coupon_list[$cc] = $coupon;
             $cc++;
         }
-        dd($coupon_list);
         return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('re',$re)->with('Member_id',$request['Member_id'])
             ->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list);
     }
-
     public function checkout(Request $request){
         $pirce=$request['price']-$request['discount']-$request['point'];
         $member=User::find($request['Member']);
@@ -118,8 +114,16 @@ class TransactionsController extends Controller
             $member->point=$re;
             $member->save();
         }
-
         $cc = 0;
+        if($request['discount']!=0 or $request['discount']!=null)
+        {
+            $discri=Coupon::all()->where('discount',$request['discount'])->pluck('id')->last();
+            $CSS=User_coupon::all()->where('User_id',$request['Member'])->where('Coupon_id',$discri)->pluck('id')->first();
+            $CS=User_coupon::find($CSS);
+            $CS->use_status=1;
+            $CS->save();
+        }
+
         foreach ($copon as $qq){
             $coupon=Coupon::all()->where('id',$qq['Coupon_id']);
             $coupon_list[$cc] = $coupon;

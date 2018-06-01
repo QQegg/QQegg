@@ -281,6 +281,8 @@
             document.getElementById("min").textContent=document.getElementById("point").value;
             document.getElementById("fin").textContent=parseInt({{$point}})+parseInt(document.getElementById("add").textContent)-parseInt(document.getElementById("min").textContent);
             modal.style.display = "block";
+            document.getElementById("coupon").textContent=document.getElementById("point").value;
+
         }
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
