@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use Commoditys;
 use Illuminate\Http\Request;
 use App\Push;
 use App\Store;
@@ -40,6 +41,10 @@ class PushsController extends Controller
     public function view($id)
     {
         $push=Push::all()->where('id',$id);
+        $product_name = Product::all()->where('id',$push->first()['Commodity_id'])->pluck('name');
+        $push->first()['P_name'] = $product_name->first();
+        $product_picture = Product::all()->where('id',$push->first()['Commodity_id'])->pluck('picture');
+        $push->first()['P_picture'] = $product_picture->first();
         $data=['pushs'=>$push];
         return view('managment.pushview',$data);
     }
@@ -71,7 +76,6 @@ class PushsController extends Controller
                 'Store_id' => $store['0'],
                 'title' => $request['title'],
                 'Commodity_id' => $request['Commodity_id'],
-                'Product_id' => $request['product'],
                 'discount' => $request['discount'],
                 'content' => $request['content'],
                 'date_start' => $request['date_start'],

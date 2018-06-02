@@ -23,6 +23,7 @@ class CommentsController extends Controller
 
         $Store_id = StoreComment::all()->where('Store_id',Auth::guard('store')->user()->id)->pluck('Member_id');
         $aa = 0;
+        $iscomment = array();
         foreach ($com as $count){
             $iscomment2 = User::all()->whereNotIn('id',$Store_id)->where('id',$count->Member_id);
             $iscomment[$aa] = $iscomment2->first();

@@ -54,6 +54,10 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label>折扣數</label>
+                        <input name="discount" class="form-control" >
+                    </div>
+                    <div class="form-group">
                         <label>起始日期</label>
                         <input type="date" name="date_start" class="form-control" >
                     </div>

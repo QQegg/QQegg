@@ -47,8 +47,12 @@
                 <label>結束時間</label>
                 <p>{{$push->time_end}}</p>
             </div>
+            <div class="form-group">
+                <label>促銷商品</label>
+                <p>{{$push->P_name}}</p>
+            </div>
                 <div class="form-group">
-                    <img src="{{url('../storage/push/'. $push->picture)}}" >
+                    <img src="{{url('../storage/product/'. $push->P_picture)}}" >
                 {{--<div class="text-right">--}}
                     {{--<button type="submit" class="btn btn-primary ">修改</button>--}}
                 {{--</div>--}}
