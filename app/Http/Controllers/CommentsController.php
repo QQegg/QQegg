@@ -22,9 +22,13 @@ class CommentsController extends Controller
         }//抓取留言消費者資料
 
         $Store_id = StoreComment::all()->where('Store_id',Auth::guard('store')->user()->id)->pluck('Member_id');
-
-        $iscomment = User::all()->whereNotIn('id',$Store_id);
-        //抓取留言消費者名稱
+        $aa = 0;
+        foreach ($com as $count){
+            $iscomment2 = User::all()->whereNotIn('id',$Store_id)->where('id',$count->Member_id);
+            $iscomment[$aa] = $iscomment2->first();
+            $aa++;
+        }//抓取以留言並且尚未被店家回覆的消費者資料
+        $iscomment = array_filter($iscomment);
 
         $aa = 0;
         foreach ($com as $count){

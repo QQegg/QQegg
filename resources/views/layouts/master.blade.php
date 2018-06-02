@@ -73,7 +73,7 @@
                                 </li>
                             </ul>
                         </li>
-
+                        <li><a href="{{route('comlist')}}">回應消費者留言</a></li>
                         <li><a href="{{route('pushlist')}}">促銷訊息管理</a></li>
                         <li><a href="{{route('coulist')}}">折價券管理</a></li>
                         <li><a href="{{route('salecreat')}}">結帳</a></li>
