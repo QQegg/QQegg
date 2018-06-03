@@ -13,7 +13,6 @@ class Product extends Model
         'name',
         'specification',
         'price',
-        'unit',
         'picture',
     ];
 

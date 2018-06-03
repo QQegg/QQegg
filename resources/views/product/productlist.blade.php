@@ -61,10 +61,6 @@
                                     <input name="price" id="price" class="form-control" value="{{old('price')}}" placeholder="請輸入產品單價"required>
                                 </div>
                                 <div class="field">
-                                    <label>單位</label>
-                                    <input name="unit" id="unit" class="form-control" value="{{old('unit')}}" placeholder="請輸入產品單位"required>
-                                </div>
-                                <div class="field">
                                     <label>上傳產品照片</label>
                                     <input id="picture" type="file" class="form-control" name="picture" value="{{old('picture')}}" placeholder="上傳圖片"required>
                                 </div>

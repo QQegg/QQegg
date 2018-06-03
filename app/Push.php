@@ -13,7 +13,6 @@ class Push extends Model
         'Commodity_id',
         'title',
         'discount',
-        'content',
         'statue',
         'date_start',
         'date_end',

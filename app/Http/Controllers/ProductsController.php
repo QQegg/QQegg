@@ -38,7 +38,6 @@ class ProductsController extends Controller
             'price.required' => '你必須輸入單價',
             'price.integer' => '單價必須為數字',
             'C_name.required' => '你必須選擇產品類別',
-            'unit.required' => '你必須輸入單位',
             'picture.required' => '你必須選擇照片',
         );
         $rules = array(
@@ -46,7 +45,6 @@ class ProductsController extends Controller
             'specification' => 'required',
             'price' => 'required|integer',
             'C_name' => 'required',
-            'unit' => 'required|string',
             'picture' => 'required',
         );
 
@@ -71,7 +69,6 @@ class ProductsController extends Controller
                 'name' => $request['name'],
                 'specification' => $request['specification'],
                 'price' => $request['price'],
-                'unit' => $request['unit'],
                 'picture' => $file_name,
             ]);
         }
@@ -94,7 +91,6 @@ class ProductsController extends Controller
             'specification.required' => '你必須輸入產品規格',
             'price.required' => '你必須輸入單價',
             'price.integer' => '單價必須為數字',
-            'unit.required' => '你必須輸入單位',
             'picture.required' => '你必須選擇照片',
         );
 
@@ -102,7 +98,6 @@ class ProductsController extends Controller
             'name' => 'required|max:255',
             'specification' => 'required',
             'price' => 'required|integer',
-            'unit' => 'required|string',
             'picture' => 'required',
         );
 
@@ -125,7 +120,6 @@ class ProductsController extends Controller
                 'name' => $request['name'],
                 'specification' => $request['specification'],
                 'price' => $request['price'],
-                'unit' => $request['unit'],
                 'picture' => $file_name,
             ]);
         }

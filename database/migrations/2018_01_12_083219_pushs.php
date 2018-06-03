@@ -19,7 +19,6 @@ class Pushs extends Migration
             $table->integer('Commodity_id');
             $table->string('title');
             $table->string('discount');
-            $table->string('content');
             $table->integer('statue')->default(0);
             $table->string('date_start')->nullable();
             $table->string('date_end')->nullable();
