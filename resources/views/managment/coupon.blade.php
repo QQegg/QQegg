@@ -44,10 +44,6 @@
                     <textarea name="title" class="form-control" rows="1"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>內容</label>
-                    <textarea name="content" class="form-control" rows="5"></textarea>
-                </div>
-                <div class="form-group">
                     <label>起始時間</label>
                     <input type="datetime-local" name="start" class="form-control" >
                 </div>
