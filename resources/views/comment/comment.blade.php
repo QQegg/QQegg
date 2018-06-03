@@ -24,10 +24,15 @@
                                                 <h1 style="margin-top:0;">{{$com->member_name}}的評論</h1>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3 style="margin-top:0;">{{ $com->content}}</h3>
+                                            </div>
+                                        </div>
                                         <hr style="margin:10px 0;"/>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                你的回應：{{ $com->Store_comment}}
+                                                <h3 style="margin-top:0;">你的回應：{{ $com->Store_comment}}</h3>
                                             </div>
                                         </div>
                                         <div class="row" style="margin-top:10px;">

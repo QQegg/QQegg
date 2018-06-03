@@ -13,7 +13,17 @@ class CommentsController extends Controller
 {
     public function index()
     {
-        $com=Comment::all()->where('Store_id',Auth::guard('store')->user()->id);
+        $com2=Comment::all()->where('Store_id',Auth::guard('store')->user()->id);
+
+        $low=0;
+
+        $com = array();
+
+        foreach ($com2 as $count){
+            $com[$low] = $count;
+            $low++;
+        }
+
         $cc = 0;
         foreach ($com as $count){
             $member = User::all()->where('id',$count['Member_id'])->pluck('name');
@@ -33,7 +43,7 @@ class CommentsController extends Controller
 
         $aa = 0;
         foreach ($com as $count){
-            $store_content = StoreComment::all()->where('Member_id',$count['Member_id'])->pluck('content');
+            $store_content = StoreComment::all()->where('Member_id',$count['Member_id'])->where('Store_id',Auth::guard('store')->user()->id)->pluck('content');
             $com[$aa]['Store_comment'] = $store_content->first();
             $aa++;
         }//抓取店家的留言
