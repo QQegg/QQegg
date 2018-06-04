@@ -28,36 +28,41 @@
 
         <div class="form-group">
             <label>標題</label>
-            <textarea name="title" class="form-control" rows="1" >{{$push->title}}</textarea>
+            <textarea name="title" class="form-control" rows="1" required >{{$push->title}}</textarea>
         </div>
-        <div class="form-group">
-            <label>內容</label>
-            <textarea name="content" class="form-control" rows="5" >{{$push->content}}</textarea>
-        </div>
+                <div class="form-group">
+                    <label>促銷產品</label>
+                    <select name="Commodity_id" class="form-control" required>
+                        @if($push->Commodity_id == 0)
+                            <option value="{{$push->Commodity_id}}" selected="selected">未分類</option>
+                        @else
+                            <option value="{{$push->Commodity_id}}" selected="selected">{{$push->Commodity_name}}</option>
+                        @endif
+                        @foreach($product as $promote_product)
+                            <option value="{{$promote_product->id}}" @if(old('C_name') == $promote_product->id) selected="selected" @endif>{{$promote_product->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
         <div class="form-group">
             <label>起始日期</label>
             {{--<input type="datetime-local" name="P_timestamp" class="form-control" value="{{$push->P_timestamp}}">--}}
-            <textarea name="date_start" class="form-control" rows="1" >{{$push->date_start}}</textarea>
+            <textarea name="date_start" class="form-control" rows="1" required>{{$push->date_start}}</textarea>
         </div>
         <div class="form-group">
          <label>結束日期</label>
                     {{--<input type="datetime-local" name="P_timestamp" class="form-control" value="{{$push->P_timestamp}}">--}}
-                    <textarea name="date_end" class="form-control" rows="1" >{{$push->date_end}}</textarea>
+                    <textarea name="date_end" class="form-control" rows="1" required>{{$push->date_end}}</textarea>
                 </div>
                 <div class="form-group">
                     <label>起始時間</label>
                     {{--<input type="datetime-local" name="P_timestamp" class="form-control" value="{{$push->P_timestamp}}">--}}
-                    <textarea name="time_start" class="form-control" rows="1" >{{$push->time_start}}</textarea>
+                    <textarea name="time_start" class="form-control" rows="1" required>{{$push->time_start}}</textarea>
                 </div>
                 <div class="form-group">
                     <label>結束時間</label>
                     {{--<input type="datetime-local" name="P_timestamp" class="form-control" value="{{$push->P_timestamp}}">--}}
-                    <textarea name="time_end" class="form-control" rows="1" >{{$push->time_end}}</textarea>
+                    <textarea name="time_end" class="form-control" rows="1" required>{{$push->time_end}}</textarea>
                 </div>
-        <div class="form-group">
-            <label>上傳圖片</label>
-            <input type="file"  class="form-control " name="picture" id="picture" >
-        </div>
         <div class="text-right">
             <button type="submit" class="btn btn-primary ">修改</button>
         </div>

@@ -12,7 +12,6 @@ class Coupon extends Model
         'id',
         'Store_id',
         'title',
-        'content',
         'start',
         'end',
         'discount',

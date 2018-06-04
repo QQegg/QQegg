@@ -30,11 +30,11 @@
                     {{ method_field('PATCH') }}
                     <div class="form-group">
                         <label>產品名稱</label>
-                        <input name="name" class="form-control" placeholder="請輸入產品名稱" value="{{$product->name}}">
+                        <input name="name" class="form-control" placeholder="請輸入產品名稱" value="{{$product->name}}" required>
                     </div>
                     <div class="form-group">
                         <label>產品類別</label>
-                        <select name="C_name" class="form-control">
+                        <select name="C_name" class="form-control" required>
                             @if($product->Category_id == 0)
                                 <option value="{{$product->Category_id}}" selected="selected">未分類</option>
                             @else
@@ -47,19 +47,15 @@
                     </div>
                     <div class="form-group">
                         <label>產品規格</label>
-                        <textarea name="specification" class="form-control" placeholder="請輸入產品規格" rows="5">{{$product->specification}}</textarea>
+                        <textarea name="specification" class="form-control" placeholder="請輸入產品規格" rows="5" required>{{$product->specification}}</textarea>
                     </div>
                     <div class="form-group">
                         <label>單價</label>
-                        <textarea name="price" class="form-control" placeholder="請輸入產品單價" rows="1">{{$product->price}}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>單位</label>
-                        <textarea name="unit" class="form-control" placeholder="請輸入產品單位" rows="1">{{$product->unit}}</textarea>
+                        <textarea name="price" class="form-control" placeholder="請輸入產品單價" rows="1" required>{{$product->price}}</textarea>
                     </div>
                     <div class="form-group">
                         <label>上傳產品照片</label>
-                        <input type="file" class="form-control" name="picture" placeholder="上傳圖片">
+                        <input type="file" class="form-control" name="picture" placeholder="上傳圖片" required>
                     </div>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="submit" class="btn btn-success">修改</button>

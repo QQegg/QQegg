@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Push;
 use App\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +39,6 @@ class ProductsController extends Controller
             'price.required' => '你必須輸入單價',
             'price.integer' => '單價必須為數字',
             'C_name.required' => '你必須選擇產品類別',
-            'unit.required' => '你必須輸入單位',
             'picture.required' => '你必須選擇照片',
         );
         $rules = array(
@@ -46,7 +46,6 @@ class ProductsController extends Controller
             'specification' => 'required',
             'price' => 'required|integer',
             'C_name' => 'required',
-            'unit' => 'required|string',
             'picture' => 'required',
         );
 
@@ -71,7 +70,6 @@ class ProductsController extends Controller
                 'name' => $request['name'],
                 'specification' => $request['specification'],
                 'price' => $request['price'],
-                'unit' => $request['unit'],
                 'picture' => $file_name,
             ]);
         }
@@ -83,7 +81,7 @@ class ProductsController extends Controller
         $product= Product::all()->where('id', $id);
         $category_name = Category::all()->where('id',$product->first()['Category_id'])->pluck('name');
         $product->first()['C_name'] = $category_name->first();
-        $category = Category::all()->whereNotIn('id',$product->first()['Category_id']);
+        $category = Category::all()->where('Store_id',Auth::guard()->user()->id)->whereNotIn('id',$product->first()['Category_id']);
         return view('product.productedit', compact('product','category'));
     }
 
@@ -94,7 +92,6 @@ class ProductsController extends Controller
             'specification.required' => '你必須輸入產品規格',
             'price.required' => '你必須輸入單價',
             'price.integer' => '單價必須為數字',
-            'unit.required' => '你必須輸入單位',
             'picture.required' => '你必須選擇照片',
         );
 
@@ -102,7 +99,6 @@ class ProductsController extends Controller
             'name' => 'required|max:255',
             'specification' => 'required',
             'price' => 'required|integer',
-            'unit' => 'required|string',
             'picture' => 'required',
         );
 
@@ -125,7 +121,6 @@ class ProductsController extends Controller
                 'name' => $request['name'],
                 'specification' => $request['specification'],
                 'price' => $request['price'],
-                'unit' => $request['unit'],
                 'picture' => $file_name,
             ]);
         }
@@ -135,6 +130,10 @@ class ProductsController extends Controller
 
     public function destroy($id)
     {
+        $push = Push::find($id);
+        $push->update([
+            'Commodity_id' => 0,
+        ]);
         $whereArray = array('id' => $id);
         DB::table('commoditys')->where($whereArray)->delete();
         return redirect()->route('prolist');

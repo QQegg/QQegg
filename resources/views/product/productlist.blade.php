@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="field">
                                     <label>產品類別</label>
-                                    <select name="C_name" class="form-control">
+                                    <select name="C_name" class="form-control" required>
                                         <option value="" disabled="disabled" selected="selected">請選擇產品類別</option>
                                         @foreach($category as $category)
                                             <option id="C_name" value="{{$category->id}}" @if(old('C_name') == $category->id) selected="selected" @endif>{{$category->name}}</option>
@@ -59,10 +59,6 @@
                                 <div class="field">
                                     <label>單價</label>
                                     <input name="price" id="price" class="form-control" value="{{old('price')}}" placeholder="請輸入產品單價"required>
-                                </div>
-                                <div class="field">
-                                    <label>單位</label>
-                                    <input name="unit" id="unit" class="form-control" value="{{old('unit')}}" placeholder="請輸入產品單位"required>
                                 </div>
                                 <div class="field">
                                     <label>上傳產品照片</label>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Commoditys extends Migration
+class UserPushs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class Commoditys extends Migration
      */
     public function up()
     {
-        Schema::create('commoditys', function (Blueprint $table) {
+        Schema::create('user_pushs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('Category_id');
-            $table->integer('store_id');
-            $table->string('name');
-            $table->string('specification');
-            $table->integer('price');
-            $table->string('picture');
+            $table->integer('User_id');
+            $table->string('Store_id');
+            $table->string('Push_id');
+            $table->string('use_status');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -33,6 +31,6 @@ class Commoditys extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commoditys');
+        Schema::dropIfExists('user_pushs');
     }
 }
