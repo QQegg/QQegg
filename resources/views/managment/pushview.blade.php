@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title','書籍觀看')
 @section('content')
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Bootstrap Example</title>
@@ -15,26 +15,31 @@
 
     <div class="navbar-collapse collapse ">
         <ul class="nav navbar-nav">
-            <li><a href='{{ route('pushlist') }}' >推播訊息管理</a></li>
+            <li><a href='{{ route('pushlist') }}'>推播訊息管理</a></li>
         </ul>
     </div>
 
     <div class='container'>
-        <h2  class="text-center & text-success" ><strong>檢視推播訊息</strong></h2>
+        <h2 class="text-center & text-success"><strong>檢視推播訊息</strong></h2>
         @foreach($pushs as $push)
 
-                <div class="form-group">
-                    <label>標題</label>
-                    <p>{{$push->title}}</p>
-                </div>
-                <div class="form-group">
-                    <label>內容</label>
-                    <p >{{$push->content}}</p>
-                </div>
-                <div class="form-group">
-                    <label>起始日期</label>
-                    <p>{{$push->date_start}}</p>
-                </div>
+            <div class="form-group">
+                <label>標題</label>
+                <p>{{$push->title}}</p>
+            </div>
+            <div class="form-group">
+                <label>促銷商品：</label>
+                <p>@if($push->Commodity_id == 0)
+                        此促銷訊息尚未綁定商品
+                    @else
+                        {{$push->P_name}}
+                    @endif
+                </p>
+            </div>
+            <div class="form-group">
+                <label>起始日期</label>
+                <p>{{$push->date_start}}</p>
+            </div>
             <div class="form-group">
                 <label>結束日期</label>
                 <p>{{$push->date_end}}</p>
@@ -48,17 +53,20 @@
                 <p>{{$push->time_end}}</p>
             </div>
             <div class="form-group">
-                <label>促銷商品</label>
-                <p>{{$push->P_name}}</p>
-            </div>
-                <div class="form-group">
-                    <img src="{{url('../storage/product/'. $push->P_picture)}}" >
+                <label>促銷商品圖片</label>
+                @if($push->Commodity_id == 0)
+                    <p>
+                        此促銷訊息尚未綁定商品
+                    </p>
+                @else
+                    <img src="{{url('../storage/product/'. $push->P_picture)}}">
+                @endif
                 {{--<div class="text-right">--}}
-                    {{--<button type="submit" class="btn btn-primary ">修改</button>--}}
+                {{--<button type="submit" class="btn btn-primary ">修改</button>--}}
                 {{--</div>--}}
+            </div>
+        @endforeach
     </div>
-    @endforeach
-</div>
 </div>
 </html>
 @endsection

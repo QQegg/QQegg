@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Push;
 use App\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -80,7 +81,7 @@ class ProductsController extends Controller
         $product= Product::all()->where('id', $id);
         $category_name = Category::all()->where('id',$product->first()['Category_id'])->pluck('name');
         $product->first()['C_name'] = $category_name->first();
-        $category = Category::all()->whereNotIn('id',$product->first()['Category_id']);
+        $category = Category::all()->where('Store_id',Auth::guard()->user()->id)->whereNotIn('id',$product->first()['Category_id']);
         return view('product.productedit', compact('product','category'));
     }
 
@@ -129,6 +130,10 @@ class ProductsController extends Controller
 
     public function destroy($id)
     {
+        $push = Push::find($id);
+        $push->update([
+            'Commodity_id' => 0,
+        ]);
         $whereArray = array('id' => $id);
         DB::table('commoditys')->where($whereArray)->delete();
         return redirect()->route('prolist');

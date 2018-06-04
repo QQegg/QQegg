@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="field">
                                     <label>產品類別</label>
-                                    <select name="C_name" class="form-control">
+                                    <select name="C_name" class="form-control" required>
                                         <option value="" disabled="disabled" selected="selected">請選擇產品類別</option>
                                         @foreach($category as $category)
                                             <option id="C_name" value="{{$category->id}}" @if(old('C_name') == $category->id) selected="selected" @endif>{{$category->name}}</option>

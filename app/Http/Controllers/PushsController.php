@@ -24,7 +24,10 @@ class PushsController extends Controller
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
         $pushs2 = Push::all()->where('Store_id', $store['0']);
 
+
+        $pushs = array();
         $pu=0;
+
         foreach ($pushs2 as $count){
             $pushs[$pu] = $count;
             $pu++;
@@ -102,9 +105,11 @@ class PushsController extends Controller
 
     public function edit($id)
     {
-        $push = Push::all()->where('id', $id);
-        $data = ['pushs' => $push];
-        return view('managment.pushedit', $data);
+        $pushs = Push::all()->where('id', $id);
+        $promote_product = Product::all()->where('id',$pushs->first()['Commodity_id']);
+        $product = Product::all()->where('store_id',Auth::guard()->user()->id)->whereNotIn('id',$pushs->first()['Commodity_id']);
+        $pushs->first()['Commodity_name'] = $promote_product->first()['name'];
+        return view('managment.pushedit',compact('pushs','product'));
     }
 
     public function update(Request $request, $id)
