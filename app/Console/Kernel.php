@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Push;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,8 +26,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call(function () {
+            $test=Push::all()->where('date_end','<=',Carbon::now()->toDateString())->pluck('id');
+            foreach ($test as $qq)
+            {
+                $push=Push::find($qq);
+                $push->delete();
+            }
+        })->daily();
+
+
     }
 
     /**
