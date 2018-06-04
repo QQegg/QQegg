@@ -17,8 +17,8 @@ class Coupons extends Migration
             $table->increments('id');
             $table->integer('Store_id');
             $table->string('title');
-            $table->dateTime('start')->nullable();
-            $table->dateTime('end')->nullable();
+            $table->string('start')->nullable();
+            $table->string('end')->nullable();
             $table->string('discount');
             $table->string('lowestprice')->nullable();
             $table->string('picture')->nullable();
