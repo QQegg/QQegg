@@ -4,7 +4,6 @@
 
 @section('content')
 		<section id="featured" class="bg">
-			<!-- start slider -->
 
 
 			<!-- start slider -->
