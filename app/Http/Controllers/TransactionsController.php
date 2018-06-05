@@ -32,7 +32,10 @@ class TransactionsController extends Controller
         ]);
         $saleinfo=0;
         $salelist=Dealmatch::all()->where('Tran_id',Transaction::all()->pluck('id')->last());
-        $copon=User_coupon::all()->where('User_id',$request['Member_id']);
+        $Scopon=Coupon::all()->where('Store_id',$s_id)->pluck('id');
+        dd($Scopon);
+        $copon=User_coupon::all()->where('User_id',$request['Member_id'])->where('Coupon_id','=',$Scopon);
+
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
         $re=0;
         //dd($copon);
