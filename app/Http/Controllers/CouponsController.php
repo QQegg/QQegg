@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\User_coupon;
 use Illuminate\Http\Request;
 use App\Coupon;
@@ -10,45 +8,35 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
 class CouponsController extends Controller
 {
     public function index()
     {
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
         $coupons = Coupon::all()->where('Store_id', $store['0']);
-
         $count = DB::table('user_coupons')
             ->select('Coupon_id', DB::raw('SUM(use_status) as total '))
 //        ->select('Coupon_id', DB::raw('empty(count(*),0) as total'))
             ->groupBy('Coupon_id')
             ->orderBy('Coupon_id', 'ASC')
             ->get();
-
-
         $zz = 0;
         foreach ($count as $aa) {
-
             $coupons[$zz]['count'] = $aa->total;
             $zz++;
         }
-
         return view('managment.coupon', compact('coupons'));
     }
-
     public function create()
     {
-
         return view('managment.couponcreate');
     }
-
     public function view($id)
     {
         $coupon = Coupon::all()->where('id', $id);
         $data = ['coupons' => $coupon];
         return view('managment.couponview', $data);
     }
-
     public function store(Request $request)
     {
         $messsages = array(
@@ -68,23 +56,16 @@ class CouponsController extends Controller
             'discount' => 'required',
             'lowestprice' => 'required',
             'picture' => 'required',
-
-
         );
-
         $validator = Validator::make($request->all(), $rules, $messsages);
-
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
         }
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
-
-
         if ($request->hasFile('picture')) {
             $file_name = $request->file('picture')->getClientOriginalName();
             $destinationPath = '/public/coupon';
             $request->file('picture')->storeAs($destinationPath, $file_name);
-
             // save new image $file_name to database
 //            $coupon->update(['picture' => $file_name]);
             Coupon::create([
@@ -100,14 +81,12 @@ class CouponsController extends Controller
         }
         return redirect()->route('coulist');
     }
-
     public function edit($id)
     {
         $coupon = Coupon::all()->where('id', $id);
         $data = ['coupons' => $coupon];
         return view('managment.couponedit', $data);
     }
-
     public function update(Request $request, $id)
     {
         $coupon = Coupon::find($id);
@@ -116,20 +95,16 @@ class CouponsController extends Controller
             $file_name = $request->file('picture')->getClientOriginalName();
             $destinationPath = '/public/coupon';
             $request->file('picture')->storeAs($destinationPath, $file_name);
-
             // save new image $file_name to database
             $coupon->update(['picture' => $file_name]);
-
         }
         return redirect()->route('coulist');
     }
-
     public function destroy($id)
     {
         Coupon::destroy($id);
         return redirect()->route('coulist');
     }
-
     public function changestatus($id)
     {
         $coupon = Coupon::all()->where('id', $id)->first();
@@ -146,14 +121,10 @@ class CouponsController extends Controller
 //
 //
 //        }
-
-
         //send
         $user_id = User::all()->pluck('id');
         $store_id = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
         $coupon_id = Coupon::where('id', $id)->pluck('id');
-
-
         foreach ($user_id as $user_id) {
             User_coupon::create([
                 'User_id' => $user_id,
@@ -164,6 +135,4 @@ class CouponsController extends Controller
         }
         return redirect()->route('coulist')->with('response', '已成功發送折價券 !');
     }
-
-
 }

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Coupon;
 use App\Push;
 use App\User;
@@ -14,9 +12,8 @@ use App\Transaction;
 use App\Product;
 class TransactionsController extends Controller
 {
-
     public  function index(){
-       return view('sale.productlist');
+        return view('sale.productlist');
     }
     public function readycheck(){
         return view('sale.productcostomer');
@@ -28,7 +25,7 @@ class TransactionsController extends Controller
             'Store_id'=>$s_id[0],
             'Member_id'=>$request['Member_id'],
             'Coupon_id'=>'0',
-             'number'=>'1'
+            'number'=>'1'
         ]);
         $saleinfo=0;
         $salelist=Dealmatch::all()->where('Tran_id',Transaction::all()->pluck('id')->last());
@@ -48,7 +45,11 @@ class TransactionsController extends Controller
                 $cc++;
             }
         }
+
+        $push=Push::all()->where("Store_id",Auth::guard('store')->user()->id);
+
         $push=Push::all()->where("Store_id",Auth::guard('store')->user()->id)->where('statue',1);
+
         return view('sale.productcreate')->with('re',$re)->with('saleinfo',$saleinfo)->with('copon',$copon)
             ->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list)->with('push',$push);
     }
