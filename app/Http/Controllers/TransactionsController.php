@@ -71,12 +71,11 @@ class TransactionsController extends Controller
         $coupon_list=null;
         foreach ($Scopon as $qq)
         {
-            if(count(User_coupon::all()->where('User_id',$request['Member_id'])->where('Coupon_id',$qq))==0)
+            if(count(User_coupon::all()->where('User_id',$request['Member_id'])->where('Coupon_id',$qq)->where('use_status',0))==0)
             {
-                break;
             }
             else{
-                $coupon_list[$cc]=User_coupon::all()->where('User_id',$request['Member_id'])->where('Coupon_id',$qq);
+                $coupon_list[$cc]=Coupon::all()->where('id',$qq);
             }
             $cc++;
         }
