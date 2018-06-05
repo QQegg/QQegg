@@ -41,7 +41,6 @@ class CouponsController extends Controller
     {
         $messsages = array(
             'title.required' => '你必須輸入折價券名稱',
-            'content.required' => '你必須輸入折價券內容',
             'start.required' => '你必須輸入起始時間',
             'end.required' => '你必須輸入結束時間',
             'discount.required' => '你必須輸入折扣金額',
@@ -50,7 +49,6 @@ class CouponsController extends Controller
         );
         $rules = array(
             'title' => 'required',
-            'content' => 'required',
             'start' => 'required',
             'end' => 'required',
             'discount' => 'required',
@@ -71,7 +69,6 @@ class CouponsController extends Controller
             Coupon::create([
                 'Store_id' => $store['0'],
                 'title' => $request['title'],
-                'content' => $request['content'],
                 'start' => $request['start'],
                 'end' => $request['end'],
                 'discount' => $request['discount'],

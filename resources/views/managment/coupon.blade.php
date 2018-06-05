@@ -82,7 +82,7 @@
         <thead>
         <tr>
 
-            <th>選項</th>
+
             <th>折價券名稱</th>
             <th>起始時間</th>
             <th>結束時間</th>
@@ -97,7 +97,7 @@
         <tbody>
         @foreach($coupons as $coupon )
             <tr>
-                <td><input type="checkbox" name="option" ></td>
+       
                 <td>{{$coupon->title}}</td>
                 <td>{{$coupon->start}}</td>
                 <td>{{$coupon->end}}</td>
