@@ -13,13 +13,21 @@ class CouponsController extends Controller
     public function index()
     {
         $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
-        $coupons = Coupon::all()->where('Store_id', $store['0']);
+        $coupons2 = Coupon::all()->where('Store_id', $store['0']);
         $count = DB::table('user_coupons')
             ->select('Coupon_id', DB::raw('SUM(use_status) as total '))
+            ->where('Store_id',$store['0'])
 //        ->select('Coupon_id', DB::raw('empty(count(*),0) as total'))
             ->groupBy('Coupon_id')
             ->orderBy('Coupon_id', 'ASC')
             ->get();
+
+        $ax = 0;
+        foreach ($coupons2 as $item){
+            $coupons[$ax] = $item->first();
+            $ax++;
+        }
+
         $zz = 0;
         foreach ($count as $aa) {
             $coupons[$zz]['count'] = $aa->total;
