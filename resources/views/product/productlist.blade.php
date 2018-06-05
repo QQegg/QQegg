@@ -40,28 +40,32 @@
                                 </div>
                             @endif
                                 <div class="field">
-                                    <label>產品名稱</label>
-                                    <input name="name" class="form-control" id="name" value="{{old('name')}}" placeholder="請輸入產品名稱" required>
+                                    <label>產商品名稱</label>
+                                    <input name="name" class="form-control" id="name" value="{{old('name')}}" placeholder="請輸入商品名稱" required>
                                 </div>
                                 <div class="field">
-                                    <label>產品類別</label>
+                                    <label>商品類別</label>
                                     <select name="C_name" class="form-control" required>
-                                        <option value="" disabled="disabled" selected="selected">請選擇產品類別</option>
+                                        <option value="" disabled="disabled" selected="selected">請選擇商品類別</option>
                                         @foreach($category as $category)
                                             <option id="C_name" value="{{$category->id}}" @if(old('C_name') == $category->id) selected="selected" @endif>{{$category->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="field">
-                                    <label>產品規格</label>
-                                        <textarea required id="specification" name="specification" style="resize:none;"　row="5" class="form-control"  placeholder="請輸入產品規格">{{old('specification')}}</textarea>
+                                    <label>商品規格</label>
+                                        <textarea required id="specification" name="specification" style="resize:none;"　row="5" class="form-control"  placeholder="請輸入商品規格">{{old('specification')}}</textarea>
                                 </div>
                                 <div class="field">
                                     <label>單價</label>
-                                    <input name="price" id="price" class="form-control" value="{{old('price')}}" placeholder="請輸入產品單價"required>
+                                    <input name="price" id="price" class="form-control" value="{{old('price')}}" placeholder="請輸入商品單價"required>
                                 </div>
                                 <div class="field">
-                                    <label>上傳產品照片</label>
+                                    <label>商品編號</label>
+                                    <input name="id" id="id" class="form-control" value="{{old('id')}}" placeholder="請輸入商品編號"required>
+                                </div>
+                                <div class="field">
+                                    <label>上傳商品照片</label>
                                     <input id="picture" type="file" class="form-control" name="picture" value="{{old('picture')}}" placeholder="上傳圖片"required>
                                 </div>
                         </div>
