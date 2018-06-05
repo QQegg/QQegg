@@ -135,6 +135,16 @@ class DATA extends Controller
             'picture'=>'eatfoodfood600.jpg',
             'status'=>'0',
         ]);
+        Coupon::create([
+            'Store_id'=>'1',
+            'title'=>'會員好康$200折價券',
+            'start'=>'20180706',
+            'end'=>'20190808',
+            'discount'=>'200',
+            'lowestprice'=>'600',
+            'picture'=>'eatfoodfood600.jpg',
+            'status'=>'0',
+        ]);
 
         Coupon::create([
             'Store_id'=>'2',
