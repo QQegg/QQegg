@@ -95,23 +95,19 @@
                     <select name="cosd" id="cosd">
                         <option value="0" selected="selected">請選擇要用的促銷</option>
                     @if(count($push)==0)
-                        <option value="0">無可用促銷</option>
+                        <option value="0" id=0>無可用促銷</option>
                     @else
                         {@foreach($push as $qq)
-                                <option value={{$qq->discount}}>{{$qq->title}}</option>
+                                <option id={{$qq->id}} value={{$qq->discount}}>{{$qq->title}}</option>
                             @endforeach
                             }
                         @endif
-
                     </select>
-
                     積點 :
                     <input class="form-horizontal "  name="point" id="poi"  placeholder="此會員可用積點:{{$point}}"/>
                     <button  id="myBtn" type="submit" class="btn btn-primary">結帳</button>
                 </div>
-
         <script type="text/javascript">
-
             function printDiv(divName) {
                 var printContents = document.getElementById(divName).innerHTML;
                 w=window.open();
@@ -120,9 +116,7 @@
                 w.close();
             }</script>
                 <div id="myModal" class="modal" >
-
                     <!-- Modal content -->
-
                     <div class="modal-content">
                         <div class="modal-content">
                             <div id="printModal"  >
@@ -173,7 +167,6 @@
                                     <div style="display:none">
                                         <input class="form-control"  name="price" value="{{$saleinfo}}" />
                                     </div>
-
                                     <div style="display:none" >
                                         <input class="form-control"  name="Member" value="{{$Member_id}}" />
                                     </div>
@@ -185,11 +178,8 @@
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
-
-
                 </div>
             <!-- Trigger/Open The Modal -->
             <!-- The Modal -->

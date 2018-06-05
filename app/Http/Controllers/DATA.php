@@ -224,14 +224,7 @@ class DATA extends Controller
             'price'=>'290',
             'picture'=>'T恤.JPG',
         ]);
-        Product::create([
-            'Category_id'=>'6',
-            'store_id'=>'2',
-            'name'=>'牛仔短裙',
-            'specification'=>'S',
-            'price'=>'299',
-            'picture'=>'短裙.JPG',
-        ]);
+       
 
         Product::create([
             'Category_id'=>'6',

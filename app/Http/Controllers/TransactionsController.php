@@ -42,7 +42,11 @@ class TransactionsController extends Controller
                 $cc++;
             }
         }
+
         $push=Push::all()->where("Store_id",Auth::guard('store')->user()->id);
+
+        $push=Push::all()->where("Store_id",Auth::guard('store')->user()->id)->where('statue',1);
+
         return view('sale.productcreate')->with('re',$re)->with('saleinfo',$saleinfo)->with('copon',$copon)
             ->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list)->with('push',$push);
     }
@@ -127,6 +131,7 @@ class TransactionsController extends Controller
             $coupon_list[$cc] = $coupon;
             $cc++;
         }
+
         return view('sale.productcostomer');
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class NotificationsController extends Controller
 {
     public function  test(){
+
      return view('notificationtest');
     }
 
