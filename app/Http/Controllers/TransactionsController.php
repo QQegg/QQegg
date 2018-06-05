@@ -29,38 +29,57 @@ class TransactionsController extends Controller
         ]);
         $saleinfo=0;
         $salelist=Dealmatch::all()->where('Tran_id',Transaction::all()->pluck('id')->last());
-        $Scopon=Coupon::all()->where('Store_id',$s_id)->pluck('id');
-        dd($Scopon);
-        $copon=User_coupon::all()->where('User_id',$request['Member_id'])->where('Coupon_id','=',$Scopon);
 
+        $s_id=Store::all()->where("email",Auth::guard('store')->user()->email)->pluck('id');
+        $Scopon=Coupon::all()->where('Store_id',$s_id[0])->pluck('id');
+        $cc=0;
+        $copon=null;
+        foreach ($Scopon as $qq)
+        {
+            if(count(User_coupon::all()->where('User_id',$request['Member_id'])->where('Coupon_id',$qq))==0)
+            {
+                break;
+            }
+            else{
+                $copon[$cc]=User_coupon::all()->where('User_id',$request['Member_id'])->where('Coupon_id',$qq);
+            }
+            $cc++;
+        }
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
         $re=0;
         //dd($copon);
         $coupon_list=null;
-        $cc = 0;
-        if(count($copon)!=0){
-            foreach ($copon as $qq){
-                $coupon=Coupon::all()->where('id',$qq['Coupon_id']);
-                $coupon_list[$cc] = $coupon;
-                $cc++;
-            }
-        }
-
-        $push=Push::all()->where("Store_id",Auth::guard('store')->user()->id);
-
         $push=Push::all()->where("Store_id",Auth::guard('store')->user()->id)->where('statue',1);
 
         return view('sale.productcreate')->with('re',$re)->with('saleinfo',$saleinfo)->with('copon',$copon)
             ->with('point',$point)->with('Member_id',$request['Member_id'])->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list)->with('push',$push);
     }
     public function prestore(Request $request){
-        Dealmatch::create(
-            [
-                'Tran_id'=> Transaction::all()->pluck('id')->last(),
-                'number'=>$request['number'],
-                'Commodity_id'=>$request['proid']
-            ]
-        );
+        $s_id=Store::all()->where("email",Auth::guard('store')->user()->email)->pluck('id');
+        $testpro=Product::all()->where('store_id',$s_id[0])->where('id',intval($request['proid']));
+         if(count($testpro)!=0){
+            Dealmatch::create(
+                [
+                    'Tran_id'=> Transaction::all()->pluck('id')->last(),
+                    'number'=>$request['number'],
+                    'Commodity_id'=>$request['proid']
+                ]
+            );
+        }
+        $Scopon=Coupon::all()->where('Store_id',$s_id[0])->pluck('id');
+        $cc=0;
+        $coupon_list=null;
+        foreach ($Scopon as $qq)
+        {
+            if(count(User_coupon::all()->where('User_id',$request['Member_id'])->where('Coupon_id',$qq))==0)
+            {
+                break;
+            }
+            else{
+                $coupon_list[$cc]=User_coupon::all()->where('User_id',$request['Member_id'])->where('Coupon_id',$qq);
+            }
+            $cc++;
+        }
         $saleinfo=0;
         $salelist=Dealmatch::all()->where('Tran_id',Transaction::all()->pluck('id')->last());
         foreach ($salelist as $info)
@@ -73,19 +92,12 @@ class TransactionsController extends Controller
             $item['price']=Product::all()->where('id',$item['Commodity_id'])->pluck('price')->last();
             $item['total']=$item['price']*$item['number'];
         }
-        $copon=User_coupon::all()->where('User_id',$request['Member_id']);
         $point=User::all()->where('id',$request['Member_id'])->pluck('point');
         $pirce=$request['price']-$request['discount']-$request['point'];
         $member=User::find($request['Member']);
         $re=$member['point'];
-        $cc = 0;
-        foreach ($copon as $qq){
-            $coupon=Coupon::all()->where('id',$qq['Coupon_id']);
-            $coupon_list[$cc] = $coupon;
-            $cc++;
-        }
         $push=Push::all()->where("Store_id",Auth::guard('store')->user()->id);
-        return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('copon',$copon)->with('point',$point)->with('re',$re)->with('Member_id',$request['Member_id'])
+        return view('sale.productcreate')->with('saleinfo',$saleinfo)->with('point',$point)->with('re',$re)->with('Member_id',$request['Member_id'])
             ->with('salelist',$salelist)->with('price',$saleinfo)->with('coupon_list',$coupon_list)->with('push',$push);
     }
     public function checkout(Request $request){
@@ -121,7 +133,7 @@ class TransactionsController extends Controller
             $member->save();
         }
         $cc = 0;
-        if($request['discount']!=0 or $request['discount']!=null)
+        if($request['discount']!="0")
         {
             $discri=Coupon::all()->where('discount',$request['discount'])->pluck('id')->last();
             $CSS=User_coupon::all()->where('User_id',$request['Member'])->where('Coupon_id',$discri)->pluck('id')->first();
