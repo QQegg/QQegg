@@ -234,7 +234,7 @@ class DATA extends Controller
             'price'=>'290',
             'picture'=>'T恤.JPG',
         ]);
-       
+
 
         Product::create([
             'Category_id'=>'6',

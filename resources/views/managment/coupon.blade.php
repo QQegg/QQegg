@@ -41,7 +41,7 @@
                 <div class="modal-body">
                 <div class="form-group">
                     <label>標題</label>
-                    <textarea name="title" class="form-control" rows="1"></textarea>
+                    <textarea name="title" class="form-control" rows="1" required></textarea>
                 </div>
                 <div class="form-group">
                     <label>起始時間</label>
@@ -82,7 +82,7 @@
         <thead>
         <tr>
 
-            <th>選項</th>
+
             <th>折價券名稱</th>
             <th>起始時間</th>
             <th>結束時間</th>
@@ -97,7 +97,7 @@
         <tbody>
         @foreach($coupons as $coupon )
             <tr>
-                <td><input type="checkbox" name="option" ></td>
+
                 <td>{{$coupon->title}}</td>
                 <td>{{$coupon->start}}</td>
                 <td>{{$coupon->end}}</td>
