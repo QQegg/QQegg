@@ -24,7 +24,7 @@ class CouponsController extends Controller
 
         $ax = 0;
         foreach ($coupons2 as $item){
-            $coupons[$ax] = $item->first();
+            $coupons[$ax] = $item;
             $ax++;
         }
 
