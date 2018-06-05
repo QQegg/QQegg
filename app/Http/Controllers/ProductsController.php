@@ -33,46 +33,53 @@ class ProductsController extends Controller
 
     public function store(Request $request)
     {
+        $product_judge = Product::where('id','like',"%{$request['id']}%")->get();
+        if (count($product_judge) == 0){
+            $messsages = array(
+                'name.required' => '你必須輸入產品名稱',
+                'specification.required' => '你必須輸入產品規格',
+                'price.required' => '你必須輸入單價',
+                'price.integer' => '單價必須為數字',
+                'id.integer' => '商品編號必須為數字',
+                'C_name.required' => '你必須選擇產品類別',
+                'picture.required' => '你必須選擇照片',);
+            $rules = array(
+                'name' => 'required|max:255',
+                'specification' => 'required',
+                'price' => 'required|integer',
+                'id' => 'integer',
+                'C_name' => 'required',
+                'picture' => 'required',);
 
-        $messsages = array(
-            'name.required' => '你必須輸入產品名稱',
-            'specification.required' => '你必須輸入產品規格',
-            'price.required' => '你必須輸入單價',
-            'price.integer' => '單價必須為數字',
-            'C_name.required' => '你必須選擇產品類別',
-            'picture.required' => '你必須選擇照片',
-        );
-        $rules = array(
-            'name' => 'required|max:255',
-            'specification' => 'required',
-            'price' => 'required|integer',
-            'C_name' => 'required',
-            'picture' => 'required',
-        );
+            $validator = Validator::make($request->all(), $rules, $messsages);
 
-        $validator = Validator::make($request->all(), $rules, $messsages);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->errors())->withInput();
+            }
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors())->withInput();
+            $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
+
+            if ($request->hasFile('picture')) {
+                $file_name = $request->file('picture')->getClientOriginalName();
+                $destinationPath = '/public/product';
+                $request->file('picture')->storeAs($destinationPath, $file_name);
+                // save new image $file_name to database
+                // $product->update(['picture' => $file_name]);
+
+                Product::create([
+                    'id' => $request['id'],
+                    'Category_id' => $request['C_name'],
+                    'store_id' => $store['0'],
+                    'name' => $request['name'],
+                    'specification' => $request['specification'],
+                    'price' => $request['price'],
+                    'picture' => $file_name,
+                ]);
+            }
         }
+        else
+        {
 
-        $store = Store::all()->where('email', Auth::guard('store')->user()->email)->pluck('id');
-
-        if ($request->hasFile('picture')) {
-            $file_name = $request->file('picture')->getClientOriginalName();
-            $destinationPath = '/public/product';
-            $request->file('picture')->storeAs($destinationPath, $file_name);
-            // save new image $file_name to database
-            // $product->update(['picture' => $file_name]);
-
-            Product::create([
-                'Category_id' => $request['C_name'],
-                'store_id' => $store['0'],
-                'name' => $request['name'],
-                'specification' => $request['specification'],
-                'price' => $request['price'],
-                'picture' => $file_name,
-            ]);
         }
         return redirect()->route('prolist');
     }
@@ -88,42 +95,51 @@ class ProductsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $messsages = array(
-            'name.required' => '你必須輸入產品名稱',
-            'specification.required' => '你必須輸入產品規格',
-            'price.required' => '你必須輸入單價',
-            'price.integer' => '單價必須為數字',
-            'picture.required' => '你必須選擇照片',
-        );
+        $product_judge = Product::where('id','like',"%{$request['id']}%")->get();
+        if (count($product_judge) == 0){
+            $messsages = array(
+                'name.required' => '你必須輸入產品名稱',
+                'specification.required' => '你必須輸入產品規格',
+                'price.required' => '你必須輸入單價',
+                'price.integer' => '單價必須為數字',
+                'id.integer' => '商品編號必須為數字',
+                'picture.required' => '你必須選擇照片',
+            );
 
-        $rules = array(
-            'name' => 'required|max:255',
-            'specification' => 'required',
-            'price' => 'required|integer',
-            'picture' => 'required',
-        );
+            $rules = array(
+                'name' => 'required|max:255',
+                'specification' => 'required',
+                'price' => 'required|integer',
+                'id' => 'integer',
+                'picture' => 'required',
+            );
 
-        $validator = Validator::make($request->all(), $rules, $messsages);
+            $validator = Validator::make($request->all(), $rules, $messsages);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors())->withInput();
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->errors())->withInput();
+            }
+
+            $product = Product::find($id);
+
+            if ($request->hasFile('picture')) {
+                $file_name = $request->file('picture')->getClientOriginalName();
+
+                $destinationPath = '/public/product';
+                $request->file('picture')->storeAs($destinationPath, $file_name);
+
+                $product->update([
+                    'id' => $request['id'],
+                    'Category_id' => $request['C_name'],
+                    'name' => $request['name'],
+                    'specification' => $request['specification'],
+                    'price' => $request['price'],
+                    'picture' => $file_name,
+                ]);
+            }
         }
+        else{
 
-        $product = Product::find($id);
-
-        if ($request->hasFile('picture')) {
-            $file_name = $request->file('picture')->getClientOriginalName();
-
-            $destinationPath = '/public/product';
-            $request->file('picture')->storeAs($destinationPath, $file_name);
-
-            $product->update([
-                'Category_id' => $request['C_name'],
-                'name' => $request['name'],
-                'specification' => $request['specification'],
-                'price' => $request['price'],
-                'picture' => $file_name,
-            ]);
         }
 
         return redirect()->route('prolist');

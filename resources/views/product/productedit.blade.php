@@ -29,8 +29,8 @@
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     <div class="form-group">
-                        <label>產品名稱</label>
-                        <input name="name" class="form-control" placeholder="請輸入產品名稱" value="{{$product->name}}" required>
+                        <label>商品名稱</label>
+                        <input name="name" class="form-control" placeholder="請輸入商品名稱" value="{{$product->name}}" required>
                     </div>
                     <div class="form-group">
                         <label>產品類別</label>
@@ -46,12 +46,16 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>產品規格</label>
-                        <textarea name="specification" class="form-control" placeholder="請輸入產品規格" rows="5" required>{{$product->specification}}</textarea>
+                        <label>商品規格</label>
+                        <textarea name="specification" class="form-control" placeholder="請輸入商品規格" rows="5" required>{{$product->specification}}</textarea>
                     </div>
                     <div class="form-group">
                         <label>單價</label>
-                        <textarea name="price" class="form-control" placeholder="請輸入產品單價" rows="1" required>{{$product->price}}</textarea>
+                        <textarea name="price" class="form-control" placeholder="請輸入商品單價" rows="1" required>{{$product->price}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>商品編號</label>
+                        <textarea name="id" class="form-control" placeholder="請輸入商品編號" rows="1" required>{{$product->id}}</textarea>
                     </div>
                     <div class="form-group">
                         <label>上傳產品照片</label>
