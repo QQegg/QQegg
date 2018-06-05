@@ -13,11 +13,7 @@
 </head>
 <div>
 
-    <div class="navbar-collapse collapse ">
-        <ul class="nav navbar-nav">
-            <li><a href='{{ route('pushlist') }}'>推播訊息管理</a></li>
-        </ul>
-    </div>
+
 
     <div class='container'>
         <h2 class="text-center & text-success"><strong>檢視推播訊息</strong></h2>
