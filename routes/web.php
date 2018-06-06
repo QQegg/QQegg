@@ -86,6 +86,7 @@ Route::group(['middleware'=>'auth:store'], function() {
             Route::patch('/update/{id}',['as'=>'pushupdate','uses'=>'PushsController@update']);
             Route::get('/destroy/{id}',['as'=>'pushdestroy','uses'=>'PushsController@destroy']);
             Route::get('/change/{id}',['as'=>'pushchange','uses'=>'PushsController@changestatue']);
+            Route::get('/stop/{id}',['as'=>'pushstop','uses'=>'PushsController@stop']);
         });
         Route::group(['prefix' => 'coupon'], function() {
             Route::get('/',['as'=>'coulist','uses'=>'CouponsController@index']);

@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Push extends Model
 {
-
-    protected $primaryKey = 'Commodity_id';
     protected $table='pushs';
     protected $fillable=[
         'id',

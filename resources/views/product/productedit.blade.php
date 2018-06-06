@@ -54,10 +54,6 @@
                         <textarea name="price" class="form-control" placeholder="請輸入商品單價" rows="1" required>{{$product->price}}</textarea>
                     </div>
                     <div class="form-group">
-                        <label>商品編號</label>
-                        <textarea name="id" class="form-control" placeholder="請輸入商品編號" rows="1" required>{{$product->id}}</textarea>
-                    </div>
-                    <div class="form-group">
                         <label>上傳產品照片</label>
                         <input type="file" class="form-control" name="picture" placeholder="上傳圖片" required>
                     </div>
