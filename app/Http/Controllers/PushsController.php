@@ -162,9 +162,8 @@ class PushsController extends Controller
      */
     public function push($push)
     {
-
         $notificationBuilder = new PayloadNotificationBuilder($push->title);
-        $notificationBuilder->setBody($push->content)
+        $notificationBuilder->setBody($push->title)
             ->setSound('default');
         $notification = $notificationBuilder->build();
         $topic = new Topics();
@@ -173,7 +172,6 @@ class PushsController extends Controller
         $topicResponse->isSuccess();
         $topicResponse->shouldRetry();
         $topicResponse->error();
-
         return null;
     }
 }
