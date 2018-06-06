@@ -147,7 +147,7 @@ class ProductsController extends Controller
 
     public function destroy($id)
     {
-        $push = Push::find($id);
+        $push = Push::all()->where('Commodity_id',$id)->first();
         $push->update([
             'Commodity_id' => 0,
         ]);

@@ -93,6 +93,7 @@
             <th>推播訊息名稱</th>
             <th>狀態</th>
             <th>功能</th>
+            <th>停止促銷優惠</th>
             <th>推播</th>
         </tr>
         </thead>
@@ -106,14 +107,9 @@
                 <td>
                     <button class="btn btn-success "><a href="{{route('pushview',$push->id)}}"
                                                         style="color: white"><strong>詳細</strong></a></button>
-                    @if($push->statue == '已推播')
-                        <button class="btn btn-warning " disabled><a href="{{route('pushedit',$push->id)}}"
-                                                                     style="color: white"><strong>不可編輯</strong></a>
-                        </button>
-                    @else
+
                         <button class="btn btn-warning "><a href="{{route('pushedit',$push->id)}}" style="color: white"><strong>編輯</strong></a>
                         </button>
-                    @endif
                     {{--<form action="{{ route('pushdestroy', $push->id) }}" method="POST">--}}
                     {{--{{ csrf_field() }}--}}
                     {{--{{ method_field('DELETE') }}--}}
@@ -127,6 +123,19 @@
                     @endif
                     {{--</form>--}}
                 </td>
+                @if($push->statue == '已推播')
+                <td>
+                    <button class="btn btn-primary " ><a href="{{route('pushstop',$push->id)}}"
+                                                                 style="color:white"><strong>停止促銷優惠</strong></a>
+                    </button>
+                </td>
+                @else
+                    <td>
+                        <button class="btn btn-primary " disabled><a href="{{route('pushstop',$push->id)}}"
+                                                             style="color:white"><strong>停止促銷優惠</strong></a>
+                        </button>
+                    </td>
+                @endif
                 @if($push->statue == '已推播')
                     <td>
                         <button class="btn btn-primary " disabled><a href="{{route('pushchange',$push->id)}}"
