@@ -171,6 +171,7 @@ class DATA extends Controller
 
 
         Product::create([
+            'id'=>'57891986',
             'Category_id'=>'1',
             'store_id'=>'1',
             'name'=>'梅片',
@@ -179,6 +180,7 @@ class DATA extends Controller
             'picture'=>'梅乾片.JPG',
         ]);
         Product::create([
+            'id'=>'45551129',
             'Category_id'=>'2',
             'store_id'=>'1',
             'name'=>'寒天蒟蒻條 300G',
@@ -187,6 +189,7 @@ class DATA extends Controller
             'picture'=>'蒟蒻條.JPG',
         ]);
         Product::create([
+            'id'=>'63645424',
             'Category_id'=>'3',
             'store_id'=>'1',
             'name'=>'發泡錠',
@@ -195,6 +198,7 @@ class DATA extends Controller
             'picture'=>'發泡錠.JPG',
         ]);
         Product::create([
+            'id'=>'74564685',
             'Category_id'=>'2',
             'store_id'=>'1',
             'name'=>'義美小泡芙',
@@ -203,6 +207,7 @@ class DATA extends Controller
             'picture'=>'泡芙.JPG',
         ]);
         Product::create([
+            'id'=>'76876877',
             'Category_id'=>'4',
             'store_id'=>'2',
             'name'=>'百搭緊身黑褲',
@@ -211,6 +216,7 @@ class DATA extends Controller
             'picture'=>'緊身褲.JPG',
         ]);
         Product::create([
+            'id'=>'45621654',
             'Category_id'=>'4',
             'store_id'=>'2',
             'name'=>'百搭鉛筆褲',
@@ -219,6 +225,7 @@ class DATA extends Controller
             'picture'=>'鉛筆褲.JPG',
         ]);
         Product::create([
+            'id'=>'45687985',
             'Category_id'=>'5',
             'store_id'=>'2',
             'name'=>'童趣塗鴉短袖上衣',
@@ -227,6 +234,7 @@ class DATA extends Controller
             'picture'=>'上衣.JPG',
         ]);
         Product::create([
+            'id'=>'44287654',
             'Category_id'=>'5',
             'store_id'=>'2',
             'name'=>'棒球T恤',
@@ -237,6 +245,7 @@ class DATA extends Controller
 
 
         Product::create([
+            'id'=>'41254944',
             'Category_id'=>'6',
             'store_id'=>'2',
             'name'=>'牛仔短裙',
@@ -245,6 +254,7 @@ class DATA extends Controller
             'picture'=>'短裙.JPG',
         ]);
         Product::create([
+            'id'=>'45546488',
             'Category_id'=>'7',
             'store_id'=>'2',
             'name'=>'運動短褲',
@@ -253,6 +263,7 @@ class DATA extends Controller
             'picture'=>'短褲.JPG',
         ]);
         Product::create([
+            'id'=>'25353446',
             'Category_id'=>'8',
             'store_id'=>'3',
             'name'=>'大傘面摺疊自動傘',
@@ -261,6 +272,7 @@ class DATA extends Controller
             'picture'=>'自動傘.JPG',
         ]);
         Product::create([
+            'id'=>'54656512',
             'Category_id'=>'9',
             'store_id'=>'3',
             'name'=>'旅行整理收納包六件套',
@@ -269,6 +281,7 @@ class DATA extends Controller
             'picture'=>'旅行包.JPG',
         ]);
         Product::create([
+            'id'=>'45241264',
             'Category_id'=>'10',
             'store_id'=>'3',
             'name'=>'多功能止滑瑜珈墊',
@@ -277,6 +290,7 @@ class DATA extends Controller
             'picture'=>'瑜珈墊.JPG',
         ]);
         Product::create([
+            'id'=>'56431461',
             'Category_id'=>'11',
             'store_id'=>'3',
             'name'=>'NIKE 頭帶',
@@ -285,6 +299,7 @@ class DATA extends Controller
             'picture'=>'頭帶.JPG',
         ]);
         Product::create([
+            'id'=>'45655444',
             'Category_id'=>'12',
             'store_id'=>'3',
             'name'=>'露營遮陽帳篷',
@@ -293,6 +308,7 @@ class DATA extends Controller
             'picture'=>'帳篷.JPG',
         ]);
         Product::create([
+            'id'=>'45645628',
             'Category_id'=>'9',
             'store_id'=>'3',
             'name'=>'磨砂防水收納袋',

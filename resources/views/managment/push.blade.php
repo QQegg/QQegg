@@ -1,17 +1,15 @@
 ﻿@extends('layouts.master')
 @section('title','書籍觀看')
 @section('content')
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
 
 <div class="panel panel-default">
     <div class="panel-body">
@@ -114,9 +112,9 @@
                         <button class="btn btn-warning "><a href="{{route('pushedit',$push->id)}}" style="color: white"><strong>編輯</strong></a>
                         </button>
                     @endif
-                    {{--<form action="{{ route('pushdestroy', $push->id) }}" method="POST">--}}
-                    {{--{{ csrf_field() }}--}}
-                    {{--{{ method_field('DELETE') }}--}}
+                    <form action="{{ route('pushdestroy', $push->id) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
                     @if($push->statue == '已推播')
                         <button class=" btn btn-danger " disabled><a href="{{route('pushdestroy',$push->id)}}"
                                                                      style="color: white"><strong>不可刪除</strong></a>
@@ -125,7 +123,7 @@
                         <button class=" btn btn-danger "><a href="{{route('pushdestroy',$push->id)}}"
                                                             style="color: white"><strong>刪除</strong></a></button>
                     @endif
-                    {{--</form>--}}
+                    </form>
                 </td>
                 @if($push->statue == '已推播')
                     <td>
@@ -146,5 +144,4 @@
 </div>
 
 </body>
-</html>
 @endsection
