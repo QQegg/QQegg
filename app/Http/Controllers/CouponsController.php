@@ -8,6 +8,10 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use LaravelFCM\Facades\FCM;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use LaravelFCM\Message\Topics;
+
 class CouponsController extends Controller
 {
     public function index()
@@ -120,10 +124,7 @@ class CouponsController extends Controller
 //            else{
 //                $coupon->update([
 //                    'status'=>0
-//
 //                ]);
-//
-//
 //        }
         //send
         $user_id = User::all()->pluck('id');
@@ -137,6 +138,23 @@ class CouponsController extends Controller
                 'use_status' => '0'
             ]);
         }
+        $this->push($coupon_id);
         return redirect()->route('coulist')->with('response', '已成功發送折價券 !');
     }
+    public function push($coupon_id)
+    {
+        $coupon=Coupon::all()->where('id',$coupon_id->first());
+        $notificationBuilder = new PayloadNotificationBuilder($coupon->first()->title);
+        $notificationBuilder->setBody($coupon->first()->title)
+            ->setSound('default');
+        $notification = $notificationBuilder->build();
+        $topic = new Topics();
+        $topic->topic('news');
+        $topicResponse = FCM::sendToTopic($topic, null, $notification, null);
+        $topicResponse->isSuccess();
+        $topicResponse->shouldRetry();
+        $topicResponse->error();
+        return null;
+    }
+
 }

@@ -11,6 +11,7 @@ use App\Store;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 
 use LaravelFCM\Facades\FCM;
@@ -162,9 +163,8 @@ class PushsController extends Controller
      */
     public function push($push)
     {
-
         $notificationBuilder = new PayloadNotificationBuilder($push->title);
-        $notificationBuilder->setBody($push->content)
+        $notificationBuilder->setBody($push->title)
             ->setSound('default');
         $notification = $notificationBuilder->build();
         $topic = new Topics();
@@ -173,7 +173,21 @@ class PushsController extends Controller
         $topicResponse->isSuccess();
         $topicResponse->shouldRetry();
         $topicResponse->error();
-
         return null;
+    }
+
+    public function stop($id){
+        $push = Push::all()->where('id', $id)->first();
+        if ($push['statue'] == 1) {
+            $push->update([
+                'statue' => 0
+            ]);
+        }
+
+
+        $whereArray = array('Push_id' => $id);
+        DB::table('user_pushs')->where($whereArray)->delete();
+
+        return redirect()->route('pushlist');
     }
 }

@@ -95,14 +95,12 @@ class ProductsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $product_judge = Product::where('id','like',"%{$request['id']}%")->get();
-        if (count($product_judge) == 0){
+
             $messsages = array(
                 'name.required' => '你必須輸入產品名稱',
                 'specification.required' => '你必須輸入產品規格',
                 'price.required' => '你必須輸入單價',
                 'price.integer' => '單價必須為數字',
-                'id.integer' => '商品編號必須為數字',
                 'picture.required' => '你必須選擇照片',
             );
 
@@ -110,7 +108,6 @@ class ProductsController extends Controller
                 'name' => 'required|max:255',
                 'specification' => 'required',
                 'price' => 'required|integer',
-                'id' => 'integer',
                 'picture' => 'required',
             );
 
@@ -129,7 +126,6 @@ class ProductsController extends Controller
                 $request->file('picture')->storeAs($destinationPath, $file_name);
 
                 $product->update([
-                    'id' => $request['id'],
                     'Category_id' => $request['C_name'],
                     'name' => $request['name'],
                     'specification' => $request['specification'],
@@ -137,17 +133,13 @@ class ProductsController extends Controller
                     'picture' => $file_name,
                 ]);
             }
-        }
-        else{
-
-        }
 
         return redirect()->route('prolist');
     }
 
     public function destroy($id)
     {
-        $push = Push::find($id);
+        $push = Push::all()->where('Commodity_id',$id)->first();
         $push->update([
             'Commodity_id' => 0,
         ]);

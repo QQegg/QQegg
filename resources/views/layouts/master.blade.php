@@ -49,8 +49,8 @@
                 <div class="navbar-header">
                     <a  href="{{route('index')}}" align="top">
                         <nobr>
-                            <img src="img/logo2.png" alt="" width="150" height="150" style="float:left;margin:5pt"  />
-                            <h1 style="position: absolute; left:400pt ;top:20pt">雙魚商圈</h1>
+                            <img src="img/twofish.jpg" alt="" width="172pt" height="50pt" style="float:left;margin:5pt;position: absolute; left:300pt ;top:10pt"  />
+                            {{--<h1 style="position: absolute; left:400pt ;top:20pt">雙魚商圈</h1>--}}
                         </nobr>
                     </a>
                 </div>
@@ -73,6 +73,8 @@
                                 </li>
                             </ul>
                         </li>
+
+
                         <li><a href="{{route('comlist')}}">回應消費者留言</a></li>
                         <li><a href="{{route('pushlist')}}">促銷訊息管理</a></li>
                         <li><a href="{{route('coulist')}}">折價券管理</a></li>

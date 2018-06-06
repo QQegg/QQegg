@@ -1,17 +1,15 @@
 ﻿@extends('layouts.master')
 @section('title','書籍觀看')
 @section('content')
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
 
 <div class="panel panel-default">
     <div class="panel-body">
@@ -93,6 +91,7 @@
             <th>推播訊息名稱</th>
             <th>狀態</th>
             <th>功能</th>
+            <th>停止促銷優惠</th>
             <th>推播</th>
         </tr>
         </thead>
@@ -106,17 +105,11 @@
                 <td>
                     <button class="btn btn-success "><a href="{{route('pushview',$push->id)}}"
                                                         style="color: white"><strong>詳細</strong></a></button>
-                    @if($push->statue == '已推播')
-                        <button class="btn btn-warning " disabled><a href="{{route('pushedit',$push->id)}}"
-                                                                     style="color: white"><strong>不可編輯</strong></a>
-                        </button>
-                    @else
+
                         <button class="btn btn-warning "><a href="{{route('pushedit',$push->id)}}" style="color: white"><strong>編輯</strong></a>
                         </button>
-                    @endif
-                    {{--<form action="{{ route('pushdestroy', $push->id) }}" method="POST">--}}
-                    {{--{{ csrf_field() }}--}}
-                    {{--{{ method_field('DELETE') }}--}}
+
+
                     @if($push->statue == '已推播')
                         <button class=" btn btn-danger " disabled><a href="{{route('pushdestroy',$push->id)}}"
                                                                      style="color: white"><strong>不可刪除</strong></a>
@@ -125,8 +118,21 @@
                         <button class=" btn btn-danger "><a href="{{route('pushdestroy',$push->id)}}"
                                                             style="color: white"><strong>刪除</strong></a></button>
                     @endif
-                    {{--</form>--}}
+
                 </td>
+                @if($push->statue == '已推播')
+                <td>
+                    <button class="btn btn-primary " ><a href="{{route('pushstop',$push->id)}}"
+                                                                 style="color:white"><strong>停止促銷優惠</strong></a>
+                    </button>
+                </td>
+                @else
+                    <td>
+                        <button class="btn btn-primary " disabled><a href="{{route('pushstop',$push->id)}}"
+                                                             style="color:white"><strong>停止促銷優惠</strong></a>
+                        </button>
+                    </td>
+                @endif
                 @if($push->statue == '已推播')
                     <td>
                         <button class="btn btn-primary " disabled><a href="{{route('pushchange',$push->id)}}"
@@ -146,5 +152,4 @@
 </div>
 
 </body>
-</html>
 @endsection
