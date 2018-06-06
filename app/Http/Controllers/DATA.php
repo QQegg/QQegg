@@ -28,6 +28,8 @@ class DATA extends Controller
                 'address' => '台中市',
                 'password'=>Hash::make('123456'),
                 'title'=>'test1',
+                'picture'=>'EatFoodFood.png',
+
             ]);
         Store::create([
                 'email' =>'gigi@gmail.com',
@@ -37,6 +39,7 @@ class DATA extends Controller
                 'address' => '台中市',
                 'password'=>Hash::make('123456'),
                 'title'=>'test2',
+                'picture'=>'富山韓國服飾.png',
             ]);
         Store::create([
             'email' =>'riri@gmail.com',
@@ -46,6 +49,7 @@ class DATA extends Controller
             'address' => '台中市',
             'password'=>Hash::make('123456'),
             'title'=>'test2',
+            'picture'=>'青年戶外休閒用品專賣店.png',
         ]);
         User::create([
         'name' => '李玉娟',
