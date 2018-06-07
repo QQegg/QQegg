@@ -10,6 +10,10 @@ use App\Category;
 use App\Coupon;
 use App\User;
 use App\Product;
+use App\Post;
+use App\Push;
+use App\Comment;
+use App\StoreComment;
 class DATA extends Controller
 {
 
@@ -320,5 +324,161 @@ class DATA extends Controller
             'price'=>'35',
             'picture'=>'收納袋.JPG',
         ]);
+        Post::create([
+            'Admin_id'=>'1',
+            'title'=>'系統維修公告',
+            'content'=>'親愛的店家戶您好﹕為提昇網路服務品質，本系統將於107年06月17日 上午04:00 ~ 10:00 進行系統維護，敬請見諒。    祝您 身體健康 萬事如意  雙魚商圈 敬上'
+        ]);
+
+        Post::create([
+            'Admin_id'=>'1',
+            'title'=>'2018年雙魚商圈優良店家',
+            'content'=>'2018年雙魚商圈優良店家票選活動開跑拉~
+即日起至06月15日開始進行優良店家票選活動
+'
+        ]);
+       Comment::create([
+            'Member_id'=>'1',
+            'Store_id'=>'1',
+            'content'=>'店家販售種類蠻多的，價格也很親民',
+            'rate'=>'5',
+
+        ]);
+        Comment::create([
+            'Member_id'=>'2',
+            'Store_id'=>'1',
+            'content'=>'店員看起來臉有點臭',
+            'rate'=>'3',
+
+        ]);
+        Comment::create([
+            'Member_id'=>'3',
+            'Store_id'=>'1',
+            'content'=>'不定期有即期品便宜販售，覺得很棒，蠻划算的!',
+            'rate'=>'5',
+
+        ]);
+        Comment::create([
+            'Member_id'=>'3',
+            'Store_id'=>'2',
+            'content'=>'店長態度不佳，一副要賣不賣的，傻眼',
+            'rate'=>'1',
+
+        ]);
+        Comment::create([
+            'Member_id'=>'2',
+            'Store_id'=>'2',
+            'content'=>'明明是韓國服飾，為什麼店長穿著隨便，像個土鳳梨',
+            'rate'=>'3',
+
+        ]);
+        Comment::create([
+            'Member_id'=>'3',
+            'Store_id'=>'3',
+            'content'=>'一進門就看見店長在做伏地挺身?????????? Excuse me??',
+            'rate'=>'2',
+
+        ]);
+        Comment::create([
+            'Member_id'=>'1',
+            'Store_id'=>'3',
+            'content'=>'店員很親切，很用心地介紹，一定會再來光顧！',
+            'rate'=>'5',
+
+        ]);
+        StoreComment::create([
+            'Member_id'=>'1',
+            'Store_id'=>'1',
+            'content'=>'謝謝您的支持，歡迎再度光臨!',
+
+
+        ]);
+        StoreComment::create([
+            'Member_id'=>'2',
+            'Store_id'=>'1',
+            'content'=>'我們會再進行員工教育，謝謝您的包容!',
+
+
+        ]);
+        StoreComment::create([
+            'Member_id'=>'3',
+            'Store_id'=>'1',
+            'content'=>'謝謝您的支持，歡迎再度光臨!!',
+
+
+        ]);
+        StoreComment::create([
+            'Member_id'=>'3',
+            'Store_id'=>'2',
+            'content'=>'不買就不要買阿',
+
+
+        ]);
+        StoreComment::create([
+            'Member_id'=>'2',
+            'Store_id'=>'2',
+            'content'=>'你才土鳳梨，你全家都土鳳梨',
+
+
+        ]);
+        StoreComment::create([
+            'Member_id'=>'3',
+            'Store_id'=>'3',
+            'content'=>'你沒有感受到我的運動魂嗎?',
+
+
+        ]);
+        StoreComment::create([
+            'Member_id'=>'1',
+            'Store_id'=>'3',
+            'content'=>'謝謝',
+        ]);
+        Push::create([
+            'Store_id'=>'1',
+            'Commodity_id'=>'74564685',
+            'title'=>'義美小泡芙6/7-6/10只要半價喔!!!!',
+            'discount'=>'15',
+            'statue'=>'0',
+            'date_start'=>'6/7',
+            'date_end'=>'6/8',
+            'time_start'=>'9:00',
+            'time_end'=>'21:00',
+        ]);
+       
+        Push::create([
+            'Store_id'=>'1',
+            'Commodity_id'=>'57891986',
+            'title'=>'即日起~6/30 日本超夯零食"梅片"特價70!!!',
+            'discount'=>'30',
+            'statue'=>'0',
+            'date_start'=>'6/7',
+            'date_end'=>'6/30',
+            'time_start'=>'9:00',
+            'time_end'=>'21:00',
+        ]);
+        Push::create([
+            'Store_id'=>'2',
+            'Commodity_id'=>'76876877',
+            'title'=>'最夯百搭緊身黑褲，本週１５０！',
+            'discount'=>'8',
+            'statue'=>'0',
+            'date_start'=>'6/4',
+            'date_end'=>'6/10',
+            'time_start'=>'9:00',
+            'time_end'=>'21:00',
+        ]);
+        Push::create([
+            'Store_id'=>'3',
+            'Commodity_id'=>'56431461',
+            'title'=>'Nike頭帶，本週100一條!',
+            'discount'=>'50',
+            'statue'=>'0',
+            'date_start'=>'6/4',
+            'date_end'=>'6/10',
+            'time_start'=>'9:00',
+            'time_end'=>'21:00',
+        ]);
+
+
     }
 }
