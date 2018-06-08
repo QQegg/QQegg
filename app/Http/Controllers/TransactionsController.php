@@ -127,6 +127,8 @@ class TransactionsController extends Controller
         $pirce=$request['price']-$request['discount']-$request['point'];
         $member=User::find($request['Member']);
         $re=$member['point']-$request['point']+($pirce*0.01);
+        $discri=null;
+        $discun=null;
         if($member!=null){
             $member->point=$re;
             $member->save();
@@ -145,7 +147,6 @@ class TransactionsController extends Controller
             $coupon_list[$cc] = $coupon;
             $cc++;
         }
-
         return view('sale.productcostomer');
     }
 }
