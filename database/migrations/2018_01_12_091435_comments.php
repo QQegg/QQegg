@@ -17,7 +17,7 @@ class Comments extends Migration
             $table->increments('id');
             $table->integer('Member_id')->nullable();
             $table->integer('Store_id')->nullable();
-            $table->string('content');
+            $table->string('content')->nullable();
             $table->string('rate');
             $table->rememberToken();
             $table->timestamps();
