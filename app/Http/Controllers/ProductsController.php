@@ -140,9 +140,15 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         $push = Push::all()->where('Commodity_id',$id)->first();
-        $push->update([
-            'Commodity_id' => 0,
-        ]);
+        if ($push == null){
+
+        }
+        else{
+            $push->update([
+                'Commodity_id' => 0,
+            ]);
+        }
+
         $whereArray = array('id' => $id);
         DB::table('commoditys')->where($whereArray)->delete();
         return redirect()->route('prolist');
