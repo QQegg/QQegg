@@ -21,7 +21,7 @@ class DATA extends Controller
     {
         Admin::create([
             'account' => "sh980932",
-            'email'=>'mimi@gmail.com',
+            'email'=>'admin@gmail.com',
             'password'=>Hash::make('123456')
             ]);
         Store::create([
